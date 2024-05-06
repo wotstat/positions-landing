@@ -46,4 +46,4 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Copy to server
-        run: rsync -avz ./output/public node:/${{ vars.APP_PATH_PROD }}
+        run: rsync -avz ./.output/public node:/${{ vars.APP_PATH_PROD }}
