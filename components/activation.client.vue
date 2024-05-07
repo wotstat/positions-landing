@@ -27,7 +27,7 @@ const status = ref<'WAIT' | 'STARTED' | 'SEND' | 'ACTIVATED'>('WAIT')
 
 console.log(props.requestId);
 
-const { status: wsStatus, data, send, open, close } = useWebSocket(`ws://${import.meta.env.VITE_SERVER_URL}/api/v1/activation/web/${props.requestId}`, {
+const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId}`, {
   onMessage: (ws, event) => {
     switch (event.data) {
       case 'START':
