@@ -1,11 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxtjs/i18n"],
+  modules: ["@nuxtjs/i18n", '@vueuse/nuxt'],
   i18n: {
     defaultLocale: 'ru',
     vueI18n: './i18n.config.ts',
     baseUrl: 'https://positions.wotstat.info',
+    detectBrowserLanguage: false,
     locales: [
       {
         code: 'ru',

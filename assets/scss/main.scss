@@ -74,11 +74,19 @@ button {
   cursor: pointer;
   color: inherit;
   transition: border-color 0.25s;
+
+  &:hover {
+    border-color: #65f0ff;
+  }
+
+  &:disabled {
+    background-color: #1a1a1a;
+    color: #666;
+    cursor: not-allowed;
+    border-color: transparent
+  }
 }
 
-button:hover {
-  border-color: #65f0ff;
-}
 
 button:focus,
 button:focus-visible {
@@ -100,4 +108,19 @@ textarea:focus-visible {
 .main-container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.card {
+  background-color: $background-secondary;
+  border-radius: 15px;
+  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
+  padding: 15px;
 }

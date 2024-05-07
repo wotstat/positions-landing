@@ -4,6 +4,8 @@
 
     <Head>
       <Title>{{ title }}</Title>
+      <Meta name="description" :content="description" />
+      <Link rel="icon" href="/favicon.ico" />
       <template v-for="link in head.link" :key="link.id">
         <Link :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
       </template>
@@ -29,4 +31,5 @@ const head = useLocaleHead({
   addSeoAttributes: true
 })
 const title = computed(() => t(route.meta.title ? `${route.meta.title}` : 'meta.title'))
+const description = computed(() => t(route.meta.description ? `${route.meta.description}` : 'meta.description'))
 </script>

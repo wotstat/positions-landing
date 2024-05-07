@@ -1,10 +1,8 @@
 <template>
   <div class="main-container">
-    <h1>Мод «Позиции от WotStat»</h1>
+    <h1>{{ $t('main.title') }}</h1>
     <h2 class="mod-description">
-      Уникальные и эффективные позиции для нанесения урона в играх «World of Tanks» и «Мир Танков».
-      <br>
-      На основе анализа тепловых карт лучших 5% игроков на каждом танке
+      {{ $t('main.description') }}
     </h2>
   </div>
 </template>
@@ -36,6 +34,7 @@
     font-weight: 400;
     max-width: 80%;
     line-height: 1.4;
+    white-space: pre-wrap;
 
     @media screen and (max-width: 768px) {
       text-align: left;
