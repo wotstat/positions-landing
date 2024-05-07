@@ -40,7 +40,7 @@ const props = defineProps<{
 
 const key = ref('')
 const successActivated = ref(false)
-const status = ref<'WAIT' | 'STARTED' | 'SENDED' | 'ACTIVATED' | 'CLOSED'>('WAIT')
+const status = ref<'WAIT' | 'STARTED' | 'SENDED' | 'ACTIVATED' | 'CLOSED' | 'DISCONNECTED'>('WAIT')
 
 
 const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId}`, {
@@ -56,11 +56,17 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.met
       case 'CLOSED':
         status.value = 'CLOSED'
         break;
+      case 'DISCONNECTED':
+        status.value = 'DISCONNECTED'
+        break;
 
       default:
         break;
     }
-  }
+  },
+  onDisconnected(ws, event) {
+    status.value = 'DISCONNECTED'
+  },
 })
 
 const statusText = computed(() => {
@@ -72,6 +78,7 @@ const statusText = computed(() => {
     case 'ACTIVATED':
       return 'activation.status.connected'
     case 'CLOSED':
+    case 'DISCONNECTED':
       return 'activation.status.disconnected'
   }
 })
@@ -85,6 +92,7 @@ const statusColor = computed(() => {
     case 'ACTIVATED':
       return 'green'
     case 'CLOSED':
+    case 'DISCONNECTED':
       return 'red'
   }
 })
