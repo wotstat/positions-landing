@@ -23,7 +23,7 @@ const props = defineProps<{
 }>()
 
 const key = ref('')
-const status = ref<'WAIT' | 'STARTED' | 'SEND' | 'ACTIVATED'>('WAIT')
+const status = ref<'WAIT' | 'STARTED' | 'SEND' | 'ACTIVATED' | 'CLOSED'>('WAIT')
 
 console.log(props.requestId);
 
@@ -35,6 +35,9 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.met
         break;
       case 'ACTIVATED':
         status.value = 'ACTIVATED'
+        break;
+      case 'CLOSED':
+        status.value = 'CLOSED'
         break;
 
       default:
