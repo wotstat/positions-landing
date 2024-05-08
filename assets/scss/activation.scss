@@ -1,0 +1,29 @@
+@import './colors.scss';
+
+.success-header,
+.error-header,
+.warning-header {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.success-header {
+  background-color: #38413a;
+  border: 2px solid $green;
+  color: $green;
+}
+
+.error-header {
+  background-color: #423434;
+  border: 2px solid $red;
+  color: $red;
+}
+
+.warning-header {
+  background-color: #3f3a34;
+  border: 2px solid $orange;
+  color: $orange;
+}

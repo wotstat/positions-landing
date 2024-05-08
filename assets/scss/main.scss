@@ -76,7 +76,7 @@ button {
   transition: border-color 0.25s;
 
   &:hover {
-    border-color: #65f0ff;
+    border-color: $accent-color;
   }
 
   &:disabled {

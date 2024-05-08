@@ -5,7 +5,7 @@
         <h1 class="flex-1">Активация лицензии</h1>
         <div class="status" :class="statusColor" v-if="!successActivated">{{ $t(statusText) }}</div>
       </div>
-      <template v-if="showWaitCode">
+      <template v-if="showMain">
         <p>Для активации лицензии вам необходим <b>лицензионный</b> или <b>промо</b> ключ.</p>
         <p>Лицензионный ключ стоит 100 рублей в месяц. Вы можете <a href="">купить</a> на сервисе.</p>
         <br>
@@ -17,16 +17,12 @@
       <div class="flex loader-parent" v-if="showLoader">
         <span class="loader"></span>
       </div>
-      <template v-if="successActivated">
-        <div class="success-header">
-          ВАША ЛИЦЕНЗИЯ АКТИВИРОВАНА
-        </div>
-        <br>
-        <p>Поздравляем,</p>
-        <p>Вы успешно активировали лицензию мода "Позиции от WotStat", теперь вы можете убедиться в успешной активации,
-          в центре уведомлений отобразилось сообщений с информацией о лицензии</p>
-        <p>Удачных боёв!</p>
-      </template>
+      <ActivationSuccess v-if="successActivated && !promoReceived" />
+      <ActivationPromoSuccess v-else-if="successActivated && promoReceived" :license="promoReceived" />
+      <ActivationWotLost v-else-if="wotClosed" />
+      <ActivationDisconnected v-else-if="showErrorDisconnected" />
+      <ActivationErrorLicense v-else-if="wrongKey" :license="key" @reset="reset" />
+      <ActivationErrorPromo v-else-if="alreadyActivatedPromo" :license="key" @reset="reset" />
     </div>
   </div>
 </template>
@@ -40,28 +36,50 @@ const props = defineProps<{
 
 const key = ref('')
 const successActivated = ref(false)
-const status = ref<'WAIT' | 'STARTED' | 'SENDED' | 'ACTIVATED' | 'CLOSED' | 'DISCONNECTED'>('WAIT')
+const promoReceived = ref<false | string>(false)
+const wrongKey = ref(false)
+const wotClosed = ref(false)
+const alreadyActivatedPromo = ref(false)
+
+const status = ref<'WAIT' | 'STARTED' | 'CLOSED' | 'SENDED' | 'ACTIVATED' | 'ALREADY_ACTIVATED_PROMO' |
+  'INVALID_LICENSE' | 'INVALID_PROMO' | 'WOT_CLOSED' | 'INTERNAL_ERROR' | 'DISCONNECTED'>('WAIT')
+
+const showMain = computed(() => (status.value === 'WAIT' || status.value === 'STARTED') && !successActivated.value && !promoReceived.value && !wrongKey.value)
+const showLoader = computed(() => status.value === 'SENDED')
+const showErrorDisconnected = computed(() => status.value === 'DISCONNECTED' && !successActivated.value)
+
+
+const isButtonEnabled = computed(() => key.value.length >= 10 && wsStatus.value === 'OPEN' && status.value == 'STARTED')
 
 
 const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId}`, {
   onMessage: (ws, event) => {
-    switch (event.data) {
-      case 'START':
-        status.value = 'STARTED'
-        break;
+    const data = JSON.parse(event.data)
+
+    if (data.status) {
+      status.value = data.status
+    }
+
+    if (data.promo && data.promo.license) {
+      promoReceived.value = data.promo.license
+    }
+
+    switch (data.status) {
       case 'ACTIVATED':
         successActivated.value = true
-        status.value = 'ACTIVATED'
+        break
+      case 'INVALID_LICENSE':
+      case 'INVALID_PROMO':
+        wrongKey.value = true
+        break
+      case 'ALREADY_ACTIVATED_PROMO':
+        alreadyActivatedPromo.value = true
+        break
+      case 'WOT_CLOSED':
+        wotClosed.value = true
         break;
-      case 'CLOSED':
-        status.value = 'CLOSED'
-        break;
-      case 'DISCONNECTED':
-        status.value = 'DISCONNECTED'
-        break;
-
       default:
-        break;
+        break
     }
   },
   onDisconnected(ws, event) {
@@ -73,13 +91,11 @@ const statusText = computed(() => {
   switch (status.value) {
     case 'WAIT':
       return 'activation.status.wait'
-    case 'STARTED':
-    case 'SENDED':
-    case 'ACTIVATED':
-      return 'activation.status.connected'
     case 'CLOSED':
     case 'DISCONNECTED':
       return 'activation.status.disconnected'
+    default:
+      return 'activation.status.connected'
   }
 })
 
@@ -87,35 +103,37 @@ const statusColor = computed(() => {
   switch (status.value) {
     case 'WAIT':
       return 'orange'
-    case 'STARTED':
-    case 'SENDED':
-    case 'ACTIVATED':
-      return 'green'
     case 'CLOSED':
     case 'DISCONNECTED':
       return 'red'
+    default:
+      return 'green'
   }
 })
 
-const showLoader = computed(() => status.value === 'SENDED')
-const showWaitCode = computed(() => (status.value === 'WAIT' || status.value === 'STARTED') && !successActivated.value)
-
-
-const isButtonEnabled = computed(() => key.value.length > 10 && wsStatus.value === 'OPEN' && status.value == 'STARTED')
-
 function activate() {
-  console.log('activate', key.value);
   if (wsStatus.value === 'OPEN' && status.value == 'STARTED') {
     status.value = 'SENDED'
-    send(`KEY:${key.value}`)
+    send(JSON.stringify({ key: key.value }))
   }
+}
 
+function reset() {
+  key.value = ''
+  status.value = 'STARTED'
+  successActivated.value = false
+  promoReceived.value = false
+  wrongKey.value = false
+  alreadyActivatedPromo.value = false
+  wotClosed.value = false
 }
 
 </script>
 
 
 <style lang="scss" scoped>
+@import "~/assets/scss/colors.scss";
+
 .activate-container {
   max-width: 900px;
   margin: auto;
@@ -134,17 +152,6 @@ h1 {
   }
 }
 
-.success-header {
-  font-size: 1.5em;
-  text-align: center;
-  font-weight: 600;
-  padding: 10px;
-  background-color: #38413a;
-  border: 2px solid #30D158;
-  color: #30D158;
-  border-radius: 10px;
-
-}
 
 .card {
   margin: 50px;
@@ -210,16 +217,10 @@ input {
   transition: border-color 0.25s;
 
   &:hover {
-    // border-color: #65f0ff;
-    border-color: #30D158;
+    border-color: $accent-color;
   }
 }
 
-button {
-  &:hover:not(:disabled) {
-    border-color: #30D158;
-  }
-}
 
 .loader-parent {
   font-size: 10px;
