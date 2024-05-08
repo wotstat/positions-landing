@@ -17,7 +17,7 @@
       <div class="flex loader-parent" v-if="showLoader">
         <span class="loader"></span>
       </div>
-      <ActivationSuccess v-if="successActivated && !promoReceived" />
+      <ActivationSuccess v-else-if="successActivated && !promoReceived" />
       <ActivationPromoSuccess v-else-if="successActivated && promoReceived" :license="promoReceived" />
       <ActivationWotLost v-else-if="wotClosed" />
       <ActivationDisconnected v-else-if="showErrorDisconnected" />
