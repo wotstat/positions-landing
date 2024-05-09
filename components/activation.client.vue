@@ -133,6 +133,7 @@ function reset() {
   wrongKey.value = false
   alreadyActivatedPromo.value = false
   wotClosed.value = false
+  activationExpired.value = false
 }
 
 </script>
