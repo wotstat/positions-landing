@@ -40,7 +40,7 @@ const props = defineProps<{
 
 const visibleKey = ref(false)
 
-const hiddenKey = props.license.replace(/[a-zA-Z]/g, '∗').slice(0, -4) + props.license.slice(-4)
+const hiddenKey = props.license.replace(/[a-zA-Z0-9]/g, '∗').slice(0, -4) + props.license.slice(-4)
 
 const currentKey = computed(() => visibleKey.value ? props.license : hiddenKey)
 

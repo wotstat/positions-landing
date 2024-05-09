@@ -19,7 +19,8 @@
       </div>
       <ActivationSuccess v-else-if="successActivated && !promoReceived" />
       <ActivationPromoSuccess v-else-if="successActivated && promoReceived" :license="promoReceived" />
-      <ActivationPromoWotLost v-else-if="wotClosed && promoReceived" :license="promoReceived" />
+      <ActivationPromoWotLost v-else-if="(wotClosed || showErrorDisconnected) && promoReceived"
+        :license="promoReceived" />
       <ActivationWotLost v-else-if="wotClosed" />
       <ActivationDisconnected v-else-if="showErrorDisconnected" />
       <ActivationErrorLicense v-else-if="wrongKey" :license="key" @reset="reset" />
