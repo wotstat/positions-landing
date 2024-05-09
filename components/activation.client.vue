@@ -18,6 +18,7 @@
         <span class="loader"></span>
       </div>
       <ActivationSuccess v-else-if="successActivated && !promoReceived" />
+      <ActivationExpired v-else-if="activationExpired" :license="key" @reset="reset" />
       <ActivationPromoSuccess v-else-if="successActivated && promoReceived" :license="promoReceived" />
       <ActivationPromoWotLost v-else-if="(wotClosed || showErrorDisconnected) && promoReceived"
         :license="promoReceived" />
@@ -38,13 +39,14 @@ const props = defineProps<{
 
 const key = ref('')
 const successActivated = ref(false)
+const activationExpired = ref(false)
 const promoReceived = ref<false | string>(false)
 const wrongKey = ref(false)
 const wotClosed = ref(false)
 const alreadyActivatedPromo = ref(false)
 
 const status = ref<'WAIT' | 'STARTED' | 'CLOSED' | 'SENDED' | 'ACTIVATED' | 'ALREADY_ACTIVATED_PROMO' |
-  'INVALID_LICENSE' | 'INVALID_PROMO' | 'WOT_CLOSED' | 'INTERNAL_ERROR' | 'DISCONNECTED'>('WAIT')
+  'EXPIRED_LICENSE' | 'INVALID_LICENSE' | 'INVALID_PROMO' | 'WOT_CLOSED' | 'INTERNAL_ERROR' | 'DISCONNECTED'>('WAIT')
 
 const showMain = computed(() => (status.value === 'WAIT' || status.value === 'STARTED') && !successActivated.value && !promoReceived.value && !wrongKey.value)
 const showLoader = computed(() => status.value === 'SENDED')
@@ -80,6 +82,9 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.met
       case 'WOT_CLOSED':
         wotClosed.value = true
         break;
+      case 'EXPIRED_LICENSE':
+        activationExpired.value = true
+        break
       default:
         break
     }
