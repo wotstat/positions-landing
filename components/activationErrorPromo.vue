@@ -27,7 +27,6 @@ const emit = defineEmits<{
 @use "~/assets/scss/activation.scss";
 
 a {
-  // color: $color-primary;
   cursor: pointer;
 }
 </style>

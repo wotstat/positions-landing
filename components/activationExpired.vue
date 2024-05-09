@@ -24,4 +24,8 @@ const emit = defineEmits<{
 
 <style lang="scss" scoped>
 @use "~/assets/scss/activation.scss";
+
+a {
+  cursor: pointer;
+}
 </style>
