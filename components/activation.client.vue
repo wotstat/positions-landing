@@ -92,6 +92,11 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.met
   onDisconnected(ws, event) {
     status.value = 'DISCONNECTED'
   },
+  heartbeat: {
+    interval: 5000,
+    message: 'PING',
+    pongTimeout: 5000,
+  }
 })
 
 const statusText = computed(() => {
