@@ -1,12 +1,9 @@
 <template>
   <div class="success-header">
-    ВАША ЛИЦЕНЗИЯ АКТИВИРОВАНА
+    {{ $t('activation.result.success').toUpperCase() }}
   </div>
   <br>
-  <p>Вы успешно активировали лицензию мода "Позиции от WotStat", теперь вы можете убедиться в успешной активации,
-    в центре уведомлений отобразилось сообщений с информацией о лицензии</p>
-  <br>
-  <p>Удачных боёв!</p>
+  <p v-html="$t('activation.page.successDescription')"></p>
 </template>
 
 <style lang="scss" scoped>

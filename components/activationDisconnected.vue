@@ -1,3 +1,3 @@
 <template>
-  <p>Соединение с сервером прервано. Попробуйте запустить процесс активации ещё раз</p>
+  <p v-html="$t('activation.page.disconnectedDescription')"></p>
 </template>

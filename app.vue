@@ -15,8 +15,6 @@ useSeoMeta({
 })
 
 
-
-const { locale, setLocale } = useI18n()
 </script>
 
 

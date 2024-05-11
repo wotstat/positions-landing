@@ -1,13 +1,16 @@
 <template>
   <div class="error-header">
-    НЕВЕРНЫЙ КЛЮЧ
+    {{ $t('activation.result.incorrect').toUpperCase() }}
   </div>
   <br>
-  <p>Вы пытались активировать ключ: <code>{{ license }}</code></p>
+  <p>
+    {{ $t('activation.page.youTryToActivateLicense') }}
+    <code>{{ license }}</code>
+  </p>
   <br>
-  <p>Такого ключа не существует или его срок лицензии уже истёк. Убедитесь, что вводите верный ключ.</p>
+  <p>{{ $t('activation.page.incorrectDescription') }}</p>
   <br>
-  <a @click="emit('reset')">Попробовать другой ключ</a>
+  <a @click="emit('reset')">{{ $t('activation.page.tryAnotherKey') }}</a>
 </template>
 
 <script setup lang="ts">

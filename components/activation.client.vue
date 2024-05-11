@@ -2,16 +2,15 @@
   <div class="activate-container">
     <div class="card">
       <div class="flex header">
-        <h1 class="flex-1">Активация лицензии</h1>
+        <h1 class="flex-1">{{ $t('activation.page.title') }}</h1>
         <div class="status" :class="statusColor" v-if="!successActivated">{{ $t(statusText) }}</div>
       </div>
       <template v-if="showMain">
-        <p>Для активации лицензии вам необходим <b>лицензионный</b> или <b>промо</b> ключ.</p>
-        <p>Лицензионный ключ стоит 100 рублей в месяц. Вы можете <a href="">купить</a> на сервисе.</p>
+        <p v-html="$t('activation.page.description')"></p>
         <br>
         <div class="flex input-line">
-          <input type="text" class="flex-1" placeholder="Введите ключ" v-model="key">
-          <button :disabled="!isButtonEnabled" @click="activate">Активировать</button>
+          <input type="text" class="flex-1" :placeholder="$t('activation.page.keyPlaceholder')" v-model="key">
+          <button :disabled="!isButtonEnabled" @click="activate">{{ $t('activation.page.activate') }}</button>
         </div>
       </template>
       <div class="flex loader-parent" v-if="showLoader">
@@ -26,6 +25,24 @@
       <ActivationDisconnected v-else-if="showErrorDisconnected" />
       <ActivationErrorLicense v-else-if="wrongKey" :license="key" @reset="reset" />
       <ActivationErrorPromo v-else-if="alreadyActivatedPromo" :license="key" @reset="reset" />
+
+
+      <!-- <hr>
+      <ActivationSuccess />
+      <hr>
+      <ActivationExpired :license="key" @reset="reset" />
+      <hr>
+      <ActivationPromoSuccess :license="key" />
+      <hr>
+      <ActivationPromoWotLost :license="key" />
+      <hr>
+      <ActivationWotLost />
+      <hr>
+      <ActivationDisconnected />
+      <hr>
+      <ActivationErrorLicense :license="key" @reset="reset" />
+      <hr>
+      <ActivationErrorPromo :license="key" @reset="reset" /> -->
     </div>
   </div>
 </template>
@@ -58,6 +75,8 @@ const isButtonEnabled = computed(() => key.value.length >= 10 && wsStatus.value 
 
 const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId}`, {
   onMessage: (ws, event) => {
+    if (event.data === 'PONG') return
+
     const data = JSON.parse(event.data)
 
     if (data.status) {
@@ -132,7 +151,18 @@ function activate() {
 
 function reset() {
   key.value = ''
-  status.value = 'STARTED'
+  switch (status.value) {
+    case 'ALREADY_ACTIVATED_PROMO':
+    case 'ACTIVATED':
+    case 'EXPIRED_LICENSE':
+    case 'INVALID_LICENSE':
+    case 'INVALID_PROMO':
+    case 'INTERNAL_ERROR':
+      status.value = 'STARTED'
+      break;
+    default:
+      break;
+  }
   successActivated.value = false
   promoReceived.value = false
   wrongKey.value = false
@@ -146,6 +176,12 @@ function reset() {
 
 <style lang="scss" scoped>
 @import "~/assets/scss/colors.scss";
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid black;
+}
 
 .activate-container {
   max-width: 900px;

@@ -1,12 +1,9 @@
 <template>
   <div class="success-header">
-    ЛИЦЕНЗИЯ СГЕНЕРИРОВАНА
+    {{ $t('activation.result.promo').toUpperCase() }}
   </div>
   <br>
-  <p>Одноразовый промо-код успешно активирован, однако во время активации была потеряна связь с клиентом игры.
-    <b>Повторите активацию с использованием лицензионного ключа</b>
-  </p>
-  <p>Обязательно сохраните лицензионный ключ, он потребуется для следующих активаций</p>
+  <p v-html="$t('activation.page.promoWotLost')"></p>
   <br>
   <div class="flex key-line">
     <p class="key-field flex-1 flex">
@@ -27,11 +24,11 @@
         </svg>
       </span>
     </p>
-    <button @click="copyKey">Скопировать</button>
+    <button @click="copyKey">{{ $t('activation.page.copy') }}</button>
 
   </div>
   <br>
-  <p>Удачных боёв!</p>
+  <p>{{ $t('activation.page.goodLuck') }}</p>
 </template>
 
 <script setup lang="ts">

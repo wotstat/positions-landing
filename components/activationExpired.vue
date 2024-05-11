@@ -1,13 +1,16 @@
 <template>
   <div class="warning-header">
-    ЛИЦЕНЗИЯ ИСТЕКЛА
+    {{ $t('activation.result.expired').toUpperCase() }}
   </div>
   <br>
-  <p>Вы пытались активировать лицензионный ключ: <code>{{ license }}</code></p>
+  <p>
+    {{ $t('activation.page.youTryToActivateLicense') }}
+    <code>{{ license }}</code>
+  </p>
   <br>
-  <p>Срок действия этого лицензионного ключа истёк. Вы можете приобрести новый ключ</p>
+  <p>{{ $t('activation.page.expiredDescription') }}</p>
   <br>
-  <a @click="emit('reset')">Попробовать другой код</a>
+  <a @click="emit('reset')">{{ $t('activation.page.tryAnotherKey') }}</a>
 </template>
 
 <script setup lang="ts">

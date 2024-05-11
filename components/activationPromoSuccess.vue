@@ -1,10 +1,9 @@
 <template>
   <div class="success-header">
-    ВАША ЛИЦЕНЗИЯ АКТИВИРОВАНА
+    {{ $t('activation.result.success').toUpperCase() }}
   </div>
   <br>
-  <p>Одноразовый промо-ключ успешно активирован. Обязательно сохраните лицензионный ключ, он потребуется для следующих
-    активаций</p>
+  <p v-html="$t('activation.page.promoSuccessDescription')"></p>
   <br>
   <div class="flex key-line">
     <p class="key-field flex-1 flex">
@@ -25,11 +24,11 @@
         </svg>
       </span>
     </p>
-    <button @click="copyKey">Скопировать</button>
+    <button @click="copyKey">{{ $t('activation.page.copy') }}</button>
 
   </div>
   <br>
-  <p>Удачных боёв!</p>
+  <p>{{ $t('activation.page.goodLuck') }}</p>
 </template>
 
 <script setup lang="ts">
