@@ -4,9 +4,8 @@
 
 
 <script setup lang="ts">
-import { BoxGeometry, DoubleSide, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, Plane, PlaneGeometry, Scene, Sprite, SpriteMaterial, TextureLoader, WebGLRenderer } from 'three';
+import { Mesh, MeshBasicMaterial, PlaneGeometry, Sprite, SpriteMaterial, TextureLoader, WebGLRenderer } from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
-import { Group } from 'three/examples/jsm/libs/tween.module.js';
 import { useThree } from '~/composition/useThree';
 
 const target = ref<HTMLElement | null>(null);
@@ -38,7 +37,7 @@ scene.add(idealMarker);
 
 
 camera.position.z = 1.5;
-camera.position.y = 1.5;
+camera.position.y = 1;
 camera.lookAt(0, 0, 0)
 
 const orbital = new OrbitControls(camera, renderer.domElement);
@@ -48,10 +47,11 @@ orbital.enableDamping = true;
 orbital.autoRotate = true;
 orbital.minPolarAngle = 0;
 orbital.maxPolarAngle = Math.PI / 2.7;
+orbital.maxDistance = 2.1;
+orbital.minDistance = 2.1;
 
 function onAnimate() {
   orbital.update();
-  // idealMarker.lookAt(camera.position);
 }
 onAnimateList.add(onAnimate);
 
@@ -60,7 +60,6 @@ onAnimateList.add(onAnimate);
 
 <style lang="scss" scoped>
 .target {
-  // width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -69,11 +68,11 @@ onAnimateList.add(onAnimate);
   margin-left: -100px;
   margin-right: -100px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
 
     margin-left: -100px;
     margin-right: -100px;
-    height: 150%;
+    height: 130%;
     margin-top: -50px;
     margin-bottom: 20px;
   }

@@ -70,7 +70,7 @@
       margin: 0;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1000px) {
       flex-direction: column-reverse;
 
       h1,
