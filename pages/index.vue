@@ -9,9 +9,20 @@
             Позиции для эффективного нанесения урона в играх World&nbsp;of&nbsp;Tanks и Мир&nbsp;Танков.
             <!-- {{ $t('main.description') }} -->
           </h2>
+          <div class="flex buttons tanks">
+            <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''" @click="selectedTank = tank">{{
+            $t(`tanks.${tank}`) }}</button>
+            <button class="hover-disabled">И ещё 684</button>
+          </div>
+
+          <div class="flex buttons maps">
+            <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
+            $t(`maps.${map}`) }}</button>
+            <button class="hover-disabled">И ещё 24</button>
+          </div>
         </div>
         <div class="right">
-          <ThreeRotationMap />
+          <ThreeRotationMap :tank="selectedTank" :map="selectedMap" />
           <!-- <img src="https://placehold.co/500x500" alt=""> -->
         </div>
       </div>
@@ -22,23 +33,33 @@
 
 <script setup lang="ts">
 
+const selectedTank = ref<string>('conqueror');
+const selectedMap = ref<string>('murovanka');
+
+const tanks = ['conqueror', 'concept', 'jagdPz', 'ob261', 'even']
+const maps = ['paris', 'murovanka', 'steppes']
+
 
 </script>
 
 
 <style scoped lang="scss">
+@import "~/assets/scss/colors.scss";
+
 .page {
   position: relative;
   overflow: hidden;
 }
 
 .main-container {
-  padding: 20px;
+  padding: 0px;
 
   .l1 {
     height: 90vh;
+    padding: 0 50px;
     align-items: center;
     gap: 40px;
+    $width-limit: 1000px;
 
     .left {
       flex: 1;
@@ -70,8 +91,50 @@
       margin: 0;
     }
 
-    @media screen and (max-width: 1000px) {
+    .buttons {
+      margin-top: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
+
+      @media screen and (max-width: $width-limit) {
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      button {
+        border-radius: 50px;
+        background-color: $background-secondary;
+        padding: 7px 20px;
+
+        &.hover-disabled {
+          cursor: default;
+
+          &:hover {
+            border-color: transparent;
+          }
+        }
+
+        &.active {
+          background-color: $accent-color;
+          color: $background-color;
+        }
+      }
+    }
+
+    @media screen and (max-width: $width-limit) {
+
+      height: unset;
+      padding: 0 20px;
       flex-direction: column-reverse;
+
+      .left {
+        margin-top: -50px;
+      }
+
+      .right {
+        min-height: 50vh;
+        display: grid;
+      }
 
       h1,
       h2 {
@@ -84,24 +147,8 @@
         font-size: 3em;
       }
     }
+
+
   }
-
-  // h1 {
-  //   text-align: left;
-
-  //   @media screen and (max-width: 768px) {
-  //     font-size: 2em;
-  //   }
-
-  // }
-
-  // h2.mod-description {
-  //   text-align: left;
-  //   font-size: 1em;
-  //   font-weight: 400;
-  //   max-width: 80%;
-  //   line-height: 1.4;
-  //   white-space: pre-wrap;
-  // }
 }
 </style>

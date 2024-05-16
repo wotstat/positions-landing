@@ -238,8 +238,8 @@ h1 {
     text-align: center;
 
     &.green {
-      border: 1px solid #30D158;
-      color: #30D158;
+      border: 1px solid $accent-color;
+      color: $accent-color;
     }
 
     &.orange {
@@ -280,8 +280,10 @@ input {
 </style>
 
 <style lang="scss" scoped>
+@import "~/assets/scss/colors.scss";
+
 .loader {
-  color: #30D158;
+  color: $accent-color;
   width: 1em;
   height: 1em;
   border-radius: 50%;

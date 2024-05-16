@@ -39,5 +39,21 @@ export default {
       promoAlreadyActivated: 'Уже активирован',
       incorrect: 'Неверный ключ',
     }
+  },
+  maps: {
+    paris: 'Париж',
+    murovanka: 'Мурованка',
+    steppes: 'Степи',
+  },
+  tanks: {
+    grille: 'Grille 15',
+    skorpionG: 'Skorpion G',
+    even: 'ELC EVEN 90',
+    concept: 'Concept',
+    MVY: 'M-V-Y',
+    '4005': 'FV4005',
+    ob261: 'Объект 261',
+    conqueror: 'S. Conqueror',
+    jagdPz: 'Jg.Pz. E 100',
   }
 }
