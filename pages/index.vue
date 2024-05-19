@@ -105,6 +105,7 @@ const maps = ['paris', 'murovanka', 'steppes']
       font-size: 4em;
       font-weight: 900;
       margin: 0;
+      white-space: nowrap;
     }
 
     h2 {
@@ -172,6 +173,7 @@ const maps = ['paris', 'murovanka', 'steppes']
 
       h1 {
         font-size: 2.8em;
+        white-space: normal;
       }
 
       h2 {
