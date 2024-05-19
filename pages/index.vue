@@ -4,27 +4,36 @@
     <div class="main-container">
       <div class="l1 flex">
         <div class="left">
-          <h1>{{ $t('main.title') }}</h1>
-          <h2 class="mod-description">
-            Позиции для эффективного нанесения урона в играх World&nbsp;of&nbsp;Tanks и Мир&nbsp;Танков.
-            <!-- {{ $t('main.description') }} -->
-          </h2>
-          <div class="flex buttons tanks">
-            <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''" @click="selectedTank = tank">{{
-            $t(`tanks.${tank}`) }}</button>
-            <button class="hover-disabled">И ещё 684</button>
-          </div>
+          <div class="title">
+            <h1>{{ $t('main.title') }}</h1>
+            <h2 class="mod-description">
+              Позиции для эффективного нанесения урона в играх World&nbsp;of&nbsp;Tanks и Мир&nbsp;Танков.
+              <!-- {{ $t('main.description') }} -->
+            </h2>
+            <div class="flex hor buttons tanks">
+              <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''"
+                @click="selectedTank = tank">{{
+              $t(`tanks.${tank}`) }}</button>
+              <button class="hover-disabled">И ещё 684</button>
+            </div>
 
-          <div class="flex buttons maps">
-            <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
-            $t(`maps.${map}`) }}</button>
-            <button class="hover-disabled">И ещё 24</button>
+            <div class="flex hor buttons maps">
+              <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
+              $t(`maps.${map}`) }}</button>
+              <button class="hover-disabled">И ещё 24</button>
+            </div>
           </div>
         </div>
-        <div class="right">
-          <ThreeRotationMap :tank="selectedTank" :map="selectedMap" />
-          <!-- <img src="https://placehold.co/500x500" alt=""> -->
+        <div class="right" ref="rightContainerRef">
+          <div class="map" :style="mapContainerStyle">
+            <ThreeRotationMap :tank="selectedTank" :map="selectedMap" />
+          </div>
         </div>
+      </div>
+
+
+      <div class="l2">
+
       </div>
     </div>
 
@@ -32,6 +41,13 @@
 </template>
 
 <script setup lang="ts">
+
+const rightContainerRef = ref<HTMLElement | null>(null);
+const { width, height } = useElementBounding(rightContainerRef);
+const mapContainerStyle = computed(() => ({
+  width: Math.min(width.value, height.value) + 'px',
+  height: Math.min(width.value, height.value) + 'px',
+}))
 
 const selectedTank = ref<string>('conqueror');
 const selectedMap = ref<string>('murovanka');
@@ -55,26 +71,33 @@ const maps = ['paris', 'murovanka', 'steppes']
   padding: 0px;
 
   .l1 {
-    height: 90vh;
+    min-height: 90vh;
     padding: 0 50px;
-    align-items: center;
-    gap: 40px;
     $width-limit: 1000px;
 
     .left {
       flex: 1;
-      margin-bottom: 100px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0px;
+
+      // background-color: rgba(70, 157, 234, 0.219);
     }
 
     .right {
       flex: 0.8;
       width: 100%;
-      height: 100%;
-      // background-color: rgba(32, 166, 166, 0.066);
+      position: relative;
 
-      img {
-        width: 100%;
-        height: auto;
+
+      // background-color: rgba(201, 70, 234, 0.219);
+
+      .map {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        // background-color: rgba(63, 197, 11, 0.293);
       }
     }
 
@@ -85,10 +108,10 @@ const maps = ['paris', 'murovanka', 'steppes']
     }
 
     h2 {
-      font-size: 1.2em;
+      font-size: 1.4em;
       line-height: 1.4;
       color: #cecece;
-      margin: 0;
+      margin: 0.8em 0 1em 0;
     }
 
     .buttons {
@@ -105,6 +128,11 @@ const maps = ['paris', 'murovanka', 'steppes']
         border-radius: 50px;
         background-color: $background-secondary;
         padding: 7px 20px;
+        white-space: nowrap;
+
+        @media screen and (max-width: 512px) {
+          flex: 1;
+        }
 
         &.hover-disabled {
           cursor: default;
@@ -125,26 +153,39 @@ const maps = ['paris', 'murovanka', 'steppes']
 
       height: unset;
       padding: 0 20px;
-      flex-direction: column-reverse;
+      flex-direction: column;
 
       .left {
-        margin-top: -50px;
+        flex: 0;
       }
 
       .right {
-        min-height: 50vh;
-        display: grid;
+        order: -1;
+        min-height: 200px;
+        max-height: 500px;
       }
 
       h1,
       h2 {
         text-align: center;
       }
+
+      h1 {
+        font-size: 2.8em;
+      }
+
+      h2 {
+        font-size: 1.2em;
+      }
     }
 
     @media screen and (max-width: 512px) {
       h1 {
-        font-size: 3em;
+        font-size: 2.5em;
+      }
+
+      h2 {
+        font-size: 1em;
       }
     }
 

@@ -16,6 +16,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   --font-color: rgba(255, 255, 255, 0.87);
+
+  box-sizing: border-box;
 }
 
 code {
@@ -113,6 +115,10 @@ textarea:focus-visible {
 
 .flex {
   display: flex;
+
+  &.hor {
+    flex-direction: row;
+  }
 }
 
 .flex-1 {

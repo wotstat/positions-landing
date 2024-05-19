@@ -12,6 +12,7 @@ import { useTextureLoader } from '~/composition/useTextureLoader';
 
 import Positions from './positions'
 import { idealMarker, miniMarker } from './markers';
+import { useTankOnMap } from '~/composition/useTankOnMap';
 
 const props = defineProps<{
   tank: string;
@@ -23,6 +24,18 @@ const target = ref<HTMLElement | null>(null);
 const { scene, camera, renderer, animate, onAnimateList } = useThree(target);
 animate()
 
+const minimapGeometry = new PlaneGeometry(1, 1);
+minimapGeometry.rotateX(-Math.PI / 2);
+
+const minimapMaterial = new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
+const minimap = new Mesh(minimapGeometry, minimapMaterial);
+minimap.renderOrder = 1;
+scene.add(minimap);
+
+watchEffect(() => {
+  minimap.rotation.set(0, props.map == 'paris' ? -Math.PI / 2 : 0, 0);
+})
+
 const greenFlag = shallowRef<Object3D>();
 const redFlag = shallowRef<Object3D>();
 useGLTFLoader('/flags.glb', (path, gltf) => {
@@ -33,8 +46,8 @@ useGLTFLoader('/flags.glb', (path, gltf) => {
   greenFlag.value.scale.set(scale, scale, scale);
   redFlag.value.scale.set(scale, scale, scale);
 
-  scene.add(greenFlag.value);
-  scene.add(redFlag.value);
+  minimap.add(greenFlag.value);
+  minimap.add(redFlag.value);
 
 
   const mapProps = Positions.maps[props.map];
@@ -59,23 +72,11 @@ const hemiLight = new HemisphereLight(0xffffff, 0x8d8d8d, 3);
 // hemiLight.position.set(0, 1, 0);
 scene.add(hemiLight);
 
-const minimapGeometry = new PlaneGeometry(1, 1);
-minimapGeometry.rotateX(-Math.PI / 2);
-
-const minimapMaterial = new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
-const minimap = new Mesh(minimapGeometry, minimapMaterial);
-minimap.renderOrder = 1;
-scene.add(minimap);
-
 watch(map, (value, old) => {
   if (!value) return;
   minimapMaterial.map = value;
   minimapMaterial.opacity = 1;
   minimapMaterial.needsUpdate = true;
-})
-
-watch(() => [greenFlag.value, redFlag.value], ([green, red]) => {
-  if (!green || !red) return;
 })
 
 camera.position.z = 1.5;
@@ -94,10 +95,10 @@ orbital.minDistance = 2.1;
 
 
 const idealMarkers = new Object3D();
-scene.add(idealMarkers);
+minimap.add(idealMarkers);
 
 const miniMarkers = new Object3D();
-scene.add(miniMarkers);
+minimap.add(miniMarkers);
 
 
 watch(() => [props.tank, props.map], ([tank, map]) => {
@@ -142,17 +143,18 @@ onAnimateList.add(onAnimate);
 
 <style lang="scss" scoped>
 .target {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
 
-  margin-left: -100px;
-  margin-right: -100px;
+  $offset: -10%;
+
+  top: $offset;
+  left: $offset;
+  right: $offset;
+  bottom: $offset;
 
   @media screen and (max-width: 1000px) {
-    margin-top: -10%;
-    height: 120%;
+    // margin-top: -10%;
+    // height: 120%;
 
     // margin-left: -100px;
     // margin-right: -100px;
