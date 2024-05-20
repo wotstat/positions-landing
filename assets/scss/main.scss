@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 @import './colors.scss';
 
 :root {
@@ -8,7 +10,7 @@
 
   color-scheme: dark;
   color: var(--font-color);
-  background-color: #242424;
+  background-color: $background-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,20 +22,25 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  // background-color: color.change($accent-color, $lightness: 90%);
+  // color: $background-color;
+}
+
 code {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   text-wrap: nowrap;
 }
 
 a {
-  font-weight: 500;
-  color: #b9f8ff;
+  color: $accent-color;
   text-decoration: inherit;
+
+  &:hover {
+    color: darken($accent-color, 10%);
+  }
 }
 
-a:hover {
-  color: #65f0ff;
-}
 
 hr {
   border: 0;

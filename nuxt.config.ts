@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxtjs/i18n", '@vueuse/nuxt'],
+  modules: ["@nuxtjs/i18n", '@vueuse/nuxt', "nuxt-svgo", "@nuxt/image"],
   i18n: {
     defaultLocale: 'ru',
     vueI18n: './i18n.config.ts',
