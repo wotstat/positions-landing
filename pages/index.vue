@@ -88,7 +88,7 @@
 
           <div class="card">
             <div class="info">
-              <h3>Наилучшая позиция в 3D</h3>
+              <h3>Маркер наилучшей позиции</h3>
               <h4 class="gray">Наиболее эффективная позиция отображается прямо в игре крупным зелёным маркером.</h4>
             </div>
 
@@ -99,7 +99,7 @@
 
           <div class="card">
             <div class="info">
-              <h3>Наилучшая позиция на миникарте</h3>
+              <h3>Наилучшая позиция</h3>
               <h4 class="gray">Отображает наиболее эффективную позицию крупным маркером на миникарте.</h4>
             </div>
 
@@ -204,6 +204,27 @@
 
       <section class="l6">
         <h2>Часто задаваемые вопросы</h2>
+        <According>
+          <template #header>
+            <h4>Как установить мод?</h4>
+          </template>
+          <template #panel>
+            <p class="gray">
+              Для установки мода необходимо скачать архив с файлами и распаковать его в папку с игрой. Подробнее в
+              <a href="/">инструкции</a>.
+            </p>
+          </template>
+        </According>
+
+        <hr>
+
+        <FaqItem :title="'Как установить мод?'"
+          :content="' Для установки мода необходимо скачать архив с файлами и распаковать его в папку с игрой.'" />
+
+        <hr>
+
+        <FaqItem :title="'Какие способы оплаты доступны?'"
+          :content="' Для установки мода необходимо скачать архив с файлами и распаковать его в папку с игрой.'" />
       </section>
 
       <footer>
@@ -252,7 +273,7 @@ const screenshots = [
 <style scoped lang="scss">
 @import "~/assets/scss/colors.scss";
 
-$large-color: #b5b5b5;
+
 $width-limit: 1000px;
 
 .page {
@@ -433,13 +454,6 @@ $width-limit: 1000px;
   }
 
   .l3 {
-    margin-top: 200px;
-
-    @media screen and (max-width: $width-limit) {
-      margin-top: 100px;
-    }
-
-
     .demo {
       display: grid;
 
@@ -502,78 +516,35 @@ $width-limit: 1000px;
     }
   }
 
+  .l4 {}
+
   .l5 {}
-}
 
-.gray {
-  color: $large-color;
-}
-
-h1 {
-  font-size: 4em;
-  font-weight: 900;
-  margin: 0;
-
-  @media screen and (max-width: $width-limit) {
-    font-size: 2.8em;
+  .l6 {
+    hr {
+      margin: 0;
+    }
   }
 
-  @media screen and (max-width: 512px) {
-    font-size: 2.5em;
+
+  .l3,
+  .l4,
+  .l5,
+  .l6 {
+    margin-top: 200px;
+
+    @media screen and (max-width: $width-limit) {
+      margin-top: 100px;
+    }
   }
 }
 
 h2 {
-  font-size: 3em;
-  line-height: 1.4;
   margin: 1em 0 0.4em 0;
-
-  @media screen and (max-width: $width-limit) {
-    font-size: 2em;
-  }
-
-  @media screen and (max-width: 512px) {
-    font-size: 1.8em;
-  }
-}
-
-h3 {
-  font-size: 1.5em;
-  line-height: 1.5em;
-  font-weight: bold;
-  margin: 0;
-
-  @media screen and (max-width: $width-limit) {
-    font-size: 1.2em;
-  }
-
-  @media screen and (max-width: 512px) {
-    font-size: 1.1em;
-  }
 }
 
 h4 {
-  font-size: 1.3em;
-  font-weight: bold;
   margin: 0.5em 0 0.2em 0;
-
-  @media screen and (max-width: $width-limit) {
-    font-size: 1.1em;
-  }
-
-  @media screen and (max-width: 512px) {
-    font-size: 1em;
-  }
-}
-
-p {
-  font-size: 1.2em;
-  line-height: 1.25em;
-  margin: 0;
-
-  @media screen and (max-width: 512px) {
-    font-size: 1em;
-  }
 }
 </style>
 
