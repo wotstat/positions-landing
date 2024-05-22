@@ -72,12 +72,12 @@
 
       <section class="l3">
         <h2>Как это работает</h2>
-        <h3 class="gray">
-          1. Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
+        <h3 class="gray big-line-height">
+          • Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
           выбираются 5% лучших игроков* <br>
-          2. Строится тепловая карта урона этих игроков.<br>
-          3. Отбираются области с наибольшим уроном.<br>
-          4. В каждой области
+          • Строится тепловая карта урона этих игроков.<br>
+          • Отбираются области с наибольшим уроном.<br>
+          • В каждой области
           выбирается наиболее популярная позиция.
         </h3>
 
@@ -88,8 +88,8 @@
 
           <div class="card">
             <div class="info">
-              <h3>Маркер наилучшей позиции</h3>
-              <h4 class="gray">Наиболее эффективная позиция отображается прямо в игре крупным зелёным маркером.</h4>
+              <h4>Маркер наилучшей позиции</h4>
+              <p class="gray">Наиболее эффективная позиция отображается прямо в игре крупным зелёным маркером.</p>
             </div>
 
             <div class="image-container">
@@ -99,8 +99,8 @@
 
           <div class="card">
             <div class="info">
-              <h3>Наилучшая позиция</h3>
-              <h4 class="gray">Отображает наиболее эффективную позицию крупным маркером на миникарте.</h4>
+              <h4>Наилучшая позиция</h4>
+              <p class="gray">Отображает наиболее эффективную позицию крупным маркером на миникарте.</p>
             </div>
 
             <div class="image-container">
@@ -110,10 +110,10 @@
 
           <div class="card">
             <div class="info">
-              <h3>Эффективные позиции</h3>
-              <h4 class="gray">
+              <h4>Эффективные позиции</h4>
+              <p class="gray">
                 Маленькими зелёными маркерами отображаются менее популярные, но всё ещё эффективные позиции.
-              </h4>
+              </p>
             </div>
 
             <div class="image-container">
@@ -123,11 +123,10 @@
 
           <div class="card">
             <div class="info">
-              <h3>Эффективные области</h3>
-              <h4 class="gray">
+              <h4>Эффективные области</h4>
+              <p class="gray">
                 Иногда оптимальным местом является не конкретная точка, а целая область на карте.
-              </h4>
-              <p class="gray">Отображается по удержанию Alt</p>
+              </p>
             </div>
 
             <div class="image-container">
@@ -137,11 +136,11 @@
 
           <div class="card">
             <div class="info">
-              <h3>Качество рекомендации</h3>
-              <h4 class="gray">
+              <h4>Качество рекомендации</h4>
+              <p class="gray">
                 Над миникартой отображается сообщение с описывающее качество рекомендуемых позиций. <a href="/"
                   target="_blank" rel="noopener noreferrer">Подробнее.</a>
-              </h4>
+              </p>
             </div>
 
             <div class="image-container">
@@ -151,11 +150,10 @@
 
           <div class="card">
             <div class="info">
-              <h3>Настройки</h3>
-              <h4 class="gray">
+              <h4>Настройки</h4>
+              <p class="gray">
                 Мод можно сконфигурировать под себя, настроив отображение всех видов маркеров.
-              </h4>
-              <p class="gray">Необходим ModSettingsApi</p>
+              </p>
             </div>
 
             <div class="image-container">
@@ -284,6 +282,14 @@ $width-limit: 1000px;
 .main-container {
   padding: 0px;
 
+  h2 {
+    margin: 1em 0 0.4em 0;
+  }
+
+  h4 {
+    margin: 0.5em 0 0.2em 0;
+  }
+
   >section {
     padding: 0 50px;
 
@@ -327,9 +333,15 @@ $width-limit: 1000px;
           }
         }
 
-        h2 {
+        h3 {
+          font-size: 2em;
+
           @media screen and (max-width: $width-limit) {
-            text-align: center;
+            font-size: 1.4em;
+          }
+
+          @media screen and (max-width: 512px) {
+            font-size: 1.25em;
           }
         }
       }
@@ -474,10 +486,11 @@ $width-limit: 1000px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        gap: 1em;
 
         h4 {
           line-height: 1.25;
+          margin: 0 0 0.5em 0;
         }
 
         .image-container {
@@ -537,14 +550,6 @@ $width-limit: 1000px;
       margin-top: 100px;
     }
   }
-}
-
-h2 {
-  margin: 1em 0 0.4em 0;
-}
-
-h4 {
-  margin: 0.5em 0 0.2em 0;
 }
 </style>
 
