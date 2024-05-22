@@ -68,11 +68,23 @@ function toggle() {
       height: 20px;
       padding: 10px;
 
+      @media screen and (max-width: 1024px) {
+        width: 15px;
+        height: 15px;
+        padding: 7px;
+      }
+
+      @media screen and (max-width: 768px) {
+        width: 12px;
+        height: 12px;
+        padding: 6px;
+      }
+
       .icon {
+        display: block;
         width: 100%;
         height: 100%;
         margin: 0;
-        vertical-align: baseline;
       }
     }
   }

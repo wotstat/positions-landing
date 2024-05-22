@@ -72,14 +72,19 @@
 
       <section class="l3">
         <h2>Как это работает</h2>
-        <h3 class="gray big-line-height">
+        <h3 class="gray">
+          Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
+          выбираются 5% лучших игроков*, строится тепловая карта их урона, отбираются наиболее эффективные области, в
+          каждой из которых, выбирается наиболее популярная позиция.
+        </h3>
+        <!-- <h3 class="gray big-line-height">
           • Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
           выбираются 5% лучших игроков* <br>
           • Строится тепловая карта урона этих игроков.<br>
           • Отбираются области с наибольшим уроном.<br>
           • В каждой области
           выбирается наиболее популярная позиция.
-        </h3>
+        </h3> -->
 
         <br>
         <br>
