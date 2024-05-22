@@ -15,9 +15,18 @@ export function useThree(element: Ref<HTMLElement | null>) {
   const onAnimateList = new Set<() => void>();
 
   function animate() {
-    requestAnimationFrame(animate);
     onAnimateList.forEach(fn => fn());
     renderer.render(scene, camera);
+  }
+
+  let animationFrameHandler: number;
+  function startAnimate() {
+    animationFrameHandler = requestAnimationFrame(startAnimate);
+    animate();
+  }
+
+  function stopAnimate() {
+    cancelAnimationFrame(animationFrameHandler);
   }
 
   onMounted(() => {
@@ -34,7 +43,9 @@ export function useThree(element: Ref<HTMLElement | null>) {
   });
 
   return {
+    startAnimate,
     animate,
+    stopAnimate,
     onAnimateList,
     scene,
     camera,

@@ -2,7 +2,13 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxtjs/i18n", '@vueuse/nuxt', "nuxt-svgo", "@nuxt/image"],
+  modules: [
+    "@nuxtjs/i18n",
+    '@vueuse/nuxt',
+    "nuxt-svgo",
+    "@nuxt/image",
+    "vue3-carousel-nuxt"
+  ],
   i18n: {
     defaultLocale: 'ru',
     vueI18n: './i18n.config.ts',
@@ -18,4 +24,7 @@ export default defineNuxtConfig({
       }
     ],
   },
+  image: {
+    format: ['webp']
+  }
 })

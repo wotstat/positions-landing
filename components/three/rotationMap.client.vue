@@ -21,8 +21,15 @@ const props = defineProps<{
 
 const target = ref<HTMLElement | null>(null);
 
-const { scene, camera, renderer, animate, onAnimateList } = useThree(target);
-animate()
+const isVisible = useElementVisibility(target)
+
+const { scene, camera, renderer, startAnimate, stopAnimate, onAnimateList } = useThree(target);
+startAnimate()
+
+watch(isVisible, (value) => {
+  if (value) startAnimate()
+  else stopAnimate()
+}, { immediate: true })
 
 const minimapGeometry = new PlaneGeometry(1, 1);
 minimapGeometry.rotateX(-Math.PI / 2);
@@ -62,7 +69,7 @@ useGLTFLoader('/flags.glb', (path, gltf) => {
 // useTankOnMap(scene, () => props.tank, () => props.map);
 
 
-const map = useTextureLoader(() => `/minimap/${props.map}.png`, (path, texture) => {
+const map = useTextureLoader(() => `/minimap/${props.map}.webp`, (path, texture) => {
   texture.colorSpace = 'display-p3'
   texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 });

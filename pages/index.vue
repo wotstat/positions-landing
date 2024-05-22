@@ -69,6 +69,7 @@
         </div>
       </section>
 
+
       <section class="l3">
         <h2>Как это работает</h2>
         <h3 class="gray">
@@ -92,7 +93,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtImg src="/screenshots/demo/marker3d.png" />
+              <NuxtPicture src="/screenshots/demo/marker3d.png" />
             </div>
           </div>
 
@@ -103,7 +104,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtImg src="/screenshots/demo/best.png" />
+              <NuxtPicture src="/screenshots/demo/best.png" />
             </div>
           </div>
 
@@ -116,7 +117,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtImg src="/screenshots/demo/marker3d.png" />
+              <NuxtPicture src="/screenshots/demo/marker3d.png" />
             </div>
           </div>
 
@@ -130,7 +131,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtImg src="/screenshots/demo/marker3d.png" />
+              <NuxtPicture src="/screenshots/demo/marker3d.png" />
             </div>
           </div>
 
@@ -144,7 +145,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtImg src="/screenshots/demo/marker3d.png" />
+              <NuxtPicture src="/screenshots/demo/marker3d.png" />
             </div>
           </div>
 
@@ -158,31 +159,48 @@
             </div>
 
             <div class="image-container">
-              <NuxtImg src="/screenshots/demo/marker3d.png" />
+              <NuxtPicture src="/screenshots/demo/marker3d.png" />
             </div>
           </div>
         </div>
 
         <h3 class="margin-top">Демонстрация работы</h3>
-        <iframe width="560" height="315"
-          src="https://www.youtube-nocookie.com/embed/zoDMW87S_kc?si=uxvd9imvf3a0gPA0&amp;controls=1"
-          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-        <div class="flex screenshots">
-          <NuxtImg format="webp" sizes="sm: 200px md:400px" src="/screenshots/screen1.png" />
-          <NuxtImg format="webp" sizes="sm: 200px md:400px" src="/screenshots/screen1.png" />
-          <NuxtImg format="webp" sizes="sm: 200px md:400px" src="/screenshots/screen1.png" />
+        <div class="carousel-container">
+          <Carousel :items-to-show="1.1" :wrap-around="true">
+            <Slide :key="'yt'">
+              <div class="carousel-item">
+                <iframe width="560" height="315"
+                  src="https://www.youtube-nocookie.com/embed/zoDMW87S_kc?si=uxvd9imvf3a0gPA0&amp;controls=1"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </Slide>
+
+            <Slide v-for="slide in screenshots" :key="slide">
+              <div class="carousel-item">
+                <NuxtPicture sizes="600px xl:1400px" :src="slide" />
+              </div>
+            </Slide>
+
+            <template #addons>
+              <Navigation />
+            </template>
+          </Carousel>
         </div>
       </section>
+
 
       <section class="l4">
         <h2>Инструкция</h2>
       </section>
 
+
       <section class="l5">
         <h2>Тарифы</h2>
       </section>
+
 
       <section class="l6">
         <h2>Часто задаваемые вопросы</h2>
@@ -205,8 +223,6 @@
 
 <script setup lang="ts">
 
-// import Map from '~/assets/icons/map.svg';
-
 const rightContainerRef = ref<HTMLElement | null>(null);
 const { width, height } = useElementBounding(rightContainerRef);
 const mapContainerStyle = computed(() => ({
@@ -220,6 +236,15 @@ const selectedMap = ref<string>('murovanka');
 const tanks = ['conqueror', 'concept', 'jagdPz', 'ob261', 'even']
 const maps = ['paris', 'murovanka', 'steppes']
 
+
+const screenshots = [
+  '/screenshots/screen1.png',
+  '/screenshots/screen2.png',
+  '/screenshots/screen3.png',
+  '/screenshots/screen4.png',
+  '/screenshots/screen5.png',
+  '/screenshots/screen6.png',
+]
 
 </script>
 
@@ -238,7 +263,7 @@ $width-limit: 1000px;
 .main-container {
   padding: 0px;
 
-  section {
+  >section {
     padding: 0 50px;
 
     @media screen and (max-width: $width-limit) {
@@ -443,11 +468,9 @@ $width-limit: 1000px;
 
         .image-container {
           margin-top: auto;
-          display: flex;
 
-          img {
-            flex: 1;
-            width: 0;
+          :deep(img) {
+            width: 100%;
             border-radius: 10px;
             box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
           }
@@ -464,30 +487,22 @@ $width-limit: 1000px;
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
-      border-radius: 20px;
-      margin: 20px 0;
-      box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
     }
 
-    .screenshots {
-      gap: 20px;
-      // margin-top: 20px;
-      justify-content: center;
+    .carousel-container {
+      margin-top: 20px;
 
+      border-radius: 15px;
+      overflow: hidden;
 
       @media screen and (max-width: 700px) {
-        flex-direction: column;
+        margin: 20px -20px;
+        border-radius: 0;
       }
-
-      img {
-        flex: 1;
-        min-width: 0;
-        border-radius: 20px;
-        box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
-      }
-
     }
   }
+
+  .l5 {}
 }
 
 .gray {
@@ -558,6 +573,53 @@ p {
 
   @media screen and (max-width: 512px) {
     font-size: 1em;
+  }
+}
+</style>
+
+<style lang="scss">
+@import "~/assets/scss/colors.scss";
+
+.l3 {
+  .carousel-item {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 15px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .carousel__slide {
+    padding: 0 10px;
+  }
+
+  .carousel__prev,
+  .carousel__next {
+    box-sizing: content-box;
+    color: inherit;
+    cursor: pointer;
+
+    font-size: 15px;
+
+    @media screen and (max-width: 512px) {
+      font-size: 10px;
+    }
+
+    background-color: rgba(52, 52, 52, 0.389);
+    border-radius: 50%;
+
+    backdrop-filter: blur(5px);
+
+    width: 3em;
+    height: 3em;
+
+    .carousel__icon {
+      width: 3em;
+      height: 3em;
+    }
   }
 }
 </style>
