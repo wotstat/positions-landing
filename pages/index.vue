@@ -497,6 +497,7 @@ $width-limit: 1000px;
           margin-top: auto;
 
           :deep(img) {
+            display: block;
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
@@ -518,6 +519,7 @@ $width-limit: 1000px;
 
     .carousel-container {
       margin-top: 20px;
+      touch-action: pan-x;
 
       border-radius: 15px;
       overflow: hidden;
