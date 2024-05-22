@@ -180,7 +180,7 @@
 
             <Slide v-for="slide in screenshots" :key="slide">
               <div class="carousel-item">
-                <NuxtPicture sizes="600px xl:1400px" :src="slide" />
+                <NuxtPicture sizes="600px xl:1400px" :src="slide" :loading="'lazy'" />
               </div>
             </Slide>
 
@@ -557,6 +557,8 @@ h4 {
     aspect-ratio: 16 / 9;
     border-radius: 15px;
     overflow: hidden;
+
+    background-color: $background-secondary;
 
     img {
       width: 100%;
