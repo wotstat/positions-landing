@@ -524,7 +524,6 @@ $width-limit: 1000px;
 
     .carousel-container {
       margin-top: 20px;
-      touch-action: pan-x;
 
       border-radius: 15px;
       overflow: hidden;
