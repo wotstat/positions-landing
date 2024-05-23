@@ -1,6 +1,20 @@
 <template>
   <div class="page">
 
+    <header>
+      <div class="content" :class="scrollY < 2 ? 'top' : ''">
+        <div class="left"></div>
+        <div class="center">
+          <a href="">Описание</a>
+          <a href="">Как работает</a>
+          <a href="">Демо</a>
+          <a href="">Тариф</a>
+          <a href="">Инструкция</a>
+        </div>
+        <div class="right"></div>
+      </div>
+    </header>
+
     <div class="main-container">
       <section class="l1">
         <div class="content flex">
@@ -8,7 +22,7 @@
             <div class="title">
               <h1>{{ $t('main.title') }}</h1>
               <h3 class="mod-description gray">
-                Улучшите свою эффективность с помощью позиций для стрельбы, основанных на данных от лучших игроков.
+                Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших игроков.
                 <!-- {{ $t('main.description') }} -->
               </h3>
               <div class="flex hor buttons tanks">
@@ -74,8 +88,8 @@
         <h2>Как это работает</h2>
         <h3 class="gray">
           Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
-          выбираются 5% лучших игроков*, строится тепловая карта их урона, отбираются наиболее эффективные области, в
-          каждой из которых, выбирается наиболее популярная позиция.
+          выбираются 5% лучших игроков*, строится тепловая карта их урона, отбираются наиболее популярные области, в
+          каждой из которых, выбирается наиболее эффективная позиция.
         </h3>
         <!-- <h3 class="gray big-line-height">
           • Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
@@ -166,8 +180,10 @@
             </div>
           </div>
         </div>
+      </section>
 
-        <h3 class="margin-top">Демонстрация работы</h3>
+      <section class="l7">
+        <h2>Демонстрация работы</h2>
 
         <div class="carousel-container">
           <Carousel :items-to-show="1.1" :wrap-around="true">
@@ -194,16 +210,115 @@
         </div>
       </section>
 
-
-      <section class="l4">
-        <h2>Инструкция</h2>
-      </section>
-
-
       <section class="l5">
         <h2>Тарифы</h2>
       </section>
 
+
+      <section class="l4">
+        <h2>Инструкция</h2>
+
+        <div class="steps">
+
+          <div class="step">
+            <div class="text">
+              <h3>Установка</h3>
+              <p class="gray">Для установки достаточно перенести файл мода в папку с игрой.</p>
+
+              <ul class="gray">
+                <li><a href="">Скачать</a> актуальную версию модификации</li>
+                <li>Открыть лаунчер игры</li>
+                <li>Нажать кнопку <code>Настройки игры</code> → <code>Показать в папке</code></li>
+                <li>Открыть папку <code>mods</code></li>
+                <li>
+                  <p>Открыть папку с актуальной версией игры:</p>
+                  <ul>
+                    <li>Lesta: <code>1.24.0.0</code></li>
+                    <li>Wargaming: <code>1.24.0.0</code></li>
+                  </ul>
+                </li>
+                <li>Перенести в неё скаченный файл модификации</li>
+              </ul>
+
+              <button class="download">Скачать</button>
+            </div>
+            <div class="image">
+              <NuxtPicture src="/screenshots/screen1.png" />
+            </div>
+          </div>
+
+
+          <div class="step">
+            <div class="text">
+              <h3>Активация</h3>
+              <p class="gray">
+                После входа в игру, появится уведомление от модификации. Нажмите кнопку <code>активировать</code>
+                и введите лицензионный ключ.
+              </p>
+              <button>Купить лицензию</button>
+            </div>
+            <div class="image">
+              <NuxtPicture src="/screenshots/screen1.png" />
+            </div>
+          </div>
+
+
+          <div class="step">
+            <div class="text">
+              <h3>Использование</h3>
+              <p class="gray">
+                После начала отсчёта, подгрузится информация о позициях для вашего танка.
+                <br>
+                Над миникартой будет отображаться сообщение о качестве рекомендуемых позиций вида:
+                <code>#HHH X/Y/Z sS T/P/L eE</code>
+              <ul class="gray">
+                <li><code>#HHH</code> – уникальный id запроса</li>
+                <li><code>X/Y/Z</code> – доля игроков отсечённых по <code>танку/роли/уровню</code></li>
+                <li><code>S</code> – итерация алгоритма понижения требований, чем меньше, тем лучше</li>
+                <li><code>T/P/L</code> – порог среднего урона для выбранных игроков по <code>танку/роли/уровню</code>
+                <li><code>E</code> – время в миллисекундах, затраченное на выполнение запроса</li>
+                </li>
+              </ul>
+              <p><a href="/">Подробнее о сообщение</a></p>
+              </p>
+            </div>
+            <div class="image">
+              <NuxtPicture src="/screenshots/screen1.png" />
+            </div>
+          </div>
+
+
+
+          <div class="step">
+            <div class="text">
+              <h3>Конфигурация</h3>
+              <p class="gray">
+                Для доступа к меню конфигцрации, вам необходимо два дополнительных мода:
+              </p>
+
+              <ul class="gray">
+                <li>
+                  <code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank"
+                rel="noopener noreferrer">ModsSettingsAPI</a></code>
+                  – мод для отображения настроек других модов прямо в игре
+                </li>
+                <li>
+                  <code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank"
+                rel="noopener noreferrer">Mods List</a></code>
+                  – мод для отображения списка модов в ангаре, нужен для открытия меню настроек
+                </li>
+              </ul>
+
+              <p class="gray"><i>Конфигурация является опциональным шагом, мод будет работать и без неё</i></p>
+
+            </div>
+            <div class="image">
+              <NuxtPicture src="/screenshots/screen1.png" />
+            </div>
+          </div>
+        </div>
+
+      </section>
 
       <section class="l6">
         <h2>Часто задаваемые вопросы</h2>
@@ -229,7 +344,9 @@
         <FaqItem :title="'Какие способы оплаты доступны?'"
           :content="' Для установки мода необходимо скачать архив с файлами и распаковать его в папку с игрой.'" />
       </section>
+    </div>
 
+    <div class="main-container">
       <footer>
         <hr>
         <p class="gray">
@@ -241,7 +358,6 @@
         <br>
       </footer>
     </div>
-
   </div>
 </template>
 
@@ -253,6 +369,8 @@ const mapContainerStyle = computed(() => ({
   width: Math.min(width.value, height.value) + 'px',
   height: Math.min(width.value, height.value) + 'px',
 }))
+
+const { y: scrollY } = useWindowScroll()
 
 const selectedTank = ref<string>('conqueror');
 const selectedMap = ref<string>('murovanka');
@@ -296,14 +414,6 @@ $width-limit: 1000px;
   }
 
   >section {
-    padding: 0 50px;
-
-    @media screen and (max-width: $width-limit) {
-      padding: 0 20px;
-    }
-  }
-
-  footer {
     padding: 0 50px;
 
     @media screen and (max-width: $width-limit) {
@@ -511,11 +621,127 @@ $width-limit: 1000px;
       }
 
     }
+  }
 
-    .margin-top {
-      margin-top: 40px;
+  .l4 {
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8em;
+
+      @media screen and (max-width: 1000px) {
+        gap: 4em;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        // margin: 2em 0;
+
+        // &:nth-child(even) {
+        //   flex-direction: row-reverse;
+        // }
+
+        @media screen and (max-width: 1000px) {
+          flex-direction: column;
+          align-items: normal;
+        }
+
+        ul {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          padding-left: 1em;
+          margin: 1em 0;
+
+          @media screen and (max-width: 512px) {
+            font-size: 1em;
+          }
+
+          li {
+            font-size: 1em;
+
+            p {
+              font-size: 1em;
+            }
+          }
+        }
+
+        .text {
+          flex: 1;
+          margin-bottom: auto;
+        }
+
+        .image {
+          flex: 1;
+
+          height: 300px;
+
+          :deep(img) {
+            margin: auto;
+            width: auto;
+            height: 100%;
+            display: block;
+
+
+            border-radius: 15px;
+            overflow: hidden;
+
+            @media screen and (max-width: 1000px) {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+        }
+
+        h3 {
+          font-weight: 600;
+          margin-bottom: 0.3em;
+
+          @media screen and (max-width: 512px) {
+            font-size: 1.2em;
+          }
+        }
+
+        button {
+          width: 100%;
+          background-color: #38b349;
+          color: white;
+          font-weight: 600;
+          margin: 1em 0;
+
+          &.download {
+            margin-top: 0;
+          }
+        }
+      }
     }
 
+    code {
+      font-size: .8em;
+      background-color: $background-secondary;
+      border-radius: 0.375em;
+      padding: 0.08em 0.375em;
+      display: inline-block;
+      border: 1px solid #4b4b4b;
+      color: var(--font-color);
+      font-weight: 600;
+
+    }
+
+  }
+
+  .l5 {}
+
+  .l6 {
+    hr {
+      margin: 0;
+    }
+  }
+
+  .l7 {
     iframe {
       width: 100%;
       height: auto;
@@ -535,21 +761,12 @@ $width-limit: 1000px;
     }
   }
 
-  .l4 {}
-
-  .l5 {}
-
-  .l6 {
-    hr {
-      margin: 0;
-    }
-  }
-
 
   .l3,
   .l4,
   .l5,
-  .l6 {
+  .l6,
+  .l7 {
     margin-top: 200px;
 
     @media screen and (max-width: $width-limit) {
@@ -557,12 +774,65 @@ $width-limit: 1000px;
     }
   }
 }
+
+footer {
+  padding: 0 50px;
+
+  @media screen and (max-width: $width-limit) {
+    padding: 0 20px;
+  }
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: $background-color;
+    border-bottom: 2px solid $background-secondary;
+    display: flex;
+
+    transition-duration: 0.3s;
+    transition-property: background-color, border-bottom, padding;
+
+    &.top {
+      background-color: transparent;
+      border-bottom: 0px solid $background-secondary;
+      padding: 30px;
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      justify-content: center;
+
+      a {
+        color: var(--font-color);
+        transition: color 0.2s;
+        white-space: nowrap;
+        font-weight: 600;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+  }
+
+}
 </style>
 
 <style lang="scss">
 @import "~/assets/scss/colors.scss";
 
-.l3 {
+.l7 {
   .carousel-item {
     width: 100%;
     aspect-ratio: 16 / 9;
