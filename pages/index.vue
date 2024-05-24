@@ -65,8 +65,8 @@
             <div class="title">
               <h1>{{ $t('main.title') }}</h1>
               <h3 class="mod-description gray">
-                Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших
-                игроков.
+                Обучайтесь и играйте эффективнее с позициями от лучших игроков.
+                <!-- Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших игроков. -->
                 <!-- {{ $t('main.description') }} -->
               </h3>
               <div class="flex hor buttons tanks">
@@ -85,7 +85,7 @@
           </div>
           <div class="right" ref="rightContainerRef">
             <div class="map" :style="mapContainerStyle">
-              <ThreeRotationMap :tank="selectedTank" :map="selectedMap" @on-render="onRender" />
+              <ThreeRotationMap :tank="selectedTank" :map="selectedMap" @on-ready="onRender" />
             </div>
             <div class="placeholder" v-if="!loaded">
               <img src="/public/minimap/map.webp">
@@ -252,7 +252,7 @@
 
 
       <section class="l5">
-        <h2 id="pricing">Тарифы</h2>
+        <h2 id="pricing">Тариф</h2>
       </section>
 
 
@@ -566,6 +566,9 @@ $width-limit: 1000px;
             max-width: 100%;
             margin: auto;
             transform: scale(1.2);
+
+            user-select: none;
+            pointer-events: none;
           }
         }
 
@@ -574,23 +577,6 @@ $width-limit: 1000px;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-
-          // .target {
-          //   $offset: -10%;
-          //   position: absolute;
-
-          //   top: $offset;
-          //   left: $offset;
-          //   right: $offset;
-          //   bottom: $offset;
-
-          //   img {
-          //     width: 100%;
-          //     height: 100%;
-          //     object-fit: cover;
-          //     position: absolute;
-          //   }
-          // }
         }
       }
 

@@ -7,7 +7,8 @@ export function useThree(element: Ref<HTMLElement | null>) {
   // const camera = new OrthographicCamera(-1, 1, 1, -1, 0.1, 1000);
   const renderer = new WebGLRenderer({
     antialias: true,
-    alpha: true
+    alpha: true,
+    // preserveDrawingBuffer: true
   })
 
   const { width, height } = useElementBounding(element);

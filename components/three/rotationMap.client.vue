@@ -20,7 +20,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  onRender: [],
+  onReady: [],
 }>();
 
 const target = ref<HTMLElement | null>(null);
@@ -66,8 +66,8 @@ useGLTFLoader('/flags.glb', (path, gltf) => {
   greenFlag.value?.position.set(mapProps.green[0], 0, mapProps.green[1]);
   redFlag.value?.position.set(mapProps.red[0], 0, mapProps.red[1]);
 
-  greenFlag.value?.rotateY(Math.random() * Math.PI * 2);
-  redFlag.value?.rotateY(Math.random() * Math.PI * 2);
+  greenFlag.value?.rotateY(0);
+  redFlag.value?.rotateY(135 * Math.PI / 180);
 });
 
 // useTankOnMap(scene, () => props.tank, () => props.map);
@@ -98,7 +98,6 @@ const orbital = new OrbitControls(camera, renderer.domElement);
 orbital.enableZoom = false;
 orbital.enablePan = false;
 orbital.enableDamping = true;
-orbital.autoRotate = true;
 orbital.minPolarAngle = 0;
 orbital.maxPolarAngle = Math.PI / 2.7;
 orbital.maxDistance = 2.1;
@@ -146,9 +145,15 @@ watch(() => [greenFlag.value, redFlag.value, map.value] as const, ([rFlag, gFlag
 
 function onAnimate() {
   orbital.update();
-  emit('onRender');
 }
 onAnimateList.add(onAnimate);
+
+watch(() => [greenFlag.value, redFlag.value, map.value] as const, ([rFlag, gFlag, map]) => {
+  if (!rFlag || !gFlag || !map) return;
+  orbital.autoRotate = true;
+
+  emit('onReady')
+})
 
 </script>
 
