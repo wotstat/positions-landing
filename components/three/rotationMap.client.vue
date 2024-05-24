@@ -19,6 +19,10 @@ const props = defineProps<{
   map: string;
 }>();
 
+const emit = defineEmits<{
+  onRender: [],
+}>();
+
 const target = ref<HTMLElement | null>(null);
 
 const isVisible = useElementVisibility(target)
@@ -142,6 +146,7 @@ watch(() => [greenFlag.value, redFlag.value, map.value] as const, ([rFlag, gFlag
 
 function onAnimate() {
   orbital.update();
+  emit('onRender');
 }
 onAnimateList.add(onAnimate);
 

@@ -1,19 +1,62 @@
 <template>
-  <div class="page">
+  <div class="page" id="top">
 
     <header>
-      <div class="content" :class="scrollY < 2 ? 'top' : ''">
-        <div class="left"></div>
-        <div class="center">
-          <a href="">Описание</a>
-          <a href="">Как работает</a>
-          <a href="">Демо</a>
-          <a href="">Тариф</a>
-          <a href="">Инструкция</a>
+      <div class="content" :class="[mounted && scrollY > 2 ? '' : 'top', burgerMenuOpen ? 'menu-opened' : '']">
+        <div class="header-container large">
+          <div class="left">
+            <a @click="scrollTo('top')" class="logo">
+              <NuxtPicture sizes="64px" src="/favicon.png" />
+              Позиции от WotStat
+            </a>
+          </div>
+          <div class="center">
+            <a @click="scrollTo('info')">Описание</a>
+            <a @click="scrollTo('how-to')">Как работает</a>
+            <a @click="scrollTo('demo')">Демо</a>
+            <a @click="scrollTo('pricing')">Тариф</a>
+            <a @click="scrollTo('instruction')">Инструкция</a>
+          </div>
+          <div class="right">
+            <a class="buy">Купить</a>
+            <a href="https://discord.gg/5c8rr8M9" target="_blank" rel="noopener noreferrer">
+              <SvgoDiscordMarkWhite class="icon" />
+            </a>
+          </div>
         </div>
-        <div class="right"></div>
+
+        <div class="header-container small">
+          <div class="left">
+            <a @click="scrollTo('top')" class="logo">
+              <NuxtPicture sizes="64px" src="/favicon.png" />
+              Позиции от WotStat
+            </a>
+          </div>
+          <div class="right">
+            <a class="buy">Купить</a>
+            <SvgoBurgerMenu class="burger-menu" @click="openModal" v-if="!burgerMenuOpen" />
+            <SvgoX class="burger-menu" @click="closeModal" v-else />
+          </div>
+        </div>
       </div>
     </header>
+
+    <div class="menu" v-if="burgerMenuOpen" :class="mounted && scrollY > 2 ? '' : 'top'">
+      <a @click="clickMenu('info')">Описание</a>
+      <a @click="clickMenu('how-to')">Как работает</a>
+      <a @click="clickMenu('demo')">Демо</a>
+      <a @click="clickMenu('pricing')">Тариф</a>
+      <a @click="clickMenu('instruction')">Инструкция</a>
+      <hr>
+      <a href="https://discord.gg/5c8rr8M9" target="_blank" rel="noopener noreferrer">
+        Присоединяйтесь к нашему Discord
+        <SvgoDiscordMarkWhite class="icon" />
+      </a>
+      <div class="flex-1" />
+      <a class="buy">Купить</a>
+
+
+    </div>
 
     <div class="main-container">
       <section class="l1">
@@ -22,7 +65,8 @@
             <div class="title">
               <h1>{{ $t('main.title') }}</h1>
               <h3 class="mod-description gray">
-                Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших игроков.
+                Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших
+                игроков.
                 <!-- {{ $t('main.description') }} -->
               </h3>
               <div class="flex hor buttons tanks">
@@ -41,7 +85,10 @@
           </div>
           <div class="right" ref="rightContainerRef">
             <div class="map" :style="mapContainerStyle">
-              <ThreeRotationMap :tank="selectedTank" :map="selectedMap" />
+              <ThreeRotationMap :tank="selectedTank" :map="selectedMap" @on-render="onRender" />
+            </div>
+            <div class="placeholder" v-if="!loaded">
+              <img src="/public/minimap/map.webp">
             </div>
           </div>
         </div>
@@ -51,7 +98,7 @@
 
 
       <section class="l2">
-        <h2>О модификации</h2>
+        <h2 id="info">О модификации</h2>
         <h3 class="gray">Уникальная модификация разработанная для повышения вашей эффективности в бою.</h3>
         <h3 class="gray">
           Использует данные тепловых карт от лучших игроков на каждом танке для определения позиций
@@ -85,20 +132,12 @@
 
 
       <section class="l3">
-        <h2>Как это работает</h2>
+        <h2 id="how-to">Как это работает</h2>
         <h3 class="gray">
           Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
           выбираются 5% лучших игроков*, строится тепловая карта их урона, отбираются наиболее популярные области, в
           каждой из которых, выбирается наиболее эффективная позиция.
         </h3>
-        <!-- <h3 class="gray big-line-height">
-          • Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
-          выбираются 5% лучших игроков* <br>
-          • Строится тепловая карта урона этих игроков.<br>
-          • Отбираются области с наибольшим уроном.<br>
-          • В каждой области
-          выбирается наиболее популярная позиция.
-        </h3> -->
 
         <br>
         <br>
@@ -182,8 +221,9 @@
         </div>
       </section>
 
+
       <section class="l7">
-        <h2>Демонстрация работы</h2>
+        <h2 id="demo">Демонстрация работы</h2>
 
         <div class="carousel-container">
           <Carousel :items-to-show="1.1" :wrap-around="true">
@@ -210,13 +250,14 @@
         </div>
       </section>
 
+
       <section class="l5">
-        <h2>Тарифы</h2>
+        <h2 id="pricing">Тарифы</h2>
       </section>
 
 
       <section class="l4">
-        <h2>Инструкция</h2>
+        <h2 id="instruction">Инструкция</h2>
 
         <div class="steps">
 
@@ -320,8 +361,9 @@
 
       </section>
 
+
       <section class="l6">
-        <h2>Часто задаваемые вопросы</h2>
+        <h2 id="faq">Часто задаваемые вопросы</h2>
         <According>
           <template #header>
             <h4>Как установить мод?</h4>
@@ -365,12 +407,25 @@
 
 const rightContainerRef = ref<HTMLElement | null>(null);
 const { width, height } = useElementBounding(rightContainerRef);
-const mapContainerStyle = computed(() => ({
-  width: Math.min(width.value, height.value) + 'px',
-  height: Math.min(width.value, height.value) + 'px',
-}))
+const mapContainerStyle = computed(() => {
+  if (!width.value || !height.value) return {}
+  return {
+    width: Math.min(width.value, height.value) + 'px',
+    height: Math.min(width.value, height.value) + 'px',
+  }
+})
+
+const loaded = ref(false);
 
 const { y: scrollY } = useWindowScroll()
+const mounted = useMounted()
+
+const { width: windowWidth } = useWindowSize()
+watch(windowWidth, value => {
+  if (value > 1000) closeModal();
+})
+
+const burgerMenuOpen = ref(false);
 
 const selectedTank = ref<string>('conqueror');
 const selectedMap = ref<string>('murovanka');
@@ -387,6 +442,32 @@ const screenshots = [
   '/screenshots/screen5.png',
   '/screenshots/screen6.png',
 ]
+
+function scrollTo(id: string) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function clickMenu(id: string) {
+  closeModal();
+  scrollTo(id);
+}
+
+function openModal() {
+  burgerMenuOpen.value = true;
+  document.body.classList.add('no-scroll');
+}
+
+function closeModal() {
+  burgerMenuOpen.value = false;
+  document.body.classList.remove('no-scroll');
+}
+
+function onRender() {
+  loaded.value = true;
+}
 
 </script>
 
@@ -422,6 +503,10 @@ $width-limit: 1000px;
   }
 
   .l1 {
+
+    @media screen and (max-width: $width-limit) {
+      margin-top: 30px;
+    }
 
     .content {
       position: relative;
@@ -466,15 +551,46 @@ $width-limit: 1000px;
         width: 100%;
         position: relative;
 
+        @media screen and (max-width: 400px) {
+          flex: 1;
+        }
 
-        // background-color: rgba(201, 70, 234, 0.219);
+        .placeholder {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+
+          img {
+            max-height: 100%;
+            max-width: 100%;
+            margin: auto;
+            transform: scale(1.2);
+          }
+        }
 
         .map {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          // background-color: rgba(63, 197, 11, 0.293);
+
+          // .target {
+          //   $offset: -10%;
+          //   position: absolute;
+
+          //   top: $offset;
+          //   left: $offset;
+          //   right: $offset;
+          //   bottom: $offset;
+
+          //   img {
+          //     width: 100%;
+          //     height: 100%;
+          //     object-fit: cover;
+          //     position: absolute;
+          //   }
+          // }
         }
       }
 
@@ -638,7 +754,6 @@ $width-limit: 1000px;
         display: flex;
         align-items: center;
         gap: 20px;
-        // margin: 2em 0;
 
         // &:nth-child(even) {
         //   flex-direction: row-reverse;
@@ -707,7 +822,7 @@ $width-limit: 1000px;
 
         button {
           width: 100%;
-          background-color: #38b349;
+          background-color: $dark-green;
           color: white;
           font-weight: 600;
           margin: 1em 0;
@@ -787,37 +902,131 @@ header {
   width: 100%;
   position: fixed;
   z-index: 1000;
-  display: flex;
-  justify-content: center;
 
   .content {
     flex: 1;
-    padding: 20px;
+    height: 55px;
+    padding: 0 1em;
     background-color: $background-color;
     border-bottom: 2px solid $background-secondary;
     display: flex;
 
     transition-duration: 0.3s;
-    transition-property: background-color, border-bottom, padding;
+    transition-property: background-color, border-bottom, height;
 
     &.top {
       background-color: transparent;
-      border-bottom: 0px solid $background-secondary;
-      padding: 30px;
+      border-bottom: 2px solid transparent;
+      height: 80px;
     }
 
-    .center {
+    &.menu-opened {
+      border-bottom: 2px solid transparent;
+    }
+
+    .header-container {
       display: flex;
-      align-items: center;
-      gap: 20px;
       flex: 1;
-      justify-content: center;
+      max-width: 1300px;
+      margin: auto;
+
+      &.large {
+        @media screen and (max-width: $width-limit) {
+          display: none;
+        }
+      }
+
+      &.small {
+        display: none;
+
+        @media screen and (max-width: $width-limit) {
+          display: flex;
+        }
+      }
+
+      .left,
+      .right,
+      .center {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .left {
+        justify-content: flex-start;
+      }
+
+      .right {
+        justify-content: flex-end;
+
+        .icon {
+          color: $large-color;
+          height: 20px;
+          width: auto;
+
+          transition: color 0.2s;
+
+          &:hover {
+            color: $accent-color;
+            // color: #5865f2;
+          }
+        }
+      }
+
+      .center {
+        justify-content: center;
+      }
 
       a {
-        color: var(--font-color);
+        color: $large-color;
         transition: color 0.2s;
         white-space: nowrap;
+        cursor: pointer;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        :deep(img) {
+          height: 1.4em;
+          width: auto;
+          display: block;
+        }
+      }
+
+      .buy {
+        background-color: transparent;
+        color: $accent-color;
+        border: 2px solid $accent-color;
+
+        padding: 0.2em 0.8em;
+        border-radius: 20px;
         font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-size: 0.8em;
+
+        &:hover {
+          background-color: $accent-color;
+          color: $background-color;
+        }
+
+      }
+
+      .burger-menu {
+        color: $large-color;
+        width: 1.5em;
+        height: auto;
+        cursor: pointer;
 
         &:hover {
           color: $accent-color;
@@ -826,6 +1035,62 @@ header {
     }
   }
 
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background-color: $background-color;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 57px;
+
+  &.top {
+    padding-top: 82px;
+  }
+
+  a {
+    color: $large-color;
+    font-size: 1em;
+    padding: 0.5em 0;
+    cursor: pointer;
+  }
+
+  .buy {
+    background-color: $dark-green;
+    border-radius: 10px;
+    color: white;
+    padding: 0.5em 1em;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  hr {
+    margin: 0.5em 0;
+    border: none;
+    border-top: 1px solid $background-secondary;
+  }
+}
+
+#info,
+#how-to,
+#demo,
+#pricing,
+#instruction {
+  &::before {
+    content: '';
+    display: block;
+    height: 75px;
+    margin-top: -75px;
+    visibility: hidden;
+  }
 }
 </style>
 
