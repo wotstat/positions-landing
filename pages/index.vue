@@ -18,7 +18,7 @@
             <a @click="scrollTo('instruction')">Инструкция</a>
           </div>
           <div class="right">
-            <a class="buy">Купить</a>
+            <a class="buy" @click="buy">Купить</a>
             <a href="https://discord.gg/5c8rr8M9" target="_blank" rel="noopener noreferrer">
               <SvgoDiscordMarkWhite class="icon" />
             </a>
@@ -33,7 +33,7 @@
             </a>
           </div>
           <div class="right">
-            <a class="buy">Купить</a>
+            <a class="buy" @click="buy">Купить</a>
             <SvgoBurgerMenu class="burger-menu" @click="openModal" v-if="!burgerMenuOpen" />
             <SvgoX class="burger-menu" @click="closeModal" v-else />
           </div>
@@ -53,7 +53,7 @@
         <SvgoDiscordMarkWhite class="icon" />
       </a>
       <div class="flex-1" />
-      <a class="buy">Купить</a>
+      <a class="buy" @click="buy">Купить</a>
 
 
     </div>
@@ -355,7 +355,7 @@
               </ul>
             </div>
 
-            <button>Перейти к покупке</button>
+            <button @click="buy">Перейти к покупке</button>
           </div>
         </div>
         <div class="gradient"></div>
@@ -373,7 +373,7 @@
               <p class="gray">Для установки достаточно перенести файл мода в папку с игрой.</p>
 
               <ul class="gray">
-                <li><a href="">Скачать</a> актуальную версию модификации</li>
+                <li><a @click="download">Скачать</a> актуальную версию модификации</li>
                 <li>Открыть лаунчер игры</li>
                 <li>Нажать кнопку <code>Настройки игры</code> → <code>Показать в папке</code></li>
                 <li>Открыть папку <code>mods</code></li>
@@ -387,7 +387,7 @@
                 <li>Перенести в неё скаченный файл модификации</li>
               </ul>
 
-              <button class="download">Скачать</button>
+              <button class="download" @click="download">Скачать</button>
             </div>
             <div class="image">
               <NuxtPicture src="/screenshots/screen1.png" />
@@ -402,7 +402,7 @@
                 После входа в игру, появится уведомление от модификации. Нажмите кнопку <code>активировать</code>
                 и введите лицензионный ключ.
               </p>
-              <button>Купить лицензию</button>
+              <button @click="buy">Купить лицензию</button>
             </div>
             <div class="image">
               <NuxtPicture src="/screenshots/screen1.png" />
@@ -510,6 +510,7 @@
 </template>
 
 <script setup lang="ts">
+import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
 
 
@@ -546,6 +547,14 @@ const latest = ref({
   wg: 'Загрузка...',
 })
 
+const modLatest = ref<{
+  browser_download_url: string;
+  name: string;
+  actual: boolean;
+} | null>(null)
+
+const latestModDownloadUrl = computed(() => modLatest.value?.browser_download_url ?? 'https://github.com/WOT-STAT/minimap-positions/releases/latest')
+
 const screenshots = [
   '/screenshots/screen1.png',
   '/screenshots/screen2.png',
@@ -581,9 +590,19 @@ function onRender() {
   loaded.value = true;
 }
 
+function download() {
+  if (!latestModDownloadUrl.value) window.open(latestModDownloadUrl.value, '_blank')
+  else window.open(latestModDownloadUrl.value);
+}
+
+const router = useRouter()
+function buy() {
+  router.push('/buy')
+}
 
 onMounted(async () => {
   latest.value = await getLatestGameVersion();
+  modLatest.value = await getLatestModVersion()
 })
 </script>
 
