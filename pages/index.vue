@@ -1056,6 +1056,7 @@ $width-limit: 1000px;
 
                 .badge {
                   font-size: 0.8em;
+                  margin-top: 0.5em;
                 }
               }
             }
@@ -1088,7 +1089,14 @@ $width-limit: 1000px;
           ul {
             li {
               margin: 0.5em 0;
-              // font-size: 1.2em;
+            }
+
+            @media screen and (max-width: 512px) {
+              padding-left: 1em;
+            }
+
+            @media screen and (max-width: 800px) {
+              padding-left: 1.2em;
             }
           }
         }
