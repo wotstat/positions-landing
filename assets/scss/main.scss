@@ -36,8 +36,10 @@ a {
   color: $accent-color;
   text-decoration: inherit;
 
-  &:hover {
-    color: darken($accent-color, 10%);
+  @media (hover: hover) {
+    &:hover {
+      color: darken($accent-color, 10%);
+    }
   }
 }
 
@@ -154,8 +156,10 @@ button {
   color: inherit;
   transition: border-color 0.25s;
 
-  &:hover {
-    border-color: $accent-color;
+  @media (hover: hover) {
+    &:hover {
+      border-color: $accent-color;
+    }
   }
 
   &:disabled {
@@ -206,4 +210,15 @@ textarea:focus-visible {
   border-radius: 15px;
   box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
   padding: 15px;
+}
+
+code {
+  font-size: .8em;
+  background-color: $background-secondary;
+  border-radius: 0.375em;
+  padding: 0.08em 0.375em;
+  display: inline-block;
+  border: 1px solid #4b4b4b;
+  color: var(--font-color);
+  font-weight: 600;
 }

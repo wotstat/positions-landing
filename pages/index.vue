@@ -253,6 +253,112 @@
 
       <section class="l5">
         <h2 id="pricing">Тариф</h2>
+        <div class="card">
+          <div class="container">
+            <div class="price">
+              <div class="month">
+                <div class="header">
+                  <p>На месяц</p>
+                  <div class="badge">
+                    По цене трёх коробок
+                  </div>
+                </div>
+                <hr>
+                <p class="amount">
+                  100
+                  <sup>
+                    <SvgoRub class="rub" />
+                  </sup>
+                </p>
+              </div>
+
+              <div class="year">
+                <div class="header">
+                  <p>На год</p>
+                  <div class="badge">
+                    Скидка 20%
+                  </div>
+                </div>
+                <hr>
+                <p class="amount">
+                  1000
+                  <sup>
+                    <SvgoRub class="rub" />
+                  </sup>
+                </p>
+              </div>
+
+            </div>
+            <div class="features">
+              <ul>
+
+                <li>
+                  <p>
+                    Неограниченное число боёв. <span class="gray">Играйте столько, сколько хотите.</span>
+                  </p>
+                </li>
+
+                <li>
+                  <p>Любые уровни. <span class="gray">Играйте на любых уровнях с <code>I</code> до
+                      <code>X</code>.</span></p>
+                </li>
+
+                <li>
+                  <p>Все типы танков.
+                    <span class="gray">Позиции для эффективной стрельбы на любых типах танков. Будьте осторожны на ЛТ,
+                      настрел не является их основной задачей.</span>
+                  </p>
+                </li>
+
+                <li>
+                  <p>Любые режимы.
+                    <span class="gray">
+                      Ограничений на режим нет, однако, в мало популярных режимах, на некоторых танках, может быть
+                      недостаточно данных. В случайных боях, данные всегда актуальны.
+                    </span>
+                  </p>
+                </li>
+
+                <li>
+                  <p>Регулярные обновления.
+                    <span class="gray">
+                      Позиции пересчитываются каждый день, чтобы всегда быть актуальными.
+                    </span>
+                  </p>
+                </li>
+
+
+                <li>
+                  <p>Без привязки к аккаунту.
+                    <span class="gray">
+                      Если вы играете на нескольких аккаунтах, то одна лицензия будет работать на всех.
+                    </span>
+                  </p>
+                </li>
+
+                <li>
+                  <p>Без привязки к железу.
+                    <span class="gray">
+                      Если вы играете на нескольких компьютерах, то одна лицензия будет работать на всех.
+                    </span>
+                  </p>
+                </li>
+
+                <li>
+                  <p>Без привязки к региону.
+                    <span class="gray">
+                      Одна лицензия работает во всех регионах (Wargaming, Lesta).
+                    </span>
+                  </p>
+                </li>
+
+              </ul>
+            </div>
+
+            <button>Перейти к покупке</button>
+          </div>
+        </div>
+        <div class="gradient"></div>
       </section>
 
 
@@ -550,6 +656,7 @@ $width-limit: 1000px;
         flex: 0.8;
         width: 100%;
         position: relative;
+        user-select: none;
 
         @media screen and (max-width: 400px) {
           flex: 1;
@@ -809,6 +916,7 @@ $width-limit: 1000px;
         button {
           width: 100%;
           background-color: $dark-green;
+          border: none;
           color: white;
           font-weight: 600;
           margin: 1em 0;
@@ -816,25 +924,212 @@ $width-limit: 1000px;
           &.download {
             margin-top: 0;
           }
+
+          transition: background-color 0.1s;
+
+          @media (hover: hover) {
+            &:hover {
+              background-color: darken($dark-green, $amount: 10%);
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .l5 {
+    position: relative;
+
+    h2 {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      border-radius: 50px;
+      background: linear-gradient(149.16deg, rgba(12, 117, 241, 0.45) 0%, rgba(39, 70, 105, 0.45) 33.47%, rgba(6, 231, 117, 0.3015) 65.23%, rgba(85, 47, 218, 0.45) 100%);
+      padding: 3px;
+      $border: 1px solid #505050bd;
+
+
+      .container {
+        background: rgba(29, 29, 35, 0.9);
+        // background: rgba(29, 29, 29, 0.9);
+        padding: 18px;
+        border-radius: 47px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .price {
+          flex: 1;
+          display: flex;
+          gap: 20px;
+          align-items: center;
+
+          @media screen and (max-width: 830px) {
+            flex-direction: column;
+            align-items: normal;
+          }
+
+          .month,
+          .year {
+            flex: 1;
+            background-color: rgb(255 255 255 / 5%);
+            border-radius: 30px;
+            position: relative;
+            border: $border;
+
+            transition-duration: 0.3s;
+            transition-property: transform, box-shadow;
+
+            @media (hover: hover) {
+              &:hover {
+                box-shadow: 0 1px 15px 0px rgba(0, 0, 0, 0.1);
+              }
+            }
+
+            p {
+              font-size: 1.6em;
+              font-weight: 600;
+              color: var(--font-color);
+              text-align: left;
+
+              &.amount {
+                font-size: 3em;
+                text-align: center;
+                letter-spacing: -1px;
+                font-variant-numeric: normal;
+                padding: 0.2em;
+              }
+
+              .rub {
+                font-size: 0.6em;
+                font-weight: 400;
+                margin-left: -0.5em;
+              }
+
+              @media screen and (max-width: 512px) {
+                font-size: 1.2em;
+              }
+            }
+
+            .header {
+              display: flex;
+              align-items: center;
+              padding-right: 25px;
+              white-space: nowrap;
+
+              p {
+                flex: 1;
+                padding: 25px 0 20px 25px;
+              }
+
+              .badge {
+                background: rgb(83, 84, 43);
+                color: rgb(253, 242, 89);
+                border-radius: 50px;
+                padding: 0.1em 0.7em;
+                margin-top: 0.6em;
+              }
+
+              @media screen and (max-width: 512px) {
+                padding-right: 20px;
+
+                p {
+                  padding: 20px 0 15px 20px;
+                }
+
+                .badge {
+                  font-size: 0.8em;
+                }
+              }
+            }
+
+
+            hr {
+              border: none;
+              margin: 0;
+              border-top: $border;
+            }
+          }
+
+          .year {
+            .header {
+              .badge {
+                background: rgb(43, 84, 53);
+                color: rgb(89, 253, 103);
+              }
+            }
+          }
+        }
+
+        .line {
+          border-left: 1px solid #626262;
+        }
+
+        .features {
+          flex: 1;
+
+          ul {
+            li {
+              margin: 0.5em 0;
+              // font-size: 1.2em;
+            }
+          }
+        }
+
+        button {
+          border-radius: 30px;
+          height: 60px;
+          font-size: 1.2em;
+          color: $accent-color;
+          background-color: rgb(255 255 255 / 5%);
+          border: $border;
+
+          // background-color: rgb(43, 84, 53);
+          // color: rgb(89, 253, 103);
+
+          transition: all 0.3s;
+
+          @media (hover: hover) {
+            &:hover {
+              border-color: $dark-green;
+            }
+          }
         }
       }
     }
 
-    code {
-      font-size: .8em;
-      background-color: $background-secondary;
-      border-radius: 0.375em;
-      padding: 0.08em 0.375em;
-      display: inline-block;
-      border: 1px solid #4b4b4b;
-      color: var(--font-color);
-      font-weight: 600;
+    .gradient {
+      user-select: none;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180vw;
+      max-width: 2000px;
+      height: 140%;
+      z-index: 0;
+      opacity: 0.6;
+
+      mix-blend-mode: screen;
+      background-blend-mode: overlay;
+
+      background:
+        radial-gradient(circle closest-side at 80% 30%, #145c4c30 0%, #00000000 100%),
+        radial-gradient(circle closest-side at 80% 70%, #145c4c30 0%, #00000000 100%),
+        radial-gradient(circle closest-side at 20% 30%, #0e105749 0%, #00000000 100%),
+        radial-gradient(circle closest-side at 20% 70%, #0e105749 0%, #00000000 100%),
+        radial-gradient(closest-side at 60% 50%, #145c4c9e 10%, #00000000 100%),
+        radial-gradient(closest-side at 40% 50%, #0e10579e 30%, #00000000 100%);
 
     }
-
   }
-
-  .l5 {}
 
   .l6 {
     hr {
@@ -843,6 +1138,9 @@ $width-limit: 1000px;
   }
 
   .l7 {
+    position: relative;
+    z-index: 2;
+
     iframe {
       width: 100%;
       height: auto;
@@ -953,9 +1251,10 @@ header {
 
           transition: color 0.2s;
 
-          &:hover {
-            color: $accent-color;
-            // color: #5865f2;
+          @media (hover: hover) {
+            &:hover {
+              color: $accent-color;
+            }
           }
         }
       }
@@ -970,8 +1269,10 @@ header {
         white-space: nowrap;
         cursor: pointer;
 
-        &:hover {
-          color: $accent-color;
+        @media (hover: hover) {
+          &:hover {
+            color: $accent-color;
+          }
         }
       }
 
@@ -1001,9 +1302,11 @@ header {
         transition: background-color 0.2s;
         font-size: 0.8em;
 
-        &:hover {
-          background-color: $accent-color;
-          color: $background-color;
+        @media (hover: hover) {
+          &:hover {
+            background-color: $accent-color;
+            color: $background-color;
+          }
         }
 
       }
@@ -1014,8 +1317,10 @@ header {
         height: auto;
         cursor: pointer;
 
-        &:hover {
-          color: $accent-color;
+        @media (hover: hover) {
+          &:hover {
+            color: $accent-color;
+          }
         }
       }
     }
