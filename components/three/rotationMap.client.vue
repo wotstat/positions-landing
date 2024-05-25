@@ -49,13 +49,22 @@ watchEffect(() => {
 
 const greenFlag = shallowRef<Object3D>();
 const redFlag = shallowRef<Object3D>();
-useGLTFLoader('/flags.glb', (path, gltf) => {
-  greenFlag.value = gltf.scene.children[0]
-  redFlag.value = gltf.scene.children[1]
+const flagScene = useGLTFLoader('/flags.glb');
+
+watch(flagScene, (gltf, old) => {
+  if (!gltf) return;
+
+  greenFlag.value = gltf.scene.children[0].clone()
+  redFlag.value = gltf.scene.children[1].clone()
 
   const scale = 0.007;
   greenFlag.value.scale.set(scale, scale, scale);
   redFlag.value.scale.set(scale, scale, scale);
+
+  if (old) {
+    minimap.remove(old.scene.children[0]);
+    minimap.remove(old.scene.children[1]);
+  }
 
   minimap.add(greenFlag.value);
   minimap.add(redFlag.value);
@@ -68,7 +77,7 @@ useGLTFLoader('/flags.glb', (path, gltf) => {
 
   greenFlag.value?.rotateY(0);
   redFlag.value?.rotateY(135 * Math.PI / 180);
-});
+}, { immediate: true })
 
 // useTankOnMap(scene, () => props.tank, () => props.map);
 
@@ -153,7 +162,7 @@ watch(() => [greenFlag.value, redFlag.value, map.value] as const, ([rFlag, gFlag
   orbital.autoRotate = true;
 
   emit('onReady')
-})
+}, { immediate: true })
 
 </script>
 

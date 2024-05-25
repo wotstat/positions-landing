@@ -186,6 +186,11 @@ hr {
 .activate-container {
   max-width: 900px;
   margin: auto;
+
+  :deep(p) {
+    font-size: 1em;
+    line-height: 1.5;
+  }
 }
 
 h1 {
@@ -209,6 +214,7 @@ h1 {
   .header {
     align-items: flex-start;
     margin-top: -15px;
+    margin-bottom: 10px;
 
     h1 {
       margin-top: 15px;

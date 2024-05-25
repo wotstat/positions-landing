@@ -30,7 +30,9 @@ export function useGLTFLoader(path: MaybeRefOrGetter<string>, postProcess?: (pat
 
   watch(() => toValue(path), async (p) => {
     const gltf = await cachedLoad(p, postProcess);
-    if (toValue(path) == p) scene.value = gltf;
+    if (toValue(path) == p) {
+      scene.value = gltf;
+    }
   }, { immediate: true })
 
   return scene
