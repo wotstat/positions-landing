@@ -380,8 +380,8 @@
                 <li>
                   <p>Открыть папку с актуальной версией игры:</p>
                   <ul>
-                    <li>Lesta: <code>1.24.0.0</code></li>
-                    <li>Wargaming: <code>1.24.0.0</code></li>
+                    <li>Lesta: <code>{{ latest.lesta.replace('./mods/', '') }}</code></li>
+                    <li>Wargaming: <code>{{ latest.wg.replace('./mods/', '') }}</code></li>
                   </ul>
                 </li>
                 <li>Перенести в неё скаченный файл модификации</li>
@@ -510,6 +510,8 @@
 </template>
 
 <script setup lang="ts">
+import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
+
 
 const rightContainerRef = ref<HTMLElement | null>(null);
 const { width, height } = useElementBounding(rightContainerRef);
@@ -539,6 +541,10 @@ const selectedMap = ref<string>('murovanka');
 const tanks = ['conqueror', 'concept', 'jagdPz', 'ob261', 'even']
 const maps = ['paris', 'murovanka', 'steppes']
 
+const latest = ref({
+  lesta: 'Загрузка...',
+  wg: 'Загрузка...',
+})
 
 const screenshots = [
   '/screenshots/screen1.png',
@@ -575,6 +581,10 @@ function onRender() {
   loaded.value = true;
 }
 
+
+onMounted(async () => {
+  latest.value = await getLatestGameVersion();
+})
 </script>
 
 
