@@ -9,7 +9,7 @@
       <Meta property="og:description" :content="description" />
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content="https://positions.wotstat.info" />
-      <Meta property="og:image" :content="`https://positions.wotstat.info/og/${locale}.png`" />
+      <Meta property="og:image" :content="`https://positions.wotstat.info/og/${locale}.jpg`" />
 
       <Link rel="icon" href="/favicon.ico" />
       <Link rel="icon" href="/favicon.png" />
