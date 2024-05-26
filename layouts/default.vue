@@ -5,13 +5,22 @@
     <Head>
       <Title>{{ title }}</Title>
       <Meta name="description" :content="description" />
+      <Meta property="og:title" :content="title" />
+      <Meta property="og:description" :content="description" />
+      <Meta property="og:type" content="website" />
+      <Meta property="og:url" content="https://positions.wotstat.info" />
+      <Meta property="og:image" :content="`https://positions.wotstat.info/og/${locale}.png`" />
+
       <Link rel="icon" href="/favicon.ico" />
+      <Link rel="icon" href="/favicon.png" />
+
       <template v-for="link in head.link" :key="link.id">
         <Link :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
       </template>
       <template v-for="meta in head.meta" :key="meta.id">
         <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
       </template>
+
     </Head>
 
     <Body>
@@ -24,7 +33,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: 'id',
@@ -32,4 +41,6 @@ const head = useLocaleHead({
 })
 const title = computed(() => t(route.meta.title ? `${route.meta.title}` : 'meta.title'))
 const description = computed(() => t(route.meta.description ? `${route.meta.description}` : 'meta.description'))
+
+
 </script>

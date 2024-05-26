@@ -604,6 +604,11 @@ onMounted(async () => {
   latest.value = await getLatestGameVersion();
   modLatest.value = await getLatestModVersion()
 })
+
+onUnmounted(() => {
+  document.body.classList.remove('no-scroll');
+})
+
 </script>
 
 
@@ -1034,6 +1039,7 @@ $width-limit: 1000px;
                 letter-spacing: -1px;
                 font-variant-numeric: normal;
                 padding: 0.2em;
+                padding-bottom: 0.4em;
               }
 
               .rub {

@@ -43,6 +43,10 @@
       <ActivationErrorLicense :license="key" @reset="reset" />
       <hr>
       <ActivationErrorPromo :license="key" @reset="reset" /> -->
+
+    </div>
+    <div class="card" v-if="showMain">
+      <Buy />
     </div>
   </div>
 </template>
