@@ -100,13 +100,9 @@ h2 {
 
 h3 {
   font-size: 1.8em;
-  line-height: 1.2;
+  line-height: 1.3;
   font-weight: 400;
   margin: 0;
-
-  &.big-line-height {
-    line-height: 1.4;
-  }
 
   @media screen and (max-width: $width-limit) {
     font-size: 1.2em;
@@ -133,7 +129,7 @@ h4 {
 
 p {
   font-size: 1.2em;
-  line-height: 1.25em;
+  line-height: 1.4;
   margin: 0;
 
   @media screen and (max-width: 512px) {

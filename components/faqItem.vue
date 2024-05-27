@@ -5,6 +5,7 @@
     </template>
     <template #panel>
       <p class="gray">{{ content }}</p>
+      <slot></slot>
     </template>
   </According>
 </template>
@@ -14,7 +15,7 @@
 
 defineProps<{
   title: string
-  content: string
+  content?: string
 }>()
 
 </script>
