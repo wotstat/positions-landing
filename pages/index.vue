@@ -506,6 +506,11 @@
         <br>
       </footer>
     </div>
+
+    <Popup :show="buyPopup" @close="buyPopup = false" title="Купить лицензионный ключ">
+      <Buy />
+    </Popup>
+
   </div>
 </template>
 
@@ -523,6 +528,8 @@ const mapContainerStyle = computed(() => {
     height: Math.min(width.value, height.value) + 'px',
   }
 })
+
+const buyPopup = ref(false);
 
 const loaded = ref(false);
 
@@ -597,7 +604,8 @@ function download() {
 
 const router = useRouter()
 function buy() {
-  router.push('/buy')
+  // router.push('/buy')
+  buyPopup.value = true;
 }
 
 onMounted(async () => {
@@ -658,6 +666,7 @@ $width-limit: 1000px;
         flex: 1;
         display: flex;
         align-items: center;
+        justify-content: center;
         margin-bottom: 0px;
 
         .mod-description {
@@ -1163,8 +1172,7 @@ $width-limit: 1000px;
       mix-blend-mode: screen;
       background-blend-mode: overlay;
 
-      background:
-        radial-gradient(circle closest-side at 80% 30%, #145c4c30 0%, #00000000 100%),
+      background: radial-gradient(circle closest-side at 80% 30%, #145c4c30 0%, #00000000 100%),
         radial-gradient(circle closest-side at 80% 70%, #145c4c30 0%, #00000000 100%),
         radial-gradient(circle closest-side at 20% 30%, #0e105749 0%, #00000000 100%),
         radial-gradient(circle closest-side at 20% 70%, #0e105749 0%, #00000000 100%),

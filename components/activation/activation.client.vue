@@ -46,6 +46,9 @@
 
     </div>
     <div class="card" v-if="showMain">
+      <div class="flex header">
+        <h1>Купить лицензионный ключ</h1>
+      </div>
       <Buy />
     </div>
   </div>
