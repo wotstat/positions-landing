@@ -496,9 +496,9 @@
 
 
         <FaqItem :title="'Какие способы оплаты доступны?'">
-          <p class="gray">
-            Доступно несколько способов оплаты:
-          <ul>
+          <p class="gray">Доступно несколько способов оплаты:</p>
+          <br>
+          <ul class="gray regular-text">
             <li>
               Из России с помощью сервиса ЮКасса, принимает более 10 различных методов оплаты:
               Банковские карты, СБП, SberPay, Tinkoff Pay, кошелёк ЮMoney
@@ -510,9 +510,10 @@
               С иностранных банковских карт путём подписки на Patreon
             </li>
           </ul>
-
-          Тариф в рублях для оплаты из России дешевле, чем тариф в долларах, это связано с региональным
-          ценообразованием.
+          <br>
+          <p class="gray">
+            Тариф в рублях для оплаты из России дешевле, чем тариф в долларах, это связано с региональным
+            ценообразованием.
           </p>
         </FaqItem>
         <hr>
@@ -539,9 +540,9 @@
         <hr>
 
         <FaqItem :title="'Мод не работает, что делать?'">
-          <p class="gray">
-            Может быть несколько сценариев по которым мод не работает:
-          <ul>
+          <p class="gray">Может быть несколько сценариев по которым мод не работает:</p>
+          <br>
+          <ul class="gray regular-text">
             <li>
               При входе в игру <b>не появляется</b> уведомление о лицензии:
               <ul>
@@ -566,7 +567,7 @@
               </ul>
             </li>
           </ul>
-          </p>
+
           <p class="gray">Если ни один из пунктов не помог, напишите на почту
             <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
             описав проблему и шаги, которые вы выполнили в попытках её решить.
@@ -624,18 +625,21 @@
         <FaqItem :title="'Что делать, если лицензионный ключ скомпрометирован?'">
           <p class="gray">
             Свяжитесь по почте
-            <a href="mailto:support@wotstat.info" target="_blank" rel="noopener noreferrer">support@wotstat.info</a>
+            <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
             и укажите ваш ключ, мы его аннулируем и вышлем новый.
             <br>
             <br>
             Старайтесь не передавать ключ третьим лицам.
           </p>
         </FaqItem>
-        <hr>
-      </section>
+        <!-- <hr> -->
 
-      <footer>
-        <hr>
+      </section>
+    </div>
+
+    <footer>
+      <hr>
+      <div class="main-container">
         <p class="gray">
           * – лучшие игроки определяются по среднему урону за сессию из более чем 20 боёв. Если данных для
           построения тепловой карты недостаточно, то требуемый процент понижается (в основном это происходит на
@@ -643,8 +647,12 @@
         </p>
         <br>
         <br>
-      </footer>
-    </div>
+        <p class="gray">
+          Связаться со мной вы можете по почте
+          <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
+        </p>
+      </div>
+    </footer>
 
     <Popup :show="buyPopup" @close="buyPopup = false" title="Купить лицензионный ключ">
       <Buy />
@@ -1368,10 +1376,21 @@ $width-limit: 1000px;
 }
 
 footer {
-  padding: 0 50px;
+  margin-top: 200px;
+  margin-bottom: 40px;
+  // padding: 0 50px;
 
-  @media screen and (max-width: $width-limit) {
-    padding: 0 20px;
+  .main-container {
+    padding: 0 50px;
+
+    @media screen and (max-width: $width-limit) {
+      padding: 0 20px;
+    }
+
+    p {
+      font-size: 1em;
+    }
+
   }
 }
 

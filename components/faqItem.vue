@@ -4,7 +4,7 @@
       <h4>{{ title }}</h4>
     </template>
     <template #panel>
-      <p class="gray">{{ content }}</p>
+      <p class="gray" v-if="content">{{ content }}</p>
       <slot></slot>
     </template>
   </According>
