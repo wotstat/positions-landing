@@ -77,7 +77,12 @@
   <br>
 
   <button v-if="selectedPayment == 'patreon'" @click="openPatreon">Перейти на Patreon</button>
-  <button v-else>Перейти к оплате</button>
+  <template v-else>
+    <a href="https://shop.wotstat.info/p/6139" data-molz-embed="button">Купить</a>
+    <button>Перейти к оплате</button>
+  </template>
+
+  <!-- <iframe src="https://shop.wotstat.info/purchase/6139/embed" class="molz-embed-checkout" style="opacity: 1;"></iframe> -->
 </template>
 
 <script setup lang="ts">
@@ -106,8 +111,18 @@ function openPatreon() {
   window.open('https://www.patreon.com/WotStat', '_blank')
 }
 
+useScriptTag('https://molz.io/static/js/embed/initial.js')
 </script>
 
+<style lang="scss">
+.molz-embed-iframe {
+  color-scheme: dark;
+
+  html {
+    color-scheme: dark;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 @import "~/assets/scss/colors.scss";
