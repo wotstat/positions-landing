@@ -196,8 +196,8 @@
             <div class="info">
               <h4>Качество рекомендации</h4>
               <p class="gray">
-                Над миникартой отображается сообщение с описывающее качество рекомендуемых позиций. <a href="/"
-                  target="_blank" rel="noopener noreferrer">Подробнее.</a>
+                Над миникартой отображается сообщение с описывающее качество рекомендуемых позиций.
+                <a @click="scrollTo('instruction-format')">Подробнее.</a>
               </p>
             </div>
 
@@ -379,7 +379,7 @@
                 <li>Открыть папку <code>mods</code></li>
                 <li>
                   <p>Открыть папку с актуальной версией игры:</p>
-                  <ul>
+                  <ul class="m-0">
                     <li>Lesta: <code>{{ latest.lesta.replace('./mods/', '') }}</code></li>
                     <li>Wargaming: <code>{{ latest.wg.replace('./mods/', '') }}</code></li>
                   </ul>
@@ -412,7 +412,7 @@
 
           <div class="step">
             <div class="text">
-              <h3>Использование</h3>
+              <h3 id="instruction-format">Использование</h3>
               <p class="gray">
                 После начала отсчёта, подгрузится информация о позициях для вашего танка.
                 <br>
@@ -426,7 +426,12 @@
                 <li><code>E</code> – время в миллисекундах, затраченное на выполнение запроса</li>
                 </li>
               </ul>
-              <p><a href="/">Подробнее о сообщение</a></p>
+              <!-- TODO -->
+              <!-- <p><a href="/">Подробнее о сообщение</a></p> -->
+              </p>
+              <p class="gray">
+                Подробнее о формате вы можете спросить в нашем Discord
+                <a href="https://discord.com/invite/5c8rr8M9" target="_blank">@WotStat</a>
               </p>
             </div>
             <div class="image">
@@ -659,7 +664,6 @@ $width-limit: 1000px;
     .content {
       position: relative;
       z-index: 2;
-
       min-height: 100vh;
 
       .left {
@@ -905,6 +909,10 @@ $width-limit: 1000px;
           line-height: 1.5;
           padding-left: 1em;
           margin: 1em 0;
+
+          &.m-0 {
+            margin: 0;
+          }
 
           @media screen and (max-width: 512px) {
             font-size: 1em;
@@ -1425,7 +1433,8 @@ header {
 #how-to,
 #demo,
 #pricing,
-#instruction {
+#instruction,
+#instruction-format {
   &::before {
     content: '';
     display: block;

@@ -35,6 +35,7 @@ code {
 a {
   color: $accent-color;
   text-decoration: inherit;
+  cursor: pointer;
 
   @media (hover: hover) {
     &:hover {
@@ -203,6 +204,10 @@ textarea:focus-visible {
 
 .flex-1 {
   flex: 1;
+}
+
+.m-0 {
+  margin: 0;
 }
 
 .card {

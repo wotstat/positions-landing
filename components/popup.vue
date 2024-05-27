@@ -6,8 +6,8 @@
           <div class="popup card">
             <div class="header" :class="y > 0 ? 'blur' : ''">
               <h1 class="title">{{ title }}</h1>
-              <div class="close">
-                <SvgoX @click="emit('close')" />
+              <div class="close" @click="emit('close')">
+                <SvgoX />
               </div>
             </div>
             <div class="content-container" ref="content">
