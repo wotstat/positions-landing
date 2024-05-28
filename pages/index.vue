@@ -1490,7 +1490,7 @@ header {
       }
 
       .logo {
-        font-weight: 900;
+        font-weight: 600;
         font-size: 1.1em;
         display: flex;
         align-items: center;
