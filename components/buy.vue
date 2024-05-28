@@ -53,7 +53,7 @@
 
     <div class="variant" :class="selectedPayment == 'crypto' ? 'active' : ''" @click="selectedPayment = 'crypto'">
       <h4>Криптовалютой</h4>
-      <p>Tether USDT в сети tron</p>
+      <p>Tether USDT в сети tron (TRC-20)</p>
     </div>
 
     <div class="variant" :class="selectedPayment == 'patreon' ? 'active' : ''" @click="selectedPayment = 'patreon'">
