@@ -78,11 +78,8 @@
 
   <button v-if="selectedPayment == 'patreon'" @click="openPatreon">Перейти на Patreon</button>
   <template v-else>
-    <a href="https://shop.wotstat.info/p/6139" data-molz-embed="button">Купить</a>
-    <button>Перейти к оплате</button>
+    <button @click="go2molz">Перейти к оплате</button>
   </template>
-
-  <!-- <iframe src="https://shop.wotstat.info/purchase/6139/embed" class="molz-embed-checkout" style="opacity: 1;"></iframe> -->
 </template>
 
 <script setup lang="ts">
@@ -93,7 +90,7 @@ const targetCurrency = computed(() => {
   if (selectedPayment.value == 'russia') {
     return 'RUB'
   } else if (selectedPayment.value == 'crypto') {
-    return 'USDT'
+    return 'RUB'
   } else if (selectedPayment.value == 'patreon') {
     return 'USD'
   }
@@ -111,7 +108,23 @@ function openPatreon() {
   window.open('https://www.patreon.com/WotStat', '_blank')
 }
 
-useScriptTag('https://molz.io/static/js/embed/initial.js')
+function go2molz() {
+  if (selectedPayment.value == 'patreon') return
+
+  const molzLink = {
+    'month': {
+      'russia': 'https://shop.wotstat.info/purchase/6139?clear',
+      'crypto': 'https://shop.wotstat.info/purchase/6139?clear',
+    },
+    'year': {
+      'russia': 'https://shop.wotstat.info/purchase/6140?clear',
+      'crypto': 'https://shop.wotstat.info/purchase/6140?clear',
+    }
+  } as const
+
+  window.open(molzLink[selectedPeriod.value][selectedPayment.value], '_blank')
+}
+
 </script>
 
 <style lang="scss">
