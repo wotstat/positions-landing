@@ -649,7 +649,8 @@
         <br>
         <p class="gray">
           Связаться со мной вы можете по почте
-          <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
+          <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a> или в сообществе Discord
+          <a href="https://discord.com/invite/5c8rr8M9" target="_blank">@WotStat</a>
         </p>
       </div>
     </footer>
