@@ -471,7 +471,9 @@
 
             </div>
             <div class="image">
-              <NuxtPicture src="/screenshots/screen1.png" />
+              <video autoplay loop muted playsinline>
+                <source src="/public/instruction/configuration.webm" type="video/webm">
+              </video>
             </div>
           </div>
         </div>
