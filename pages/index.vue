@@ -392,7 +392,9 @@
               <button class="download" @click="download">Скачать</button>
             </div>
             <div class="image">
-              <NuxtPicture src="/screenshots/screen1.png" />
+              <video autoplay loop muted playsinline>
+                <source src="/public/instruction/install.webm" type="video/webm">
+              </video>
             </div>
           </div>
 
@@ -407,7 +409,9 @@
               <button @click="buy">Купить лицензию</button>
             </div>
             <div class="image">
-              <NuxtPicture src="/screenshots/screen1.png" />
+              <video autoplay loop muted playsinline>
+                <source src="/public/instruction/activation.webm" type="video/webm">
+              </video>
             </div>
           </div>
 
@@ -1080,11 +1084,14 @@ $width-limit: 1000px;
 
           height: 300px;
 
-          :deep(img) {
+          :deep(img),
+          video {
             margin: auto;
             width: auto;
             height: 100%;
             display: block;
+
+            // box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.3);
 
 
             border-radius: 15px;
