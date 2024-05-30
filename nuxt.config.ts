@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     "nuxt-svgo",
     "@nuxt/image",
-    "vue3-carousel-nuxt"
+    "vue3-carousel-nuxt",
+    "@nuxt/content"
   ],
   i18n: {
     defaultLocale: 'ru',

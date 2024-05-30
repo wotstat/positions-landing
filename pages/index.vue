@@ -664,6 +664,9 @@
           <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a> или в сообществе Discord
           <a href="https://discord.com/invite/5c8rr8M9" target="_blank">@WotStat</a>
         </p>
+        <br>
+        <br>
+        <a href="/oferta" target="_blank" rel="noopener noreferrer">Публичная оферта</a>
       </div>
     </footer>
 

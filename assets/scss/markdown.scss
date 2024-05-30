@@ -1,0 +1,44 @@
+@mixin headings {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @content;
+  }
+}
+
+.markdown {
+
+  @include headings {
+    a {
+      color: var(--font-color)
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-top: 1.5em;
+    margin-bottom: 0.2em;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 0.2em;
+  }
+
+  ul {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+}
