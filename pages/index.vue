@@ -664,9 +664,12 @@
           <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a> или в сообществе Discord
           <a href="https://discord.com/invite/5c8rr8M9" target="_blank">@WotStat</a>
         </p>
-        <br>
-        <br>
-        <a href="/oferta" target="_blank" rel="noopener noreferrer">Публичная оферта</a>
+
+        <template v-if="locale == 'ru'">
+          <br>
+          <br>
+          <a href="/oferta" target="_blank" rel="noopener noreferrer">Публичная оферта</a>
+        </template>
       </div>
     </footer>
 
@@ -680,6 +683,8 @@
 <script setup lang="ts">
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
+
+const { locale } = useI18n()
 
 
 const rightContainerRef = ref<HTMLElement | null>(null);

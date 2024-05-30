@@ -40,4 +40,20 @@ export default {
       incorrect: 'Incorrect key',
     }
   },
+  maps: {
+    paris: 'Paris',
+    murovanka: 'Murovanka',
+    steppes: 'Steppes',
+  },
+  tanks: {
+    grille: 'Grille 15',
+    skorpionG: 'Skorpion G',
+    even: 'ELC EVEN 90',
+    concept: 'Concept',
+    MVY: 'M-V-Y',
+    '4005': 'FV4005',
+    ob261: 'Obj. 261',
+    conqueror: 'S. Conqueror',
+    jagdPz: 'Jg.Pz. E 100',
+  }
 }
