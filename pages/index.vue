@@ -150,7 +150,8 @@
             </div>
 
             <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/marker3d.png" />
+              <p>FV217 Badger</p>
+              <NuxtPicture src="/screenshots/demo/ideal3d.png" />
             </div>
           </div>
 
@@ -161,7 +162,8 @@
             </div>
 
             <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/best.png" />
+              <p>Concept 5</p>
+              <NuxtPicture src="/screenshots/demo/ideal-r.png" />
             </div>
           </div>
 
@@ -174,7 +176,8 @@
             </div>
 
             <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/marker3d.png" />
+              <p>Concept 5</p>
+              <NuxtPicture src="/screenshots/demo/mini-r.png" />
             </div>
           </div>
 
@@ -187,7 +190,8 @@
             </div>
 
             <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/marker3d.png" />
+              <p>FV4005</p>
+              <NuxtPicture src="/screenshots/demo/area-r.png" />
             </div>
           </div>
 
@@ -200,8 +204,8 @@
               </p>
             </div>
 
-            <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/marker3d.png" />
+            <div class="image-container shadow-disabled">
+              <NuxtPicture src="/screenshots/demo/info-ru.png" />
             </div>
           </div>
 
@@ -214,7 +218,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/marker3d.png" />
+              <NuxtPicture src="/screenshots/demo/settings.png" />
             </div>
           </div>
         </div>
@@ -1012,12 +1016,38 @@ $width-limit: 1000px;
 
         .image-container {
           margin-top: auto;
+          position: relative;
+
+          p {
+            position: absolute;
+            bottom: 5px;
+            right: 6px;
+            font-size: 1em;
+            padding: 0.5em 0.8em;
+            border-radius: 10px;
+            background-color: rgba(52, 52, 52, 0.389);
+            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            color: #d2d2d2;
+            opacity: 0;
+            transition: opacity 0.3s;
+          }
+
+          &:hover p {
+            opacity: 1;
+          }
 
           :deep(img) {
             display: block;
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
+          }
+
+          &.shadow-disabled {
+            :deep(img) {
+              box-shadow: none;
+            }
           }
         }
       }
