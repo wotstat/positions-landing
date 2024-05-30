@@ -229,7 +229,7 @@
         <br>
         <div class="carousel-container">
           <Carousel :items-to-show="1.1" :wrap-around="true">
-            <Slide :key="'yt'">
+            <!-- <Slide :key="'yt'">
               <div class="carousel-item">
                 <iframe width="560" height="315"
                   src="https://www.youtube-nocookie.com/embed/zoDMW87S_kc?si=uxvd9imvf3a0gPA0&amp;controls=1"
@@ -237,11 +237,11 @@
                   allow="accelerometer; autoplay; clipboard-write; web-share"
                   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               </div>
-            </Slide>
+            </Slide> -->
 
             <Slide v-for="slide in screenshots" :key="slide">
               <div class="carousel-item">
-                <NuxtPicture sizes="600px xl:1400px" :src="slide" :loading="'lazy'" />
+                <NuxtPicture sizes="600px xl:1200px" :src="slide" :loading="'lazy'" />
               </div>
             </Slide>
 
@@ -441,7 +441,9 @@
               </p>
             </div>
             <div class="image">
-              <NuxtPicture src="/screenshots/screen1.png" />
+              <video autoplay loop muted playsinline>
+                <source src="/public/instruction/play.webm" type="video/webm">
+              </video>
             </div>
           </div>
 
@@ -716,14 +718,9 @@ const modLatest = ref<{
 
 const latestModDownloadUrl = computed(() => modLatest.value?.browser_download_url ?? 'https://github.com/WOT-STAT/minimap-positions/releases/latest')
 
-const screenshots = [
-  '/screenshots/screen1.png',
-  '/screenshots/screen2.png',
-  '/screenshots/screen3.png',
-  '/screenshots/screen4.png',
-  '/screenshots/screen5.png',
-  '/screenshots/screen6.png',
-]
+const screenshots = new Array(10).fill(0)
+  .map((_, i) => `/screenshots/shot_${i + 1}.jpg`)
+
 
 function scrollTo(id: string) {
   const element = document.getElementById(id);
