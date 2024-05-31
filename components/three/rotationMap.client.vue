@@ -12,7 +12,6 @@ import { preloadTexture, useTextureLoader } from '~/composition/useTextureLoader
 
 import Positions from './positions'
 import { idealMarker, miniMarker } from './markers';
-import { useTankOnMap } from '~/composition/useTankOnMap';
 
 const props = defineProps<{
   tank: string;
@@ -26,6 +25,15 @@ const emit = defineEmits<{
 const target = ref<HTMLElement | null>(null);
 
 const isVisible = useElementVisibility(target)
+
+const processor = (path: string, texture: Texture) => {
+  texture.colorSpace = 'display-p3'
+}
+preloadTexture('/minimap/paris.webp', processor)
+preloadTexture('/minimap/steppes.webp', processor)
+preloadTexture('/minimap/murovanka.webp', processor)
+
+await new Promise(resolve => setTimeout(resolve, 100))
 
 const { scene, camera, renderer, startAnimate, stopAnimate, onAnimateList } = useThree(target);
 startAnimate()
@@ -81,14 +89,12 @@ watch(flagScene, (gltf, old) => {
 
 // useTankOnMap(scene, () => props.tank, () => props.map);
 
-const processor = (path: string, texture: Texture) => {
-  texture.colorSpace = 'display-p3'
-  texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-}
-
-preloadTexture('/minimap/paris.webp', processor)
-preloadTexture('/minimap/steppes.webp', processor)
 const map = useTextureLoader(() => `/minimap/${props.map}.webp`, processor);
+
+watch(map, (value) => {
+  if (!value) return;
+  value.anisotropy = renderer.capabilities.getMaxAnisotropy();
+})
 
 
 const hemiLight = new HemisphereLight(0xffffff, 0x8d8d8d, 3);
