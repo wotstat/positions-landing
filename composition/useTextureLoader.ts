@@ -35,3 +35,7 @@ export function useTextureLoader(path: MaybeRefOrGetter<string>, postProcess?: (
 
   return textureRef
 }
+
+export function preloadTexture(path: string, postProcess?: (path: string, texture: Texture) => void) {
+  cachedLoad(path, postProcess)
+}

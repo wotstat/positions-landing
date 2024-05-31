@@ -4,11 +4,11 @@
 
 
 <script setup lang="ts">
-import { HemisphereLight, Mesh, MeshBasicMaterial, Object3D, PlaneGeometry, Sprite, SpriteMaterial, TextureLoader } from 'three';
+import { HemisphereLight, Mesh, MeshBasicMaterial, Object3D, PlaneGeometry, Sprite, SpriteMaterial, Texture, TextureLoader } from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { useGLTFLoader } from '~/composition/useGLTFLoader';
 import { useThree } from '~/composition/useThree';
-import { useTextureLoader } from '~/composition/useTextureLoader';
+import { preloadTexture, useTextureLoader } from '~/composition/useTextureLoader';
 
 import Positions from './positions'
 import { idealMarker, miniMarker } from './markers';
@@ -81,11 +81,14 @@ watch(flagScene, (gltf, old) => {
 
 // useTankOnMap(scene, () => props.tank, () => props.map);
 
-
-const map = useTextureLoader(() => `/minimap/${props.map}.webp`, (path, texture) => {
+const processor = (path: string, texture: Texture) => {
   texture.colorSpace = 'display-p3'
   texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-});
+}
+
+preloadTexture('/minimap/paris.webp', processor)
+preloadTexture('/minimap/steppes.webp', processor)
+const map = useTextureLoader(() => `/minimap/${props.map}.webp`, processor);
 
 
 const hemiLight = new HemisphereLight(0xffffff, 0x8d8d8d, 3);
