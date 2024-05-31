@@ -6,7 +6,7 @@
         <div class="header-container large">
           <div class="left">
             <a @click="scrollTo('top')" class="logo">
-              <NuxtPicture sizes="64px" src="/favicon.png" />
+              <NuxtPicture sizes="64px" src="/favicon.png" preload />
               Позиции от WotStat
             </a>
           </div>
@@ -151,7 +151,7 @@
 
             <div class="image-container">
               <p>FV217 Badger</p>
-              <NuxtPicture src="/screenshots/demo/ideal3d.png" />
+              <NuxtPicture src="/screenshots/demo/ideal3d.png" loading="lazy" />
             </div>
           </div>
 
@@ -163,7 +163,7 @@
 
             <div class="image-container">
               <p>Concept 5</p>
-              <NuxtPicture src="/screenshots/demo/ideal-r.png" />
+              <NuxtPicture src="/screenshots/demo/ideal-r.png" loading="lazy" />
             </div>
           </div>
 
@@ -177,7 +177,7 @@
 
             <div class="image-container">
               <p>Concept 5</p>
-              <NuxtPicture src="/screenshots/demo/mini-r.png" />
+              <NuxtPicture src="/screenshots/demo/mini-r.png" loading="lazy" />
             </div>
           </div>
 
@@ -191,7 +191,7 @@
 
             <div class="image-container">
               <p>FV4005</p>
-              <NuxtPicture src="/screenshots/demo/area-r.png" />
+              <NuxtPicture src="/screenshots/demo/area-r.png" loading="lazy" />
             </div>
           </div>
 
@@ -205,7 +205,7 @@
             </div>
 
             <div class="image-container shadow-disabled">
-              <NuxtPicture src="/screenshots/demo/info-ru.png" />
+              <NuxtPicture format="webp" src="/screenshots/demo/info-ru.png" loading="lazy" />
             </div>
           </div>
 
@@ -218,7 +218,7 @@
             </div>
 
             <div class="image-container">
-              <NuxtPicture src="/screenshots/demo/settings.png" />
+              <NuxtPicture src="/screenshots/demo/settings.png" loading="lazy" />
             </div>
           </div>
         </div>
@@ -245,7 +245,7 @@
 
             <Slide v-for="slide in screenshots" :key="slide">
               <div class="carousel-item">
-                <NuxtPicture sizes="600px xl:1200px" :src="slide" :loading="'lazy'" />
+                <NuxtPicture sizes="600px xl:1200px" :src="slide" loading="lazy" />
               </div>
             </Slide>
 
