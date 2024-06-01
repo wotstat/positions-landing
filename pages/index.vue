@@ -677,6 +677,7 @@
 <script setup lang="ts">
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
+import LazyVideo from '~/components/lazyVideo.vue';
 
 const { locale } = useI18n()
 
