@@ -396,9 +396,7 @@
               <button class="download" @click="download">Скачать</button>
             </div>
             <div class="image">
-              <video autoplay loop muted playsinline>
-                <source src="/public/instruction/install.webm" type="video/webm">
-              </video>
+              <LazyVideo src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
             </div>
           </div>
 
@@ -413,9 +411,7 @@
               <button @click="buy">Купить лицензию</button>
             </div>
             <div class="image">
-              <video autoplay loop muted playsinline>
-                <source src="/public/instruction/activation.webm" type="video/webm">
-              </video>
+              <LazyVideo src="/instruction/activation.webm" type="video/webm" poster="/instruction/activation.webp" />
             </div>
           </div>
 
@@ -446,9 +442,7 @@
               </p>
             </div>
             <div class="image">
-              <video autoplay loop muted playsinline>
-                <source src="/public/instruction/play.webm" type="video/webm">
-              </video>
+              <LazyVideo src="/instruction/play.webm" type="video/webm" poster="/instruction/play.webp" />
             </div>
           </div>
 
@@ -478,9 +472,8 @@
 
             </div>
             <div class="image">
-              <video autoplay loop muted playsinline>
-                <source src="/public/instruction/configuration.webm" type="video/webm">
-              </video>
+              <LazyVideo src="/instruction/configuration.webm" type="video/webm"
+                poster="/instruction/configuration.webp" />
             </div>
           </div>
         </div>
