@@ -52,8 +52,10 @@
         Присоединяйтесь к нашему Discord
         <SvgoDiscordMarkWhite class="icon" />
       </a>
-      <div class="flex-1" />
+      <hr>
+      <br>
       <a class="buy" @click="buy">Купить</a>
+      <div class="flex-1" />
 
 
     </div>

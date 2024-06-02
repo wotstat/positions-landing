@@ -11,8 +11,7 @@
       <Meta property="og:url" content="https://positions.wotstat.info" />
       <Meta property="og:image" :content="`https://positions.wotstat.info/og/${locale}.jpg`" />
 
-      <Link rel="icon" href="/favicon.ico" />
-      <Link rel="icon" href="/favicon.png" />
+      <Link rel="icon" type="image/png" href="/favicon.png" />
 
       <template v-for="link in head.link" :key="link.id">
         <Link :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
@@ -24,7 +23,7 @@
     </Head>
 
     <Body>
-      <slot />
+      <slot></slot>
     </Body>
 
     </Html>
