@@ -19,7 +19,7 @@
           </div>
           <div class="right">
             <a class="buy" @click="buy">Купить</a>
-            <a href="https://discord.gg/5c8rr8M9" target="_blank" rel="noopener noreferrer">
+            <a :href="discordUrl" target="_blank" rel="noopener noreferrer">
               <SvgoDiscordMarkWhite class="icon" />
             </a>
           </div>
@@ -48,7 +48,7 @@
       <a @click="clickMenu('pricing')">Тариф</a>
       <a @click="clickMenu('instruction')">Инструкция</a>
       <hr>
-      <a href="https://discord.gg/5c8rr8M9" target="_blank" rel="noopener noreferrer">
+      <a :href="discordUrl" target="_blank" rel="noopener noreferrer">
         Присоединяйтесь к нашему Discord
         <SvgoDiscordMarkWhite class="icon" />
       </a>
@@ -438,7 +438,7 @@
               <!-- <p><a href="/">Подробнее о сообщение</a></p> -->
               <p class="gray">
                 Подробнее о формате вы можете спросить в нашем Discord
-                <a href="https://discord.com/invite/5c8rr8M9" target="_blank">@WotStat</a>
+                <a :href="discordUrl" target="_blank">@WotStat</a>
               </p>
             </div>
             <div class="image">
@@ -656,7 +656,7 @@
         <p class="gray">
           Связаться со мной вы можете по почте
           <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a> или в сообществе Discord
-          <a href="https://discord.com/invite/5c8rr8M9" target="_blank">@WotStat</a>
+          <a :href="discordUrl" target="_blank">@WotStat</a>
         </p>
 
         <template v-if="locale == 'ru'">
@@ -678,6 +678,8 @@
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
 import LazyVideo from '~/components/lazyVideo.vue';
+
+const discordUrl = import.meta.env.VITE_DISCORD_URL;
 
 const { locale } = useI18n()
 
