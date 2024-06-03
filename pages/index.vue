@@ -75,13 +75,13 @@
                 <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''"
                   @click="selectedTank = tank">{{
                     $t(`tanks.${tank}`) }}</button>
-                <button class="hover-disabled">И ещё 821</button>
+                <button class="hover-disabled">И ещё 821 танк</button>
               </div>
 
               <div class="flex hor buttons maps">
                 <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
                   $t(`maps.${map}`) }}</button>
-                <button class="hover-disabled">И ещё 40</button>
+                <button class="hover-disabled">И ещё 40 карт</button>
               </div>
             </div>
           </div>
@@ -454,7 +454,7 @@
             <div class="text">
               <h3>Конфигурация</h3>
               <p class="gray">
-                Для доступа к меню конфигцрации, вам необходимо два дополнительных мода:
+                Для доступа к меню конфигурации, вам необходимо два дополнительных мода:
               </p>
 
               <ul class="gray">
@@ -564,18 +564,18 @@
             </li>
             <br>
             <li>
-              При входе в игру уведомление появляется, но в игре позиции не отображаются
+              При входе в игру уведомление появляется, но в игре позиции не отображаются:
               <ul>
-                <li>Убедитесь, что ваша лицензия не истекла (срок лицензии написан в уведомление)</li>
-                <li>Если у вас есть настройшик модов, проверьте, что вы не отключили в нём мод "Позиции от WotStat" и не
-                  скрыли отображение маркеров</li>
-                <li>Активируйте лицензию заново, для этого, нажмите кнопку <code>сбросить</code> в уведомление и
-                  повторите процесс активации</li>
-                <li>Подождите несколько часов, возможно, проблемы с сервером</li>
+                <li>Убедитесь, что ваша лицензия не истекла (срок лицензии написан в уведомлении).</li>
+                <li>Если у вас есть настройщик модов, проверьте, что вы не отключили в нём мод "Позиции от WotStat" и не
+                  скрыли отображение маркеров.</li>
+                <li>Активируйте лицензию заново, для этого, нажмите кнопку <code>сбросить</code> в уведомлении и
+                  повторите процесс активации.</li>
+                <li>Подождите несколько часов, возможно, проблемы с сервером.</li>
               </ul>
             </li>
           </ul>
-
+          <br>
           <p class="gray">Если ни один из пунктов не помог, напишите на почту
             <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
             описав проблему и шаги, которые вы выполнили в попытках её решить.
@@ -595,8 +595,9 @@
             <br>
             <br>
             Ознакомиться со списком запрещенных модов можно на официальном портале игры:
-            <a href="https://tanki.su/ru/content/guide/ban/nonusefulmods/" target="_blank"
-              rel="noopener noreferrer">tanki.su/ru/content/guide/ban/nonusefulmods</a>
+            <a href="https://tanki.su/ru/content/guide/ban/nonusefulmods/" target="_blank">Lesta</a>
+            или
+            <a href="https://eu.wargaming.net/support/ru/products/wot/article/15152/" target="_blank">Wargaming</a>
           </p>
         </FaqItem>
         <hr>
