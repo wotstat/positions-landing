@@ -45,7 +45,7 @@
       <ActivationErrorPromo :license="key" @reset="reset" /> -->
 
     </div>
-    <div class="card" v-if="showMain">
+    <div class="card" v-if="showMain && !clear">
       <div class="flex header">
         <h1>Купить лицензионный ключ</h1>
       </div>
@@ -59,6 +59,7 @@
 
 const props = defineProps<{
   requestId: string
+  clear?: boolean
 }>()
 
 const key = ref('')
