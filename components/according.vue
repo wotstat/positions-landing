@@ -60,23 +60,37 @@ function toggle() {
       padding: 10px 0;
     }
 
+    @mixin min-max-width($value) {
+      min-width: $value;
+      max-width: $value;
+    }
+
+    @mixin min-max-height($value) {
+      min-height: $value;
+      max-height: $value;
+    }
+
+    @mixin min-max($value) {
+      @include min-max-width($value);
+      @include min-max-height($value);
+    }
+
     .plus-icon {
       border-radius: 50%;
       border: 1px solid #353535;
       transition: 0.4s;
-      width: 20px;
-      height: 20px;
       padding: 10px;
 
+      @include min-max(20px);
+
+
       @media screen and (max-width: 1024px) {
-        width: 15px;
-        height: 15px;
+        @include min-max(15px);
         padding: 7px;
       }
 
       @media screen and (max-width: 768px) {
-        width: 12px;
-        height: 12px;
+        @include min-max(12px);
         padding: 6px;
       }
 
