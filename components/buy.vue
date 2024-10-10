@@ -83,6 +83,8 @@
 </template>
 
 <script setup lang="ts">
+const yandexMetrikaId = Number.parseInt(import.meta.env.VITE_YANDEX_METRIKA_ID)
+
 const selectedPeriod = ref<'month' | 'year'>('month')
 const selectedPayment = ref<'russia' | 'crypto' | 'patreon'>('russia')
 
@@ -104,7 +106,20 @@ const targetAmount = computed(() => {
   }
 })
 
+function metrikaReachGoal(target: string) {
+  const orderPrice = targetAmount.value[selectedPeriod.value == 'year' ? 1 : 0]
+  ym(yandexMetrikaId, 'reachGoal', target, {
+    order_price: orderPrice,
+    currency: targetCurrency.value,
+  })
+}
+
+onMounted(() => {
+  ym(yandexMetrikaId, 'reachGoal', 'BUY_FORM_OPEN')
+})
+
 function openPatreon() {
+  metrikaReachGoal('GO_TO_PATREON')
   window.open('https://www.patreon.com/WotStat', '_blank')
 }
 
@@ -122,6 +137,7 @@ function go2molz() {
     }
   } as const
 
+  metrikaReachGoal('GO_TO_MOLZ')
   window.open(molzLink[selectedPeriod.value][selectedPayment.value], '_blank')
 }
 
