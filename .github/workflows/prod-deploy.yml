@@ -12,38 +12,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: oven-sh/setup-bun@v1
-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles('**/bun.lockb') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.bun }}-bun-
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install Dependencies
         run: bun install
 
       - name: Build
-        run: npm run generate
+        run: bun run generate
 
-      - name: Configure SSH
+
+      - name: Upload to s3
         run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/production.key
-          chmod 600 ~/.ssh/production.key
-          cat >>~/.ssh/config <<END
-          Host node
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/production.key
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
+          aws s3 sync ./.output/public s3://positions.wotstat.info \
+            --cache-control "max-age=31104000, public" \
+            --endpoint-url=https://storage.yandexcloud.net/ \
+            --delete
 
-      - name: Copy to server
-        run: rsync -avz ./.output/public node:/${{ vars.APP_PATH_PROD }}
+          aws s3 cp \
+            s3://positions.wotstat.info/index.html s3://positions.wotstat.info/index.html \
+            --cache-control "public, max-age=300" \
+            --endpoint-url=https://storage.yandexcloud.net/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ru-central1
+        
