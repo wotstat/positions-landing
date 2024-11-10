@@ -27,5 +27,9 @@ export default defineNuxtConfig({
   },
   image: {
     format: ['webp']
+  },
+  ssr: false,
+  nitro: {
+    preset: 'static'
   }
 })
