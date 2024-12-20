@@ -412,11 +412,11 @@
                 и введите лицензионный ключ.
               </p>
               <button @click="buy">Купить лицензию</button>
-              <hr>
+              <!-- <hr>
               <p class="gray">
                 <a href="/tls-problem" target="_blank" rel="noopener noreferrer">Уведомление не появляется, что
                   делать?</a>
-              </p>
+              </p> -->
             </div>
             <div class="image">
               <VideoLazy src="/instruction/activation.webm" type="video/webm" poster="/instruction/activation.webp" />
