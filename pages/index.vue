@@ -6,7 +6,7 @@
         <div class="header-container large">
           <div class="left">
             <a @click="scrollTo('top')" class="logo">
-              <NuxtPicture sizes="64px" src="/favicon.png" />
+              <img src="/favicon_128.png" alt="favicon" />
               Позиции от WotStat
             </a>
           </div>
@@ -702,6 +702,11 @@
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
 import VideoLazy from '~/components/videoLazy.vue';
+
+useHead({
+  link: [{ rel: 'preload', as: 'image', 'href': '/favicon_128.png' }]
+})
+
 
 const discordUrl = import.meta.env.VITE_DISCORD_URL;
 
