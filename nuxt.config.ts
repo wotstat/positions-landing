@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'default',
+    preset: 'static',
   },
 
   vite: {
