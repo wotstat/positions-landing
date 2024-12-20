@@ -32,6 +32,10 @@ export default defineNuxtConfig({
     format: ['webp']
   },
 
+  nitro: {
+    preset: 'aws-lambda',
+  },
+
   vite: {
     css: {
       preprocessorOptions: {
