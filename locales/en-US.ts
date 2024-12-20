@@ -15,8 +15,8 @@ export default {
   },
   activation: {
     status: {
-      wait: 'Waiting for client',
-      connected: 'Connection established',
+      wait: 'Connecting game...',
+      connected: 'Connected to game',
       disconnected: 'Connection terminated',
       redirectAuthWithPatreon: 'Redirecting to Patreon login',
       requestAuthWithPatreon: 'Requesting Patreon authorization',
