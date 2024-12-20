@@ -72,7 +72,7 @@
       <ActivationWotLost v-else-if="wotClosed" />
     </div>
 
-    <div class="card" v-if="showMain && !clear">
+    <div class="card" v-if="showMain && !clear && !isPatreonRedirect">
       <div class="flex header">
         <h1>{{ $t('activation.page.buyLicense') }}</h1>
       </div>
