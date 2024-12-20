@@ -55,7 +55,7 @@ function showHide() {
 
 <style lang="scss" scoped>
 @use "~/assets/scss/activation.scss";
-@import "~/assets/scss/colors.scss";
+@use "~/assets/scss/colors.scss" as *;
 
 .eye {
   height: auto;

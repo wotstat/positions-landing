@@ -14,7 +14,7 @@
 
 
 <style lang="scss" scoped>
-@import "~/assets/scss/colors.scss";
+@use "~/assets/scss/colors.scss" as *;
 
 $border: 1px solid #505050bd;
 

@@ -1,5 +1,5 @@
 
-import { BoxGeometry, Mesh, MeshBasicMaterial, OrthographicCamera, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import { BoxGeometry, Mesh, MeshBasicMaterial, OrthographicCamera, PerspectiveCamera, Scene, WebGLRenderer, } from 'three';
 
 export function useThree(element: Ref<HTMLElement | null>) {
   const scene = new Scene();

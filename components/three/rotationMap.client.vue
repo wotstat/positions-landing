@@ -27,7 +27,7 @@ const target = ref<HTMLElement | null>(null);
 const isVisible = useElementVisibility(target)
 
 const processor = (path: string, texture: Texture) => {
-  texture.colorSpace = 'display-p3'
+  texture.colorSpace = 'srgb'
 }
 preloadTexture('/minimap/paris.webp', processor)
 preloadTexture('/minimap/steppes.webp', processor)

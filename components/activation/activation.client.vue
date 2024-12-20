@@ -1,10 +1,11 @@
 <template>
   <div class="activate-container">
-    <div class="card">
+    <div class="card" v-if="showLicenseBlock">
       <div class="flex header">
         <h1 class="flex-1">{{ $t('activation.page.title') }}</h1>
         <div class="status" :class="statusColor" v-if="!successActivated">{{ $t(statusText) }}</div>
       </div>
+
       <template v-if="showMain">
         <p v-html="$t('activation.page.description')"></p>
         <br>
@@ -13,9 +14,10 @@
           <button :disabled="!isButtonEnabled" @click="activate">{{ $t('activation.page.activate') }}</button>
         </div>
       </template>
-      <div class="flex loader-parent" v-if="showLoader">
-        <span class="loader"></span>
-      </div>
+
+      <div class="flex loader-parent" v-if="showLoader"><span class="loader"></span></div>
+
+
       <ActivationSuccess v-else-if="successActivated && !promoReceived" />
       <ActivationExpired v-else-if="activationExpired" :license="key" @reset="reset" />
       <ActivationPromoSuccess v-else-if="successActivated && promoReceived" :license="promoReceived" />
@@ -25,7 +27,6 @@
       <ActivationDisconnected v-else-if="showErrorDisconnected" />
       <ActivationErrorLicense v-else-if="wrongKey" :license="key" @reset="reset" />
       <ActivationErrorPromo v-else-if="alreadyActivatedPromo" :license="key" @reset="reset" />
-
 
       <!-- <hr>
       <ActivationSuccess />
@@ -45,9 +46,35 @@
       <ActivationErrorPromo :license="key" @reset="reset" /> -->
 
     </div>
+
+    <div class="card" v-if="showPatreonBlock">
+      <div class="flex header">
+        <h1 class="flex-1">{{ $t('activation.page.patreon.title') }}</h1>
+        <div class="status" :class="statusColor" v-if="!successActivated && requestId">{{ $t(statusText) }}</div>
+      </div>
+
+      <template v-if="showMain && !isPatreonRedirect">
+        <p v-html="$t('activation.page.patreon.description')"></p>
+        <br>
+        <button :disabled="!(wsStatus === 'OPEN' && status == 'STARTED')" @click="patreonAuth"
+          class="auth-with-patreon">{{ $t('activation.page.patreon.authWithPatreon') }}</button>
+      </template>
+
+      <ActivationPatreonDeny v-if="!requestId" />
+      <template v-else-if="showLoader">
+        <div class="flex loader-parent"><span class="loader"></span></div>
+        <p class="activation-progress">{{ $t(patreonStatusText) }}</p>
+      </template>
+
+      <ActivationPatreonError v-else-if="status === 'PATREON_ERROR'" @reset="reset" />
+      <ActivationPatreonHasntMembership v-else-if="status === 'PATREON_HASNT_MEMBERSHIP'" @reset="reset" />
+      <ActivationPatreonSuccess v-else-if="successActivated" />
+      <ActivationWotLost v-else-if="wotClosed" />
+    </div>
+
     <div class="card" v-if="showMain && !clear">
       <div class="flex header">
-        <h1>Купить лицензионный ключ</h1>
+        <h1>{{ $t('activation.page.buyLicense') }}</h1>
       </div>
       <Buy />
     </div>
@@ -56,11 +83,17 @@
 
 
 <script setup lang="ts">
-
 const props = defineProps<{
-  requestId: string
+  requestId?: string
   clear?: boolean
+  isPatreonRedirect?: boolean
 }>()
+
+const i18n = useI18n()
+const localePath = useLocalePath()
+const route = useRoute()
+const router = useRouter();
+const patreonCode = computed(() => route.query.code as string);
 
 const key = ref('')
 const successActivated = ref(false)
@@ -69,19 +102,36 @@ const promoReceived = ref<false | string>(false)
 const wrongKey = ref(false)
 const wotClosed = ref(false)
 const alreadyActivatedPromo = ref(false)
+const patreonAuthRedirect = ref(false)
+
+
+type PatreonStatus = 'REQUEST_AUTH_WITH_PATREON' | 'AUTH_WITH_PATREON' | 'AWAIT_PATREON_CHECK' | 'PATREON_ERROR' | 'PATREON_CHECKING_TOKEN'
+  | 'PATREON_CHECKING_EMAIL' | 'PATREON_HASNT_MEMBERSHIP'
 
 const status = ref<'WAIT' | 'STARTED' | 'CLOSED' | 'SENDED' | 'ACTIVATED' | 'ALREADY_ACTIVATED_PROMO' |
-  'EXPIRED_LICENSE' | 'INVALID_LICENSE' | 'INVALID_PROMO' | 'WOT_CLOSED' | 'INTERNAL_ERROR' | 'DISCONNECTED'>('WAIT')
+  'EXPIRED_LICENSE' | 'INVALID_LICENSE' | 'INVALID_PROMO' | 'WOT_CLOSED' | 'INTERNAL_ERROR' | 'DISCONNECTED' | PatreonStatus>('WAIT')
 
 const showMain = computed(() => (status.value === 'WAIT' || status.value === 'STARTED') && !successActivated.value && !promoReceived.value && !wrongKey.value)
-const showLoader = computed(() => status.value === 'SENDED')
+const showLoader = computed(() => status.value === 'SENDED' ||
+  status.value === 'REQUEST_AUTH_WITH_PATREON' ||
+  status.value === 'AWAIT_PATREON_CHECK' ||
+  status.value === 'PATREON_CHECKING_TOKEN' ||
+  status.value === 'PATREON_CHECKING_EMAIL' ||
+  patreonAuthRedirect.value || ((status.value === 'STARTED' || status.value === 'WAIT') && patreonCode.value))
+
 const showErrorDisconnected = computed(() => status.value === 'DISCONNECTED' && !successActivated.value)
 
-
 const isButtonEnabled = computed(() => key.value.length >= 10 && wsStatus.value === 'OPEN' && status.value == 'STARTED')
+const showLicenseBlock = computed(() => !props.isPatreonRedirect && !patreonAuthRedirect.value && !['REQUEST_AUTH_WITH_PATREON', 'AUTH_WITH_PATREON'].includes(status.value))
+const showPatreonBlock = computed(() => props.isPatreonRedirect || patreonAuthRedirect.value || ['WAIT', 'STARTED', 'REQUEST_AUTH_WITH_PATREON'].includes(status.value))
 
+function getPatreonRedirectUri() {
+  const language = i18n.locale.value
+  return location.origin + (language == 'ru' ? '' : `/${language}`) + `/${import.meta.env.VITE_PATREON_REDIRECT_URI}`
+}
 
-const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId}`, {
+const wsUrl = `${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId ?? 'undefined'}` + (patreonCode.value ? `?patreon-key=${patreonCode.value}` : '')
+const { status: wsStatus, data, send, open, close } = useWebSocket(wsUrl, {
   onMessage: (ws, event) => {
     if (event.data === 'PONG') return
 
@@ -112,6 +162,18 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.met
       case 'EXPIRED_LICENSE':
         activationExpired.value = true
         break
+      case 'AUTH_WITH_PATREON':
+
+        const url = `https://www.patreon.com/oauth2/authorize?` +
+          `response_type=code` +
+          `&client_id=${import.meta.env.VITE_PATREON_CLIENT_ID}` +
+          `&redirect_uri=${getPatreonRedirectUri()}` +
+          `&state=${props.requestId}&scope=identity[email] identity`
+
+        patreonAuthRedirect.value = true
+
+        window.open(url, '_self')
+        break
       default:
         break
     }
@@ -127,18 +189,32 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(`${import.met
 })
 
 const statusText = computed(() => {
+  if (patreonAuthRedirect.value) return 'activation.status.redirectAuthWithPatreon'
   switch (status.value) {
     case 'WAIT':
       return 'activation.status.wait'
     case 'CLOSED':
     case 'DISCONNECTED':
       return 'activation.status.disconnected'
+    case 'REQUEST_AUTH_WITH_PATREON':
+      return 'activation.status.requestAuthWithPatreon'
     default:
       return 'activation.status.connected'
   }
 })
 
+const patreonStatusText = computed(() => {
+  switch (status.value) {
+    case 'AWAIT_PATREON_CHECK': return 'activation.status.awaitPatreonCheck'
+    case 'PATREON_CHECKING_EMAIL': return 'activation.status.patreonCheckingEmail'
+    case 'PATREON_CHECKING_TOKEN': return 'activation.status.patreonCheckingToken'
+    default:
+      return '';
+  }
+})
+
 const statusColor = computed(() => {
+  if (patreonAuthRedirect.value) return 'green'
   switch (status.value) {
     case 'WAIT':
       return 'orange'
@@ -150,11 +226,24 @@ const statusColor = computed(() => {
   }
 })
 
+if (patreonCode.value) {
+  watch(status, value => {
+    if (value !== 'STARTED') return
+    send(JSON.stringify({ patreonCode: patreonCode.value, redirectUri: getPatreonRedirectUri() }))
+    status.value = 'AWAIT_PATREON_CHECK'
+  }, { immediate: true })
+}
+
 function activate() {
   if (wsStatus.value === 'OPEN' && status.value == 'STARTED') {
     status.value = 'SENDED'
     send(JSON.stringify({ key: key.value }))
   }
+}
+
+function patreonAuth() {
+  status.value = 'REQUEST_AUTH_WITH_PATREON'
+  send(JSON.stringify({ action: 'AUTH_WITH_PATREON' }))
 }
 
 function reset() {
@@ -166,8 +255,16 @@ function reset() {
     case 'INVALID_LICENSE':
     case 'INVALID_PROMO':
     case 'INTERNAL_ERROR':
+    case 'AUTH_WITH_PATREON':
+    case 'REQUEST_AUTH_WITH_PATREON':
       status.value = 'STARTED'
       break;
+    case 'PATREON_ERROR':
+    case 'PATREON_CHECKING_EMAIL':
+    case 'PATREON_CHECKING_TOKEN':
+    case 'PATREON_HASNT_MEMBERSHIP':
+      router.push({ query: { requestId: props.requestId }, path: localePath('/request-licence-key') })
+
     default:
       break;
   }
@@ -183,7 +280,7 @@ function reset() {
 
 
 <style lang="scss" scoped>
-@import "~/assets/scss/colors.scss";
+@use "~/assets/scss/colors.scss" as *;
 
 hr {
   margin: 20px 0;
@@ -203,6 +300,11 @@ hr {
 
 h1 {
   font-size: 2em;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.4em;
   margin-top: 0;
 }
 
@@ -266,6 +368,10 @@ h1 {
       color: #FF453A;
     }
   }
+
+  .auth-with-patreon {
+    width: 100%;
+  }
 }
 
 input {
@@ -291,10 +397,16 @@ input {
   justify-content: center;
   align-items: center;
 }
+
+.activation-progress {
+  text-align: center;
+  color: $accent-color;
+  margin-top: 20px;
+}
 </style>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/colors.scss";
+@use "~/assets/scss/colors.scss" as *;
 
 .loader {
   color: $accent-color;

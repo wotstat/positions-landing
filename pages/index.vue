@@ -398,7 +398,7 @@
               <button class="download" @click="download">Скачать</button>
             </div>
             <div class="image">
-              <LazyVideo src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
+              <VideoLazy src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
             </div>
           </div>
 
@@ -418,7 +418,7 @@
               </p>
             </div>
             <div class="image">
-              <LazyVideo src="/instruction/activation.webm" type="video/webm" poster="/instruction/activation.webp" />
+              <VideoLazy src="/instruction/activation.webm" type="video/webm" poster="/instruction/activation.webp" />
             </div>
           </div>
 
@@ -449,7 +449,7 @@
               </p>
             </div>
             <div class="image">
-              <LazyVideo src="/instruction/play.webm" type="video/webm" poster="/instruction/play.webp" />
+              <VideoLazy src="/instruction/play.webm" type="video/webm" poster="/instruction/play.webp" />
             </div>
           </div>
 
@@ -479,7 +479,7 @@
 
             </div>
             <div class="image">
-              <LazyVideo src="/instruction/configuration.webm" type="video/webm"
+              <VideoLazy src="/instruction/configuration.webm" type="video/webm"
                 poster="/instruction/configuration.webp" />
             </div>
           </div>
@@ -700,7 +700,7 @@
 <script setup lang="ts">
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
-import LazyVideo from '~/components/lazyVideo.vue';
+import VideoLazy from '~/components/videoLazy.vue';
 
 const discordUrl = import.meta.env.VITE_DISCORD_URL;
 
@@ -804,7 +804,8 @@ onUnmounted(() => {
 
 
 <style scoped lang="scss">
-@import "~/assets/scss/colors.scss";
+@use 'sass:color';
+@use "~/assets/scss/colors.scss" as *;
 
 
 $width-limit: 1000px;
@@ -1188,7 +1189,7 @@ $width-limit: 1000px;
 
           @media (hover: hover) {
             &:hover {
-              background-color: darken($dark-green, $amount: 10%);
+              background-color: color.adjust($dark-green, $lightness: -10%);
             }
           }
 
@@ -1665,7 +1666,7 @@ header {
 </style>
 
 <style lang="scss">
-@import "~/assets/scss/colors.scss";
+@use "~/assets/scss/colors.scss" as *;
 
 .l7 {
   .carousel-item {
@@ -1693,10 +1694,6 @@ header {
 
     font-size: 15px;
 
-    @media screen and (max-width: 512px) {
-      font-size: 10px;
-    }
-
     background-color: rgba(52, 52, 52, 0.389);
     border-radius: 50%;
 
@@ -1704,6 +1701,10 @@ header {
 
     width: 3em;
     height: 3em;
+
+    @media screen and (max-width: 512px) {
+      font-size: 10px;
+    }
 
     .carousel__icon {
       width: 3em;

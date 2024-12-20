@@ -1,13 +1,11 @@
 <template>
-  <Activation :requestId="requestId" />
+  <Activation :requestId />
 </template>
 
 <script setup lang="ts">
 
 const route = useRoute()
 
-const requestId = computed(() => {
-  return route.query.requestId as string
-})
+const requestId = computed(() => route.query.requestId as string)
 
 </script>

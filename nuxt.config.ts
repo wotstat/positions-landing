@@ -2,6 +2,7 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
+
   modules: [
     "@nuxtjs/i18n",
     '@vueuse/nuxt',
@@ -10,6 +11,7 @@ export default defineNuxtConfig({
     "vue3-carousel-nuxt",
     "@nuxt/content"
   ],
+
   i18n: {
     defaultLocale: 'ru',
     vueI18n: './i18n.config.ts',
@@ -18,17 +20,31 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'ru',
-        iso: 'ru-RU'
+        language: 'ru-RU',
       }, {
         code: 'en',
-        iso: 'en-US'
+        language: 'en-US'
       }
     ],
   },
+
   image: {
     format: ['webp']
   },
+
   nitro: {
-    preset: 'static'
-  }
+    preset: 'default',
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler'
+        }
+      }
+    }
+  },
+
+  compatibilityDate: '2024-12-14'
 })
