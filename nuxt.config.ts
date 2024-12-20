@@ -2,7 +2,6 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  ssr: true,
 
   modules: [
     "@nuxtjs/i18n",
@@ -33,10 +32,6 @@ export default defineNuxtConfig({
     format: ['webp']
   },
 
-  nitro: {
-    preset: 'aws-lambda',
-  },
-
   vite: {
     css: {
       preprocessorOptions: {
@@ -47,5 +42,5 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-12-14'
+  compatibilityDate: '2024-11-01',
 })

@@ -6,7 +6,7 @@
         <div class="header-container large">
           <div class="left">
             <a @click="scrollTo('top')" class="logo">
-              <NuxtPicture sizes="64px" src="/favicon.png" preload />
+              <NuxtPicture sizes="64px" src="/favicon.png" />
               Позиции от WotStat
             </a>
           </div>
@@ -28,7 +28,7 @@
         <div class="header-container small">
           <div class="left">
             <a @click="scrollTo('top')" class="logo">
-              <NuxtPicture sizes="64px" src="/favicon.png" />
+              <NuxtPicture src="/favicon.png" />
               Позиции от WotStat
             </a>
           </div>
@@ -153,6 +153,7 @@
 
             <div class="image-container">
               <p>FV217 Badger</p>
+              <!-- <img src="/screenshots/demo/ideal3d.png" loading="lazy"> -->
               <NuxtPicture src="/screenshots/demo/ideal3d.png" loading="lazy" />
             </div>
           </div>
