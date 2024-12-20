@@ -32,10 +32,6 @@ export default defineNuxtConfig({
     format: ['webp']
   },
 
-  nitro: {
-    preset: 'static',
-  },
-
   vite: {
     css: {
       preprocessorOptions: {
