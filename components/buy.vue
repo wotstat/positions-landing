@@ -24,7 +24,8 @@
       </p>
     </div>
 
-    <div class="year" :class="selectedPeriod == 'year' ? 'active' : ''" @click="selectedPeriod = 'year'">
+    <div class="year" :class="selectedPeriod == 'year' ? 'active' : ''" @click="selectedPeriod = 'year'"
+      v-if="selectedPayment != 'patreon'">
       <div class=" header">
         <p>На год</p>
         <div class="badge">
@@ -65,8 +66,8 @@
   <br>
   <template v-if="selectedPayment == 'patreon'">
     <p v-if="selectedPayment == 'patreon'">
-      Покупка осуществляется путём подписки на сервисе Patreon. После оплаты, в течение 12 часов, я вышлю
-      вам лицензионный ключ в личные сообщения.
+      Лицензия доступна всем подписчикам WotStat на Patreon. Для активации установите мод и на странице активации
+      выберите пункт "Авторизоваться через Patreon".
     </p>
   </template>
 
@@ -113,6 +114,11 @@ function metrikaReachGoal(target: string) {
     currency: targetCurrency.value,
   })
 }
+
+watch(selectedPayment, payment => {
+  if (payment == 'patreon')
+    selectedPeriod.value = 'month'
+})
 
 onMounted(() => {
   ym(yandexMetrikaId, 'reachGoal', 'BUY_FORM_OPEN')
