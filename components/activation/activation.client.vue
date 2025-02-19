@@ -10,7 +10,7 @@
         <p v-html="$t('activation.page.description')"></p>
         <br>
         <div class="flex input-line">
-          <input type="text" class="flex-1" :placeholder="$t('activation.page.keyPlaceholder')" v-model="key">
+          <input type="text" class="flex-1" :placeholder="$t('activation.page.keyPlaceholder')" v-model.trim="key">
           <button :disabled="!isButtonEnabled" @click="activate">{{ $t('activation.page.activate') }}</button>
         </div>
       </template>
