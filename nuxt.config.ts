@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: 'ru',
-    vueI18n: './i18n.config.ts',
+    vueI18n: '../i18n.config.ts',
     baseUrl: 'https://positions.wotstat.info',
     detectBrowserLanguage: false,
     locales: [
