@@ -65,11 +65,11 @@
         <div class="content flex">
           <div class="left">
             <div class="title">
-              <h1>{{ $t('main.title') }}</h1>
+              <h1>{{ $t('main.title') }}
+                <SvgoV2Badge class="v2-badge" />
+              </h1>
               <h3 class="mod-description gray">
                 Обучайтесь и играйте эффективнее с позициями от лучших игроков.
-                <!-- Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших игроков. -->
-                <!-- {{ $t('main.description') }} -->
               </h3>
               <div class="flex hor buttons tanks">
                 <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''"
@@ -82,6 +82,13 @@
                 <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
                   $t(`maps.${map}`) }}</button>
                 <button class="hover-disabled">И ещё 40 карт</button>
+              </div>
+
+              <div class="update-info">
+                <p>Вышло масштабное обновление
+                  <SvgoV2Badge class="v2-badge" />. Добавлены огневые рубежи, обновлен алгоритм определения позиций,
+                  обновлены тепловые карты. <RouterLink to="/whats-new-2">Подробнее.</RouterLink>
+                </p>
               </div>
             </div>
           </div>
@@ -309,12 +316,13 @@
 
                 <li>
                   <p>Любые уровни. <span class="gray">Играйте на любых уровнях с <code>I</code> до
-                      <code>X</code>.</span></p>
+                      <code>XI</code>.</span></p>
                 </li>
 
                 <li>
                   <p>Все типы танков.
-                    <span class="gray">Позиции для эффективной стрельбы на любых типах танков. Будьте осторожны на ЛТ,
+                    <span class="gray">(кроме огнемётов). Позиции для эффективной стрельбы на любых типах танков. Будьте
+                      осторожны на ЛТ,
                       настрел не является их основной задачей.</span>
                   </p>
                 </li>
@@ -357,6 +365,14 @@
                   <p>Без привязки к региону.
                     <span class="gray">
                       Одна лицензия работает во всех регионах (Wargaming, Lesta).
+                    </span>
+                  </p>
+                </li>
+
+                <li>
+                  <p>Запрещается.
+                    <span class="gray">
+                      Передавать ключ третьим лицам. Играть с другом с одной лицензии.
                     </span>
                   </p>
                 </li>
@@ -663,6 +679,19 @@
             стрельбы.
           </p>
         </FaqItem>
+        <hr>
+
+        <FaqItem :title="'Работает ли мод на огнемётных танках?'">
+          <p class="gray">
+            Нет.
+            <br>
+            Из-за того, что у огнемётных танков нет выстрелов в обычном понимании, WotStat пока не обладает данными об
+            их стрельбе, по этому мод не может рассчитать позиции для них.
+            <br>
+            <br>
+            В будущих обновлениях WotStat аналитики, будет добавлена поддержка огнесмеси.
+          </p>
+        </FaqItem>
 
       </section>
     </div>
@@ -869,6 +898,13 @@ $width-limit: 1000px;
             white-space: normal;
             text-align: center;
           }
+
+          .v2-badge {
+            margin: 0;
+            width: unset;
+            height: 0.8em;
+            margin-bottom: 0.1em;
+          }
         }
 
         h3 {
@@ -880,6 +916,25 @@ $width-limit: 1000px;
 
           @media screen and (max-width: 512px) {
             font-size: 1.25em;
+          }
+        }
+
+
+        .update-info {
+          line-height: 1.2;
+          margin-top: 2.5em;
+          color: var(--font-color);
+          background-color: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+          backdrop-filter: blur(10px);
+          padding: 0.5em 0.8em;
+
+          p {
+            font-size: 16px;
+          }
+
+          .v2-badge {
+            width: unset;
           }
         }
       }

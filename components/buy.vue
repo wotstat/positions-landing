@@ -204,7 +204,7 @@ button {
     position: relative;
     border: $border;
 
-    transition-duration: 0.2s;
+    // transition-duration: 0.2s;
     transition-property: transform, border, box-shadow;
 
     cursor: pointer;
@@ -310,7 +310,7 @@ button {
     border: $border;
     cursor: pointer;
 
-    transition-duration: 0.2s;
+    // transition-duration: 0.2s;
     transition-property: border, box-shadow;
 
     &.active {
