@@ -65,6 +65,11 @@ $width-limit: 1000px;
     font-size: 2.5em;
     margin-top: 1.5em;
     margin-bottom: 0.1em;
+    line-height: 1.1;
+
+    @media screen and (max-width: 800px) {
+      font-size: 2em;
+    }
   }
 
   h3 {
@@ -77,6 +82,7 @@ $width-limit: 1000px;
   img {
     border-radius: 5px;
     min-width: 0;
+    max-width: 100%;
     user-select: none;
     pointer-events: none;
   }
