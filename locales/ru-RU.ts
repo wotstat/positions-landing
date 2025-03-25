@@ -15,7 +15,7 @@ export default {
   },
   activation: {
     status: {
-      wait: 'Ожидание клиента',
+      wait: 'Ожидание игры',
       connected: 'Соединение установлено',
       disconnected: 'Соединение разорвано',
       redirectAuthWithPatreon: 'Перенаправление на авторизацию Patreon',

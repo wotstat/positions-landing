@@ -65,11 +65,11 @@
         <div class="content flex">
           <div class="left">
             <div class="title">
-              <h1>{{ $t('main.title') }}</h1>
+              <h1>{{ $t('main.title') }}
+                <SvgoV2Badge class="v2-badge" />
+              </h1>
               <h3 class="mod-description gray">
                 Обучайтесь и играйте эффективнее с позициями от лучших игроков.
-                <!-- Обучайтесь и играйте эффективнее с помощью позиций для стрельбы, основанных на данных от лучших игроков. -->
-                <!-- {{ $t('main.description') }} -->
               </h3>
               <div class="flex hor buttons tanks">
                 <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''"
@@ -82,6 +82,13 @@
                 <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
                   $t(`maps.${map}`) }}</button>
                 <button class="hover-disabled">И ещё 40 карт</button>
+              </div>
+
+              <div class="update-info">
+                <p>Вышло масштабное обновление
+                  <SvgoV2Badge class="v2-badge" />. Добавлены огневые рубежи, обновлен алгоритм определения позиций,
+                  обновлены тепловые карты. <RouterLink to="/whats-new-2" target="_blank">Подробнее.</RouterLink>
+                </p>
               </div>
             </div>
           </div>
@@ -152,13 +159,13 @@
             </div>
 
             <div class="image-container">
-              <p>FV217 Badger</p>
+              <p class="info">FV217 Badger</p>
               <!-- <img src="/screenshots/demo/ideal3d.png" loading="lazy"> -->
               <NuxtPicture src="/screenshots/demo/ideal3d.png" loading="lazy" />
             </div>
           </div>
 
-          <div class="card">
+          <!-- <div class="card">
             <div class="info">
               <h4>Наилучшая позиция</h4>
               <p class="gray">Наиболее эффективная позиция отображается крупным маркером на миникарте.</p>
@@ -168,37 +175,74 @@
               <p>Concept 5</p>
               <NuxtPicture src="/screenshots/demo/ideal-r.png" loading="lazy" />
             </div>
-          </div>
+          </div> -->
 
           <div class="card">
             <div class="info">
               <h4>Эффективные позиции</h4>
               <p class="gray">
-                Маленькими зелёными маркерами отображаются менее популярные, но всё ещё эффективные позиции.
+                Зелёными маркерами на миникарте отображаются эффективные позиции. Крупный маркер – наилучшая позиция.
               </p>
             </div>
 
             <div class="image-container">
-              <p>Concept 5</p>
+              <p class="info">Concept 5</p>
               <NuxtPicture src="/screenshots/demo/mini-r.png" loading="lazy" />
             </div>
           </div>
 
           <div class="card">
+            <div class="badge new">ОБНОВЛЕНО</div>
+
             <div class="info">
-              <h4>Эффективные области</h4>
+              <h4>Тепловые карты</h4>
               <p class="gray">
                 Иногда, оптимальным местом является не конкретная точка, а целая область на карте.
               </p>
             </div>
 
             <div class="image-container">
-              <p>FV4005</p>
-              <NuxtPicture src="/screenshots/demo/area-r.png" loading="lazy" />
+              <p class="info left">FV4005</p>
+              <div class="info-line-heatmap">
+                <p><img src="/content/wn2/heatmapE.png">Эффективные позиции</p>
+                <p><img src="/content/wn2/heatmapP.png">Популярные позиции</p>
+              </div>
+              <NuxtPicture src="/screenshots/demo/heatmap.png" loading="lazy" />
             </div>
           </div>
 
           <div class="card">
+            <div class="badge new">НОВОЕ</div>
+            <div class="info">
+              <h4>Огневые рубежи</h4>
+              <p class="gray">
+                Равномерно распределены по карте, показывают удобные для стрельбы точки и направления.
+              </p>
+            </div>
+
+            <div class="image-container">
+              <p class="info">Т-62А</p>
+              <NuxtPicture format="webp" src="/screenshots/demo/spot-points-demo.png" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge new">НОВОЕ</div>
+
+            <div class="info">
+              <h4>Маркеры направлений стрельбы</h4>
+              <p class="gray">
+                По нажатию <code>Alt</code> отображаются маркеры направлений стрельбы от ближайшего огневого рубежа.
+              </p>
+            </div>
+
+            <div class="image-container">
+              <p class="info">Т-62А</p>
+              <NuxtPicture format="webp" src="/screenshots/demo/eye-marker.png" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- <div class="card">
             <div class="info">
               <h4>Качество рекомендации</h4>
               <p class="gray">
@@ -210,7 +254,7 @@
             <div class="image-container shadow-disabled">
               <NuxtPicture format="webp" src="/screenshots/demo/info-ru.png" loading="lazy" />
             </div>
-          </div>
+          </div> -->
 
           <div class="card">
             <div class="info">
@@ -309,20 +353,21 @@
 
                 <li>
                   <p>Любые уровни. <span class="gray">Играйте на любых уровнях с <code>I</code> до
-                      <code>X</code>.</span></p>
+                      <code>XI</code>.</span></p>
                 </li>
 
                 <li>
                   <p>Все типы танков.
-                    <span class="gray">Позиции для эффективной стрельбы на любых типах танков. Будьте осторожны на ЛТ,
-                      настрел не является их основной задачей.</span>
+                    <span class="gray">(кроме огнемётов). Позиции для эффективной <b>стрельбы</b> на любых типах танков.
+                      Будьте
+                      осторожны на ЛТ, настрел не является их основной задачей.</span>
                   </p>
                 </li>
 
                 <li>
                   <p>Любые режимы.
                     <span class="gray">
-                      Ограничений на режим нет, однако, в мало популярных режимах, на некоторых танках, может быть
+                      Ограничений на режим нет, однако, в мало популярных режимах на новых танках может быть
                       недостаточно данных. В стандартных боях данных всегда достаточно.
                     </span>
                   </p>
@@ -336,8 +381,16 @@
                   </p>
                 </li>
 
-
                 <li>
+                  <p>Без ограничений.
+                    <span class="gray">
+                      В моде нет привязки к региону, аккаунту или железу. Если у вас несколько аккаунтов или
+                      компьютеров, то одна лицензия будет работать на всех.
+                    </span>
+                  </p>
+                </li>
+
+                <!-- <li>
                   <p>Без привязки к аккаунту.
                     <span class="gray">
                       Если вы играете на нескольких аккаунтах, то одна лицензия будет работать на всех.
@@ -357,6 +410,14 @@
                   <p>Без привязки к региону.
                     <span class="gray">
                       Одна лицензия работает во всех регионах (Wargaming, Lesta).
+                    </span>
+                  </p>
+                </li> -->
+
+                <li>
+                  <p>Запрещается.
+                    <span class="gray">
+                      Нельзя передавать ключ третьим лицам. Нельзя играть с другом с одной лицензии.
                     </span>
                   </p>
                 </li>
@@ -412,11 +473,13 @@
                 и введите лицензионный ключ.
               </p>
               <button @click="buy">Купить лицензию</button>
-              <!-- <hr>
+              <hr>
               <p class="gray">
-                <a href="/tls-problem" target="_blank" rel="noopener noreferrer">Уведомление не появляется, что
-                  делать?</a>
-              </p> -->
+                Если у вас по каким либо причинам не получается активировать, воспользуйтесь <b>альтернативным способом
+                  активации</b>, нажмите кнопку <code>активировать</code> с зажатой клавишей <code>Alt</code>.
+                <!-- <a href="/tls-problem" target="_blank" rel="noopener noreferrer">Уведомление не появляется, что
+                  делать?</a> -->
+              </p>
             </div>
             <div class="image">
               <VideoLazy src="/instruction/activation.webm" type="video/webm" poster="/instruction/activation.webp" />
@@ -431,23 +494,21 @@
                 После начала отсчёта, подгрузится информация о позициях для вашего танка.
                 <br>
                 Над миникартой будет отображаться сообщение о качестве рекомендуемых позиций вида:
-                <code>#HHH X/Y/Z sS T/P/L eE</code>
+                <code>#HHH sS mD aA eE/T</code>
               </p>
 
               <ul class="gray">
                 <li><code>#HHH</code> – уникальный <code>id</code> запроса</li>
-                <li><code>X/Y/Z</code> – доля игроков отсечённых по <code>танку/роли/уровню</code></li>
                 <li><code>S</code> – итерация алгоритма понижения требований, чем меньше, тем лучше</li>
-                <li><code>T/P/L</code> – порог среднего урона для выбранных игроков по <code>танку/роли/уровню</code>
+
+                <li><code>D</code> – порог среднего урона за бой в выборке</li>
+                <li><code>A</code> – средний урон за бой в выборке</li>
+
+                <li>
+                  <code>E/T</code> – время в миллисекундах, затраченное на выполнение запроса
+                  <code>id/огневых рубежей</code>
                 </li>
-                <li><code>E</code> – время в миллисекундах, затраченное на выполнение запроса</li>
               </ul>
-              <!-- TODO -->
-              <!-- <p><a href="/">Подробнее о сообщение</a></p> -->
-              <p class="gray">
-                Подробнее о формате вы можете спросить в нашем Discord
-                <a :href="discordUrl" target="_blank">@WotStat</a>
-              </p>
             </div>
             <div class="image">
               <VideoLazy src="/instruction/play.webm" type="video/webm" poster="/instruction/play.webp" />
@@ -663,6 +724,19 @@
             стрельбы.
           </p>
         </FaqItem>
+        <hr>
+
+        <FaqItem :title="'Работает ли мод на огнемётных танках?'">
+          <p class="gray">
+            Нет.
+            <br>
+            Из-за того, что у огнемётных танков нет выстрелов в обычном понимании, WotStat пока не обладает данными об
+            их стрельбе, по этому мод не может рассчитать позиции для них.
+            <br>
+            <br>
+            В будущих обновлениях WotStat аналитики, будет добавлена поддержка огнесмеси.
+          </p>
+        </FaqItem>
 
       </section>
     </div>
@@ -756,8 +830,8 @@ const modLatest = ref<{
 
 const latestModDownloadUrl = computed(() => modLatest.value?.browser_download_url ?? 'https://github.com/WOT-STAT/minimap-positions/releases/latest')
 
-const screenshots = new Array(10).fill(0)
-  .map((_, i) => `/screenshots/shot_${i + 1}.jpg`)
+const screenshots = new Array(18).fill(0)
+  .map((_, i) => `/screenshots/new/shot_${i + 1}.jpg`)
 
 
 function scrollTo(id: string) {
@@ -869,6 +943,13 @@ $width-limit: 1000px;
             white-space: normal;
             text-align: center;
           }
+
+          .v2-badge {
+            margin: 0;
+            width: unset;
+            height: 0.8em;
+            margin-bottom: 0.1em;
+          }
         }
 
         h3 {
@@ -880,6 +961,25 @@ $width-limit: 1000px;
 
           @media screen and (max-width: 512px) {
             font-size: 1.25em;
+          }
+        }
+
+
+        .update-info {
+          line-height: 1.2;
+          margin-top: 2.5em;
+          color: var(--font-color);
+          background-color: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+          backdrop-filter: blur(10px);
+          padding: 0.5em 0.8em;
+
+          p {
+            font-size: 16px;
+          }
+
+          .v2-badge {
+            width: unset;
           }
         }
       }
@@ -1012,6 +1112,7 @@ $width-limit: 1000px;
 
       .info {
         flex: 1;
+        line-height: 1.3;
 
         .icon {
           color: $accent-color;
@@ -1040,21 +1141,72 @@ $width-limit: 1000px;
 
       .card {
         padding: 1.5rem;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
         gap: 1em;
+        position: relative;
 
         h4 {
           line-height: 1.25;
           margin: 0 0 0.5em 0;
         }
 
+        .badge {
+          position: absolute;
+          top: -3px;
+          right: -3px;
+
+          &.new {
+            background-color: #237de4;
+            color: #ffffff;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1;
+            padding: 0.15em 0.4em;
+
+            svg {
+              display: inline-block;
+              height: 0.9em;
+              width: auto;
+            }
+          }
+        }
+
         .image-container {
           margin-top: auto;
           position: relative;
 
-          p {
+          picture {
+            user-select: none;
+            pointer-events: none;
+          }
+
+          .info-line-heatmap {
+            position: absolute;
+            bottom: 5px;
+            right: 6px;
+            font-size: 0.8em;
+            padding: 0.5em 0.8em;
+            border-radius: 10px;
+            background-color: rgba(52, 52, 52, 0.389);
+            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            color: #d2d2d2;
+            text-align: left;
+
+            img {
+              width: 20px;
+              height: 20px;
+              margin-right: 3px;
+              margin-bottom: -4px;
+              display: inline-block;
+              user-select: none;
+              pointer-events: none;
+            }
+          }
+
+          .info {
             position: absolute;
             bottom: 5px;
             right: 6px;
@@ -1067,6 +1219,11 @@ $width-limit: 1000px;
             color: #d2d2d2;
             opacity: 0;
             transition: opacity 0.3s;
+
+            &.left {
+              left: 5px;
+              right: auto;
+            }
           }
 
           &:hover p {
