@@ -270,15 +270,18 @@
                   <div class="badge">{{ $t('main.l5.monthlyBadge') }}</div>
                 </div>
                 <hr>
-                <p class="amount">
+                <p class="amount" v-if="locale == 'ru'">
                   100
                   <sup>
                     <SvgoRub class="rub" />
                   </sup>
                 </p>
+                <p class="amount" v-else>
+                  $3
+                </p>
               </div>
 
-              <div class="year">
+              <div class="year" v-if="locale == 'ru'">
                 <div class="header">
                   <p>{{ $t('main.l5.yearly') }}</p>
                   <div class="badge">{{ $t('main.l5.yearlyBadge') }}</div>

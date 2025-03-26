@@ -1,6 +1,5 @@
 <template>
 
-  <!-- <h1>Купить лицензионный ключ</h1> -->
   <p>{{ $t('buy.description') }}</p>
   <h2>{{ $t('buy.select') }}</h2>
 
@@ -55,7 +54,8 @@
       <p>{{ $t('buy.crypto.description') }}</p>
     </div>
 
-    <div class="variant" :class="selectedPayment == 'patreon' ? 'active' : ''" @click="selectedPayment = 'patreon'">
+    <div class="variant" :class="selectedPayment == 'patreon' ? 'active' : ''" @click="selectedPayment = 'patreon'"
+      :style="{ order: locale != 'ru' ? -3 : undefined }">
       <h4>{{ $t('buy.patreon.title') }}</h4>
       <p>{{ $t('buy.patreon.description') }}</p>
     </div>
@@ -81,8 +81,10 @@
 <script setup lang="ts">
 const yandexMetrikaId = Number.parseInt(import.meta.env.VITE_YANDEX_METRIKA_ID)
 
+const { locale } = useI18n()
 const selectedPeriod = ref<'month' | 'year'>('month')
-const selectedPayment = ref<'russia' | 'crypto' | 'patreon'>('russia')
+const selectedPayment = ref<'russia' | 'crypto' | 'patreon'>(locale.value == 'ru' ? 'russia' : 'patreon')
+
 
 const targetCurrency = computed(() => {
   if (selectedPayment.value == 'russia') {
