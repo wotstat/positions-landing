@@ -7,18 +7,18 @@
           <div class="left">
             <a @click="scrollTo('top')" class="logo">
               <img src="/favicon_128.png" alt="favicon" />
-              Позиции от WotStat
+              {{ $t('main.header.title') }}
             </a>
           </div>
           <div class="center">
-            <a @click="scrollTo('info')">Описание</a>
-            <a @click="scrollTo('how-to')">Как работает</a>
-            <a @click="scrollTo('demo')">Демо</a>
-            <a @click="scrollTo('pricing')">Тариф</a>
-            <a @click="scrollTo('instruction')">Инструкция</a>
+            <a @click="scrollTo('info')">{{ $t('main.header.description') }}</a>
+            <a @click="scrollTo('how-to')">{{ $t('main.header.howToUse') }}</a>
+            <a @click="scrollTo('demo')">{{ $t('main.header.demo') }}</a>
+            <a @click="scrollTo('pricing')">{{ $t('main.header.price') }}</a>
+            <a @click="scrollTo('instruction')">{{ $t('main.header.instructions') }}</a>
           </div>
           <div class="right">
-            <a class="buy" @click="buy">Купить</a>
+            <a class="buy" @click="buy">{{ $t('main.header.buy') }}</a>
             <a :href="discordUrl" target="_blank" rel="noopener noreferrer">
               <SvgoDiscordMarkWhite class="icon" />
             </a>
@@ -29,11 +29,11 @@
           <div class="left">
             <a @click="scrollTo('top')" class="logo">
               <NuxtPicture src="/favicon.png" />
-              Позиции от WotStat
+              {{ $t('main.header.title') }}
             </a>
           </div>
           <div class="right">
-            <a class="buy" @click="buy">Купить</a>
+            <a class="buy" @click="buy">{{ $t('main.header.buy') }}</a>
             <SvgoBurgerMenu class="burger-menu" @click="openModal" v-if="!burgerMenuOpen" />
             <SvgoX class="burger-menu" @click="closeModal" v-else />
           </div>
@@ -42,19 +42,19 @@
     </header>
 
     <div class="menu" v-if="burgerMenuOpen" :class="mounted && scrollY > 2 ? '' : 'top'">
-      <a @click="clickMenu('info')">Описание</a>
-      <a @click="clickMenu('how-to')">Как работает</a>
-      <a @click="clickMenu('demo')">Демо</a>
-      <a @click="clickMenu('pricing')">Тариф</a>
-      <a @click="clickMenu('instruction')">Инструкция</a>
+      <a @click="clickMenu('info')">{{ $t('main.header.description') }}</a>
+      <a @click="clickMenu('how-to')">{{ $t('main.header.howToUse') }}</a>
+      <a @click="clickMenu('demo')">{{ $t('main.header.demo') }}</a>
+      <a @click="clickMenu('pricing')">{{ $t('main.header.price') }}</a>
+      <a @click="clickMenu('instruction')">{{ $t('main.header.instructions') }}</a>
       <hr>
       <a :href="discordUrl" target="_blank" rel="noopener noreferrer">
-        Присоединяйтесь к нашему Discord
+        {{ $t('main.header.connectToDiscord') }}
         <SvgoDiscordMarkWhite class="icon" />
       </a>
       <hr>
       <br>
-      <a class="buy" @click="buy">Купить</a>
+      <a class="buy" @click="buy">{{ $t('main.header.buy') }}</a>
       <div class="flex-1" />
 
 
@@ -65,29 +65,31 @@
         <div class="content flex">
           <div class="left">
             <div class="title">
-              <h1>{{ $t('main.title') }}
+              <h1>{{ $t('main.l1.title') }}
                 <SvgoV2Badge class="v2-badge" />
               </h1>
               <h3 class="mod-description gray">
-                Обучайтесь и играйте эффективнее с позициями от лучших игроков.
+                {{ $t('main.l1.description') }}
               </h3>
               <div class="flex hor buttons tanks">
                 <button v-for="tank in tanks" :class="selectedTank == tank ? 'active' : ''"
                   @click="selectedTank = tank">{{
                     $t(`tanks.${tank}`) }}</button>
-                <button class="hover-disabled">И ещё 821 танк</button>
+                <button class="hover-disabled"> {{ $t('main.l1.andMoreTanks') }}</button>
               </div>
 
               <div class="flex hor buttons maps">
-                <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">{{
-                  $t(`maps.${map}`) }}</button>
-                <button class="hover-disabled">И ещё 40 карт</button>
+                <button v-for="map in maps" :class="selectedMap == map ? 'active' : ''" @click="selectedMap = map">
+                  {{ $t(`maps.${map}`) }}
+                </button>
+                <button class="hover-disabled">{{ $t('main.l1.andMoreMaps') }}</button>
               </div>
 
               <div class="update-info">
-                <p>Вышло масштабное обновление
-                  <SvgoV2Badge class="v2-badge" />. Добавлены огневые рубежи, обновлен алгоритм определения позиций,
-                  обновлены тепловые карты. <RouterLink to="/whats-new-2" target="_blank">Подробнее.</RouterLink>
+                <p>{{ $t('main.l1.update2.title') }}
+                  <SvgoV2Badge class="v2-badge" />. {{ $t('main.l1.update2.description') }}
+                  <RouterLink to="/whats-new-2" target="_blank">{{ $t('main.l1.update2.more') }}
+                  </RouterLink>
                 </p>
               </div>
             </div>
@@ -107,45 +109,35 @@
 
 
       <section class="l2">
-        <h2 id="info">О модификации</h2>
-        <h3 class="gray">Уникальная модификация разработанная для повышения вашей эффективности в бою.</h3>
-        <h3 class="gray">
-          Для определения позиций нанесения урона используются тепловые карты лучших игроков по каждому танку.
-        </h3>
+        <h2 id="info">{{ $t('main.l2.title') }}</h2>
+        <h3 class="gray">{{ $t('main.l2.description') }}</h3>
+        <h3 class="gray">{{ $t('main.l2.description2') }}}</h3>
 
         <div class="info-cards">
           <div class="info">
             <SvgoTank class="icon" />
-            <h4>Позиции для каждого танка</h4>
-            <p class="gray">
-              Лучшие позиции определяются индивидуально для каждого танка на основе анализа данных лучших игроков.
-            </p>
+            <h4>{{ $t('main.l2.info1.title') }}</h4>
+            <p class="gray">{{ $t('main.l2.info1.description') }}</p>
           </div>
 
           <div class="info">
             <SvgoMap class="icon" />
-            <h4>Поддержка всех карт</h4>
-            <p class="gray">
-              Модификация работает на всех игровых картах, постоянно обновляясь для поддержания актуальности данных.
-            </p>
+            <h4>{{ $t('main.l2.info2.title') }}</h4>
+            <p class="gray">{{ $t('main.l2.info2.description') }}</p>
           </div>
 
           <div class="info">
             <SvgoTarget class="icon" />
-            <h4>Понятный интерфейс</h4>
-            <p class="gray">Модификация отображает понятный маркер позиции на миникарте и в 3D мире игры.</p>
+            <h4>{{ $t('main.l2.info3.title') }}</h4>
+            <p class="gray">{{ $t('main.l2.info3.description') }}</p>
           </div>
         </div>
       </section>
 
 
       <section class="l3">
-        <h2 id="how-to">Как это работает</h2>
-        <h3 class="gray">
-          Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a>
-          выбираются 5% лучших игроков*, строится тепловая карта их урона, отбираются наиболее популярные области, в
-          каждой из которых, выбирается наиболее эффективная позиция.
-        </h3>
+        <h2 id="how-to">{{ $t('main.l3.title') }}</h2>
+        <h3 class="gray" v-html="$t('main.l3.description')"></h3>
 
         <br>
         <br>
@@ -154,114 +146,77 @@
 
           <div class="card">
             <div class="info">
-              <h4>Маркер наилучшей позиции</h4>
-              <p class="gray">Наиболее эффективная позиция отображается прямо в игре крупным зелёным маркером.</p>
+              <h4>{{ $t('main.l3.card1.title') }}</h4>
+              <p class="gray">{{ $t('main.l3.card1.description') }}</p>
             </div>
 
             <div class="image-container">
-              <p class="info">FV217 Badger</p>
-              <!-- <img src="/screenshots/demo/ideal3d.png" loading="lazy"> -->
+              <p class="info">{{ $t('main.l3.card1.tank') }}</p>
               <NuxtPicture src="/screenshots/demo/ideal3d.png" loading="lazy" />
             </div>
           </div>
 
-          <!-- <div class="card">
-            <div class="info">
-              <h4>Наилучшая позиция</h4>
-              <p class="gray">Наиболее эффективная позиция отображается крупным маркером на миникарте.</p>
-            </div>
-
-            <div class="image-container">
-              <p>Concept 5</p>
-              <NuxtPicture src="/screenshots/demo/ideal-r.png" loading="lazy" />
-            </div>
-          </div> -->
-
           <div class="card">
             <div class="info">
-              <h4>Эффективные позиции</h4>
-              <p class="gray">
-                Зелёными маркерами на миникарте отображаются эффективные позиции. Крупный маркер – наилучшая позиция.
-              </p>
+              <h4>{{ $t('main.l3.card2.title') }}</h4>
+              <p class="gray">{{ $t('main.l3.card2.description') }}</p>
             </div>
 
             <div class="image-container">
-              <p class="info">Concept 5</p>
+              <p class="info">{{ $t('main.l3.card2.tank') }}</p>
               <NuxtPicture src="/screenshots/demo/mini-r.png" loading="lazy" />
             </div>
           </div>
 
           <div class="card">
-            <div class="badge new">ОБНОВЛЕНО</div>
+            <div class="badge new">{{ $t('main.l3.updated') }}</div>
 
             <div class="info">
-              <h4>Тепловые карты</h4>
-              <p class="gray">
-                Иногда, оптимальным местом является не конкретная точка, а целая область на карте.
-              </p>
+              <h4>{{ $t('main.l3.card3.title') }}</h4>
+              <p class="gray">{{ $t('main.l3.card3.description') }}</p>
             </div>
 
             <div class="image-container">
-              <p class="info left">FV4005</p>
+              <p class="info left">{{ $t('main.l3.card3.tank') }}</p>
               <div class="info-line-heatmap">
-                <p><img src="/content/wn2/heatmapE.png">Эффективные позиции</p>
-                <p><img src="/content/wn2/heatmapP.png">Популярные позиции</p>
+                <p><img src="/content/wn2/heatmapE.png">{{ $t('main.l3.card3.effective') }}</p>
+                <p><img src="/content/wn2/heatmapP.png">{{ $t('main.l3.card3.popular') }}</p>
               </div>
               <NuxtPicture src="/screenshots/demo/heatmap.png" loading="lazy" />
             </div>
           </div>
 
           <div class="card">
-            <div class="badge new">НОВОЕ</div>
+            <div class="badge new">{{ $t('main.l3.new') }}</div>
             <div class="info">
-              <h4>Огневые рубежи</h4>
-              <p class="gray">
-                Равномерно распределены по карте, показывают удобные для стрельбы точки и направления.
-              </p>
+              <h4>{{ $t('main.l3.card4.title') }}</h4>
+              <p class="gray">{{ $t('main.l3.card4.description') }}</p>
             </div>
 
             <div class="image-container">
-              <p class="info">Т-62А</p>
+              <p class="info">{{ $t('main.l3.card4.tank') }}</p>
               <NuxtPicture format="webp" src="/screenshots/demo/spot-points-demo.png" loading="lazy" />
             </div>
           </div>
 
           <div class="card">
-            <div class="badge new">НОВОЕ</div>
+            <div class="badge new">{{ $t('main.l3.new') }}</div>
 
             <div class="info">
-              <h4>Маркеры направлений стрельбы</h4>
-              <p class="gray">
-                По нажатию <code>Alt</code> отображаются маркеры направлений стрельбы от ближайшего огневого рубежа.
-              </p>
+              <h4>{{ $t('main.l3.card5.title') }}</h4>
+              <p class="gray" v-html="$t('main.l3.card5.description')"></p>
             </div>
 
             <div class="image-container">
-              <p class="info">Т-62А</p>
+              <p class="info">{{ $t('main.l3.card5.tank') }}</p>
               <NuxtPicture format="webp" src="/screenshots/demo/eye-marker.png" loading="lazy" />
             </div>
           </div>
 
-          <!-- <div class="card">
-            <div class="info">
-              <h4>Качество рекомендации</h4>
-              <p class="gray">
-                Над миникартой отображается сообщение, описывающее качество рекомендуемых позиций.
-                <a @click="scrollTo('instruction-format')">Подробнее.</a>
-              </p>
-            </div>
-
-            <div class="image-container shadow-disabled">
-              <NuxtPicture format="webp" src="/screenshots/demo/info-ru.png" loading="lazy" />
-            </div>
-          </div> -->
-
           <div class="card">
             <div class="info">
-              <h4>Настройки</h4>
-              <p class="gray">
-                Мод можно сконфигурировать под себя, настроив отображение всех видов маркеров.
-              </p>
+              <h4>{{ $t('main.l3.card6.title') }}</h4>
+              <p class="gray">{{ $t('main.l3.card6.description') }}</p>
             </div>
 
             <div class="image-container">
@@ -273,10 +228,8 @@
 
 
       <section class="l7">
-        <h2 id="demo">Демонстрация работы</h2>
-        <h3 class="gray">
-          Реальная демонстрация лучше тысячи описаний.
-        </h3>
+        <h2 id="demo">{{ $t('main.l7.title') }}</h2>
+        <h3 class="gray">{{ $t('main.l7.description') }}</h3>
         <br>
         <div class="carousel-container">
           <Carousel :items-to-show="1.1" :wrap-around="true">
@@ -305,16 +258,14 @@
 
 
       <section class="l5">
-        <h2 id="pricing">Тариф</h2>
+        <h2 id="pricing">{{ $t('main.l5.title') }}</h2>
         <div class="card">
           <div class="container">
             <div class="price">
               <div class="month">
                 <div class="header">
-                  <p>На месяц</p>
-                  <div class="badge">
-                    По цене трёх коробок
-                  </div>
+                  <p>{{ $t('main.l5.monthly') }}</p>
+                  <div class="badge">{{ $t('main.l5.monthlyBadge') }}</div>
                 </div>
                 <hr>
                 <p class="amount">
@@ -327,10 +278,8 @@
 
               <div class="year">
                 <div class="header">
-                  <p>На год</p>
-                  <div class="badge">
-                    Скидка 20%
-                  </div>
+                  <p>{{ $t('main.l5.yearly') }}</p>
+                  <div class="badge">{{ $t('main.l5.yearlyBadge') }}</div>
                 </div>
                 <hr>
                 <p class="amount">
@@ -344,88 +293,37 @@
             </div>
             <div class="features">
               <ul>
-
                 <li>
-                  <p>
-                    Неограниченное число боёв. <span class="gray">Играйте столько, сколько хотите.</span>
-                  </p>
+                  <p v-html="$t('main.l5.features.f1')"></p>
                 </li>
 
                 <li>
-                  <p>Любые уровни. <span class="gray">Играйте на любых уровнях с <code>I</code> до
-                      <code>XI</code>.</span></p>
+                  <p v-html="$t('main.l5.features.f2')"></p>
                 </li>
 
                 <li>
-                  <p>Все типы танков.
-                    <span class="gray">(кроме огнемётов). Позиции для эффективной <b>стрельбы</b> на любых типах танков.
-                      Будьте
-                      осторожны на ЛТ, настрел не является их основной задачей.</span>
-                  </p>
+                  <p v-html="$t('main.l5.features.f3')"></p>
                 </li>
 
                 <li>
-                  <p>Любые режимы.
-                    <span class="gray">
-                      Ограничений на режим нет, однако, в мало популярных режимах на новых танках может быть
-                      недостаточно данных. В стандартных боях данных всегда достаточно.
-                    </span>
-                  </p>
+                  <p v-html="$t('main.l5.features.f4')"></p>
                 </li>
 
                 <li>
-                  <p>Регулярные обновления.
-                    <span class="gray">
-                      Позиции пересчитываются каждый день, чтобы всегда быть актуальными.
-                    </span>
-                  </p>
+                  <p v-html="$t('main.l5.features.f5')"></p>
                 </li>
 
                 <li>
-                  <p>Без ограничений.
-                    <span class="gray">
-                      В моде нет привязки к региону, аккаунту или железу. Если у вас несколько аккаунтов или
-                      компьютеров, то одна лицензия будет работать на всех.
-                    </span>
-                  </p>
-                </li>
-
-                <!-- <li>
-                  <p>Без привязки к аккаунту.
-                    <span class="gray">
-                      Если вы играете на нескольких аккаунтах, то одна лицензия будет работать на всех.
-                    </span>
-                  </p>
+                  <p v-html="$t('main.l5.features.f6')"></p>
                 </li>
 
                 <li>
-                  <p>Без привязки к железу.
-                    <span class="gray">
-                      Если вы играете на нескольких компьютерах, то одна лицензия будет работать на всех.
-                    </span>
-                  </p>
+                  <p v-html="$t('main.l5.features.f7')"></p>
                 </li>
-
-                <li>
-                  <p>Без привязки к региону.
-                    <span class="gray">
-                      Одна лицензия работает во всех регионах (Wargaming, Lesta).
-                    </span>
-                  </p>
-                </li> -->
-
-                <li>
-                  <p>Запрещается.
-                    <span class="gray">
-                      Нельзя передавать ключ третьим лицам. Нельзя играть с другом с одной лицензии.
-                    </span>
-                  </p>
-                </li>
-
               </ul>
             </div>
 
-            <button @click="buy">Перейти к покупке</button>
+            <button @click="buy">{{ $t('main.l5.buy') }}</button>
           </div>
         </div>
         <div class="gradient"></div>
@@ -433,31 +331,31 @@
 
 
       <section class="l4">
-        <h2 id="instruction">Инструкция</h2>
+        <h2 id="instruction">{{ $t('main.l4.title') }}</h2>
 
         <div class="steps">
 
           <div class="step">
             <div class="text">
-              <h3>Установка</h3>
-              <p class="gray">Для установки достаточно перенести файл мода в папку с игрой.</p>
-
+              <h3>{{ $t('main.l4.install.title') }}</h3>
               <ul class="gray">
-                <li><a @click="download">Скачать</a> актуальную версию модификации</li>
-                <li>Открыть лаунчер игры</li>
-                <li>Нажать кнопку <code>Настройки игры</code> → <code>Показать в папке</code></li>
-                <li>Открыть папку <code>mods</code></li>
+                <i18n-t keypath="main.l4.install.steps.s1" tag="li">
+                  <a @click="download">{{ $t('main.l4.install.steps.s1Download') }}</a>
+                </i18n-t>
+                <li>{{ $t('main.l4.install.steps.s2') }}</li>
+                <li v-html="$t('main.l4.install.steps.s3')"></li>
+                <li v-html="$t('main.l4.install.steps.s4')"></li>
                 <li>
-                  <p>Открыть папку с актуальной версией игры:</p>
+                  <p>{{ $t('main.l4.install.steps.s5') }}</p>
                   <ul class="m-0">
                     <li>Lesta: <code>{{ latest.lesta.replace('./mods/', '') }}</code></li>
                     <li>Wargaming: <code>{{ latest.wg.replace('./mods/', '') }}</code></li>
                   </ul>
                 </li>
-                <li>Перенести в неё скачанный файл модификации</li>
+                <li v-html="$t('main.l4.install.steps.s6')"></li>
               </ul>
 
-              <button class="download" @click="download">Скачать</button>
+              <button class="download" @click="download">{{ $t('main.l4.install.steps.s1Download') }}</button>
             </div>
             <div class="image">
               <VideoLazy src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
@@ -467,19 +365,11 @@
 
           <div class="step">
             <div class="text">
-              <h3>Активация</h3>
-              <p class="gray">
-                После входа в игру появится уведомление от модификации. Нажмите кнопку <code>активировать</code>
-                и введите лицензионный ключ.
-              </p>
-              <button @click="buy">Купить лицензию</button>
+              <h3>{{ $t('main.l4.activation.title') }}</h3>
+              <p class="gray" v-html="$t('main.l4.activation.description')"></p>
+              <button @click="buy">{{ $t('main.l4.activation.buy') }}</button>
               <hr>
-              <p class="gray">
-                Если у вас по каким либо причинам не получается активировать, воспользуйтесь <b>альтернативным способом
-                  активации</b>, нажмите кнопку <code>активировать</code> с зажатой клавишей <code>Alt</code>.
-                <!-- <a href="/tls-problem" target="_blank" rel="noopener noreferrer">Уведомление не появляется, что
-                  делать?</a> -->
-              </p>
+              <p class="gray" v-html="$t('main.l4.activation.cannot')"></p>
             </div>
             <div class="image">
               <VideoLazy src="/instruction/activation.webm" type="video/webm" poster="/instruction/activation.webp" />
@@ -489,25 +379,15 @@
 
           <div class="step">
             <div class="text">
-              <h3 id="instruction-format">Использование</h3>
-              <p class="gray">
-                После начала отсчёта, подгрузится информация о позициях для вашего танка.
-                <br>
-                Над миникартой будет отображаться сообщение о качестве рекомендуемых позиций вида:
-                <code>#HHH sS mD aA eE/T</code>
-              </p>
+              <h3 id="instruction-format">{{ $t('main.l4.usage.title') }}</h3>
+              <p class="gray" v-html="$t('main.l4.usage.description')"></p>
 
               <ul class="gray">
-                <li><code>#HHH</code> – уникальный <code>id</code> запроса</li>
-                <li><code>S</code> – итерация алгоритма понижения требований, чем меньше, тем лучше</li>
-
-                <li><code>D</code> – порог среднего урона за бой в выборке</li>
-                <li><code>A</code> – средний урон за бой в выборке</li>
-
-                <li>
-                  <code>E/T</code> – время в миллисекундах, затраченное на выполнение запроса
-                  <code>id/огневых рубежей</code>
-                </li>
+                <li v-html="$t('main.l4.usage.steps.s1')"></li>
+                <li v-html="$t('main.l4.usage.steps.s2')"></li>
+                <li v-html="$t('main.l4.usage.steps.s3')"></li>
+                <li v-html="$t('main.l4.usage.steps.s4')"></li>
+                <li v-html="$t('main.l4.usage.steps.s5')"></li>
               </ul>
             </div>
             <div class="image">
@@ -516,28 +396,17 @@
           </div>
 
 
-
           <div class="step">
             <div class="text">
-              <h3>Конфигурация</h3>
-              <p class="gray">
-                Для доступа к меню конфигурации, вам необходимо два дополнительных мода:
-              </p>
+              <h3>{{ $t('main.l4.configure.title') }}</h3>
+              <p class="gray">{{ $t('main.l4.configure.description') }}</p>
 
               <ul class="gray">
-                <li>
-                  <code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank"
-                rel="noopener noreferrer">ModsSettingsAPI</a></code>
-                  – мод для отображения настроек других модов прямо в игре
-                </li>
-                <li>
-                  <code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank"
-                rel="noopener noreferrer">Mods List</a></code>
-                  – мод для отображения списка модов в ангаре, нужен для открытия меню настроек
-                </li>
+                <li v-html="$t('main.l4.configure.setting')"></li>
+                <li v-html="$t('main.l4.configure.list')"></li>
               </ul>
 
-              <p class="gray"><i>Конфигурация является опциональным шагом, мод будет работать и без неё</i></p>
+              <p class="gray"><i>{{ $t('main.l4.configure.sub') }}</i></p>
 
             </div>
             <div class="image">
@@ -551,192 +420,9 @@
 
 
       <section class="l6">
-        <h2 id="faq">Ответы на вопросы</h2>
-        <!-- <According>
-          <template #header>
-            <h4>Как установить мод?</h4>
-          </template>
-          <template #panel>
-            <p class="gray">
-              Для установки мода необходимо скачать архив с файлами и распаковать его в папку с игрой. Подробнее в
-              <a href="/">инструкции</a>.
-            </p>
-          </template>
-        </According> -->
+        <h2 id="faq">{{ $t('main.l6.title') }}</h2>
 
-        <!-- <hr>
-
-        <FaqItem :title="'Как установить мод?'"
-          :content="' Для установки мода необходимо скачать архив с файлами и распаковать его в папку с игрой.'" /> -->
-
-
-        <FaqItem :title="'Какие способы оплаты доступны?'">
-          <p class="gray">Доступно несколько способов оплаты:</p>
-          <br>
-          <ul class="gray regular-text">
-            <li>
-              Из России с помощью сервиса ЮКасса, принимает более 10 различных методов оплаты:
-              Банковские карты, СБП, SberPay, Tinkoff Pay, кошелёк ЮMoney
-            </li>
-            <li>
-              С помощью криптовалюты Tether USDT в сети tron
-            </li>
-            <li>
-              С иностранных банковских карт путём подписки на Patreon
-            </li>
-          </ul>
-          <br>
-          <p class="gray">
-            Тариф в рублях для оплаты из России дешевле, чем тариф в долларах, это связано с региональным
-            ценообразованием.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Как установить мод?'">
-          <p class="gray">
-            Для установки мода необходимо скачать файл мода и перенести его в папку с игрой.
-            <br>
-            <br>
-            Подробнее в <a @click="scrollTo('instruction')">инструкции</a>.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Куда вводить лицензионный ключ?'">
-          <p class="gray">
-            После входа в игру, появится уведомление от модификации. Нажмите кнопку <code>активировать</code> и введите
-            лицензионный ключ в открывшемся окне.
-            <br>
-            <br>
-            Подробнее в <a @click="scrollTo('instruction')">инструкции</a>.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Мод не работает, что делать?'">
-          <p class="gray">Может быть несколько сценариев по которым мод не работает:</p>
-          <br>
-          <ul class="gray regular-text">
-            <li>
-              При входе в игру <b>не появляется</b> уведомление о лицензии:
-              <ul>
-                <li>Проверьте, и перепроверьте, что мод установлен в нужную папку с актуальной версией игры.</li>
-                <li>
-                  Удалите все остальные моды, если они у вас установлены. Если этот пункт поможет, напишите на почту
-                  <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
-                  список установленных модов, мы постараемся исправить совместимость.
-                </li>
-              </ul>
-            </li>
-            <br>
-            <li>
-              При входе в игру уведомление появляется, но в игре позиции не отображаются:
-              <ul>
-                <li>Убедитесь, что ваша лицензия не истекла (срок лицензии написан в уведомлении).</li>
-                <li>Если у вас есть настройщик модов, проверьте, что вы не отключили в нём мод "Позиции от WotStat" и не
-                  скрыли отображение маркеров.</li>
-                <li>Активируйте лицензию заново, для этого, нажмите кнопку <code>сбросить</code> в уведомлении и
-                  повторите процесс активации.</li>
-                <li>Подождите несколько часов, возможно, проблемы с сервером.</li>
-              </ul>
-            </li>
-          </ul>
-          <br>
-          <p class="gray">Если ни один из пунктов не помог, напишите на почту
-            <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
-            описав проблему и шаги, которые вы выполнили в попытках её решить.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Могут ли заблокировать за использование мода?'">
-          <p class="gray">
-            Нет, не могут.
-            <br>
-            <br>
-            Мод не нарушает правила игры и не попадает ни под один из пунктов списка
-            запрещенных модов, кроме того, мод не влияет на игровой процесс и не дает дополнительной информации,
-            которая
-            недоступна обычному игроку.
-            <br>
-            <br>
-            Ознакомиться со списком запрещенных модов можно на официальном портале игры:
-            <a href="https://tanki.su/ru/content/guide/ban/nonusefulmods/" target="_blank">Lesta</a>
-            или
-            <a href="https://eu.wargaming.net/support/ru/products/wot/article/15152/" target="_blank">Wargaming</a>
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Что запрещается делать в лицензии?'">
-          <p class="gray">
-            Запрещается передавать ключ третьим лицам.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Могу ли я играть с другом с одной лицензии?'">
-          <p class="gray">
-            Нет. Передача ключа третьим лицам запрещена. Если сервис обнаружит одновременное использование одной
-            лицензии в двух разных боях, то ключ будет заблокирован.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <!-- <FaqItem :title="'Что делать, если я потерял лицензионный ключ'">
-          <p class="gray">
-            Если вы покупали ключ через Molz.io, то у вас на почте должна быть ссылка на историю покупок.
-            Свяжитесь по почте
-            <a href="mailto:support@wotstat.info" target="_blank" rel="noopener noreferrer">
-              support@wotstat.info
-            </a>
-            и
-            <br>
-            Старайтесь не передавать ключ третьим лицам.
-          </p>
-        </FaqItem>
-        <hr> -->
-
-        <FaqItem :title="'Что делать, если лицензионный ключ скомпрометирован?'">
-          <p class="gray">
-            Свяжитесь по почте
-            <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
-            и укажите ваш ключ, мы его аннулируем и вышлем новый.
-            <br>
-            <br>
-            Старайтесь не передавать ключ третьим лицам.
-          </p>
-        </FaqItem>
-        <hr>
-
-
-        <FaqItem :title="'Работает ли мод на лёгких танках?'">
-          <p class="gray">
-            Частично.
-            <br>
-            Мод показывает позиции для <b>стрельбы</b>.
-            На некоторых картах, позиции для стрельбы совпадают с позициями для света, но это не всегда так.
-            <br>
-            <br>
-            На лёгких танках стрельба не является основной задачей, поэтому
-            в первую очередь ориентируйтесь на ситуацию в бою и возможность света, а только потом на позиции для
-            стрельбы.
-          </p>
-        </FaqItem>
-        <hr>
-
-        <FaqItem :title="'Работает ли мод на огнемётных танках?'">
-          <p class="gray">
-            Нет.
-            <br>
-            Из-за того, что у огнемётных танков нет выстрелов в обычном понимании, WotStat пока не обладает данными об
-            их стрельбе, по этому мод не может рассчитать позиции для них.
-            <br>
-            <br>
-            В будущих обновлениях WotStat аналитики, будет добавлена поддержка огнесмеси.
-          </p>
-        </FaqItem>
+        <ContentDoc part="faq" class="content" :preventSeo="true" />
 
       </section>
     </div>
@@ -745,16 +431,15 @@
       <hr>
       <div class="main-container">
         <p class="gray">
-          * – лучшие игроки определяются по среднему урону за сессию из более чем 20 боёв. Если данных для
-          построения тепловой карты недостаточно, то требуемый процент понижается (в основном это происходит на
-          непопулярных танках)
-        </p>
+          {{ $t('main.footer.info') }} </p>
         <br>
         <br>
         <p class="gray">
-          Связаться со мной вы можете по почте
-          <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a> или в сообществе Discord
-          <a :href="discordUrl" target="_blank">@WotStat</a>
+          <i18n-t keypath="main.footer.connect" tag="p" class="gray">
+            <template #email><a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a></template>
+            <template #discord> <a :href="discordUrl" target="_blank">@WotStat</a></template>
+            <a @click="download">{{ $t('main.l4.install.steps.s1Download') }}</a>
+          </i18n-t>
         </p>
 
         <template v-if="locale == 'ru'">
@@ -765,7 +450,7 @@
       </div>
     </footer>
 
-    <Popup :show="buyPopup" @close="buyPopup = false" title="Купить лицензионный ключ">
+    <Popup :show="buyPopup" @close="buyPopup = false" :title="$t('main.buyPopupTitle')">
       <Buy />
     </Popup>
 
@@ -1563,8 +1248,25 @@ $width-limit: 1000px;
   }
 
   .l6 {
-    hr {
-      margin: 0;
+    :deep(.content) {
+      hr {
+        margin: 0;
+      }
+
+      .content {
+        color: $large-color;
+
+        >p,
+        >ul {
+          font-size: 1.2em;
+          line-height: 1.4;
+          margin: 0;
+
+          @media screen and (max-width: 512px) {
+            font-size: 1em;
+          }
+        }
+      }
     }
   }
 
