@@ -11,181 +11,181 @@ export default {
   },
   main: {
     header: {
-      title: 'Позиции от WotStat',
-      description: 'Описание',
-      howToUse: 'Как использовать',
-      demo: 'Демо',
-      price: 'Тариф',
-      instructions: 'Инструкция',
-      buy: 'Купить',
-      connectToDiscord: 'Присоединяйтесь к нашему Discord',
+      title: 'Positions by WotStat',
+      description: 'Description',
+      howToUse: 'How to Use',
+      demo: 'Demo',
+      price: 'Pricing',
+      instructions: 'Instructions',
+      buy: 'Buy',
+      connectToDiscord: 'Join our Discord',
     },
     footer: {
-      info: '* – лучшие игроки определяются по среднему урону за сессию из более чем 20 боёв. Если данных для построения тепловой карты недостаточно, то требуемый процент понижается (в основном это происходит на непопулярных танках)',
-      connect: 'Связаться со мной вы можете по почте {email} или в сообществе Discord {discord}',
+      info: '* – top players are determined by average damage per session from more than 20 battles. If insufficient data is available for generating the heatmap, the required percentage is lowered (mainly occurring with unpopular tanks)',
+      connect: 'You can contact me via email {email} or through the Discord community {discord}',
     },
-    buyPopupTitle: 'Купить лицензионный ключ',
+    buyPopupTitle: 'Purchase License Key',
     l1: {
-      title: 'Позиции от WotStat',
-      description: 'Обучайтесь и играйте эффективнее с позициями от лучших игроков.',
-      andMoreTanks: 'И ещё 821 танк',
-      andMoreMaps: 'И ещё 40 карт',
+      title: 'Positions by WotStat',
+      description: 'Learn and play more effectively with positions from top players.',
+      andMoreTanks: 'And 821 more tanks',
+      andMoreMaps: 'And 40 more maps',
 
       update2: {
-        title: 'Вышло масштабное обновление',
-        description: 'Добавлены огневые рубежи, обновлен алгоритм определения позиций, обновлены тепловые карты.',
-        more: 'Подробнее.',
+        title: 'Major Update Released',
+        description: 'Firing Positions added, position detection algorithm updated, heatmaps updated.',
+        more: 'Read more.',
       }
     },
     l2: {
-      title: 'О модификации',
-      description: 'Уникальная модификация разработанная для повышения вашей эффективности в бою.',
-      description2: 'Для определения позиций нанесения урона используются тепловые карты лучших игроков по каждому танку.',
+      title: 'About the Mod',
+      description: 'A unique modification designed to enhance your combat effectiveness.',
+      description2: 'Damage-dealing positions are determined using heatmaps from the best players for each tank.',
 
       info1: {
-        title: 'Позиции для каждого танка',
-        description: 'Лучшие позиции определяются индивидуально для каждого танка на основе анализа данных лучших игроков.'
+        title: 'Positions for Every Tank',
+        description: 'The best positions are individually identified for each tank based on top player data analysis.'
       },
       info2: {
-        title: 'Поддержка всех карт',
-        description: 'Модификация работает на всех игровых картах, постоянно обновляясь для поддержания актуальности данных.'
+        title: 'All Maps Supported',
+        description: 'The modification works on all game maps, continuously updating to ensure data accuracy.'
       },
       info3: {
-        title: 'Понятный интерфейс',
-        description: 'Модификация отображает понятный маркер позиции на миникарте и в 3D мире игры.'
+        title: 'User-Friendly Interface',
+        description: 'The mod displays clear position markers on the minimap and in the 3D game world.'
       },
     },
     l3: {
-      title: 'Как это работает',
-      description: 'Из базы данных <a href="http://wotstat.info" target="_blank" rel="noopener  noreferrer">WotStat</a> выбираются 5% лучших игроков*, строится тепловая карта их урона,  отбираются наиболее популярные области, в каждой из которых, выбирается наиболее эффективная позиция.',
+      title: 'How It Works',
+      description: 'From the <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a> database, the top 5% of players* are selected, their damage heatmap is generated, the most popular areas are identified, and the most effective position is chosen within each area.',
 
-      updated: 'ОБНОВЛЕНО',
-      new: 'НОВОЕ',
+      updated: 'UPDATED',
+      new: 'NEW',
       card1: {
-        title: 'Маркер наилучшей позиции',
-        description: 'Наиболее эффективная позиция отображается прямо в игре крупным зелёным маркером.',
+        title: 'Best Position Marker',
+        description: 'The most effective position is displayed directly in-game as a large green marker.',
         tank: 'FV217 Badger'
       },
       card2: {
-        title: 'Эффективные позиции',
-        description: 'Зелёными маркерами на миникарте отображаются эффективные позиции. Крупный маркер – наилучшая позиция.',
+        title: 'Effective Positions',
+        description: 'Effective positions are shown as green markers on the minimap. The large marker indicates the best position.',
         tank: 'Concept 5'
       },
       card3: {
-        title: 'Тепловые карты',
-        description: 'Иногда, оптимальным местом является не конкретная точка, а целая область на карте.',
+        title: 'Heatmaps',
+        description: 'Sometimes, the optimal location is not a specific point but an entire area on the map.',
         tank: 'FV4005',
-        effective: 'Эффективные позиции',
-        popular: 'Популярные позиции',
+        effective: 'Effective positions',
+        popular: 'Popular positions',
       },
       card4: {
-        title: 'Огневые рубежи',
-        description: 'Равномерно распределены по карте, показывают удобные для стрельбы точки и направления.',
-        tank: 'Т-62А'
+        title: 'Firing Positions',
+        description: 'Evenly distributed across the map, indicating convenient firing points and directions.',
+        tank: 'T-62A'
       },
       card5: {
-        title: 'Маркеры направлений стрельбы',
-        description: 'По нажатию <code>Alt</code> отображаются маркеры направлений стрельбы от ближайшего огневого рубежа.',
-        tank: 'Т-62А'
+        title: 'Firing Direction Markers',
+        description: 'Pressing <code>Alt</code> displays firing direction markers from the nearest firing positions.',
+        tank: 'T-62A'
       },
       card6: {
-        title: 'Настройки',
-        description: 'Мод можно сконфигурировать под себя, настроив отображение всех видов маркеров.'
+        title: 'Settings',
+        description: 'The mod can be configured to suit your preferences, adjusting the display of all marker types.'
       },
     },
     l4: {
-      title: 'Инструкция',
+      title: 'Instructions',
 
       install: {
-        title: 'Установка',
-        description: 'Для установки достаточно перенести файл мода в папку с игрой.',
+        title: 'Installation',
+        description: 'To install, simply move the mod file to the game folder.',
         steps: {
-          s1: '{0} актуальную версию модификации',
-          s1Download: 'Скачать',
-          s2: 'Открыть лаунчер игры',
-          s3: 'Нажать кнопку <code>Настройки игры</code> → <code>Показать в папке</code>',
-          s4: 'Открыть папку <code>mods</code>',
-          s5: 'Открыть папку с актуальной версией игры:',
-          s6: 'Перенести в неё скачанный файл модификации',
+          s1: '{0} the latest mod version',
+          s1Download: 'Download',
+          s2: 'Open the game launcher',
+          s3: 'Click the <code>Game Settings</code> → <code>Show in folder</code> button',
+          s4: 'Open the <code>mods</code> folder',
+          s5: 'Open the folder for the current game version:',
+          s6: 'Move the downloaded mod file into it',
         }
       },
 
       activation: {
-        title: 'Активация',
-        description: 'После входа в игру появится уведомление от модификации. Нажмите кнопку <code>активировать</code> и введите лицензионный ключ.',
-        buy: 'Купить лицензию',
-        cannot: 'Если у вас по каким либо причинам не получается активировать, воспользуйтесь <b>альтернативным способом активации</b>, нажмите кнопку <code>активировать</code> с зажатой клавишей <code>Alt</code>.'
+        title: 'Activation',
+        description: 'Upon logging into the game, a mod notification will appear. Click the <code>activate</code> button and enter your license key.',
+        buy: 'Purchase license',
+        cannot: 'If for some reason activation fails, use the <b>alternative activation method</b>: hold the <code>Alt</code> key while clicking <code>activate</code>.'
       },
 
       usage: {
-        title: 'Использование',
-        description: 'После начала отсчёта, подгрузится информация о позициях для вашего танка.<br>Над миникартой будет отображаться сообщение о качестве рекомендуемых позиций вида: <code>#HHH sS mD aA eE/T</code>',
+        title: 'Usage',
+        description: 'Once the countdown begins, position information for your tank will load.<br>A message above the minimap will indicate the quality of the recommended positions in the format: <code>#HHH sS mD aA eE/T</code>',
         steps: {
-          s1: '<code>#HHH</code> – уникальный <code>id</code> запроса',
-          s2: '<code>S</code> – итерация алгоритма понижения требований, чем меньше, тем лучше',
-          s3: '<code>D</code> – порог среднего урона за бой в выборке',
-          s4: '<code>A</code> – средний урон за бой в выборке',
-          s5: '<code>E/T</code> – время в миллисекундах, затраченное на выполнение запроса <code>id/огневых рубежей</code>',
+          s1: '<code>#HHH</code> – unique request <code>id</code>',
+          s2: '<code>S</code> – algorithm iteration of requirement reduction, the lower, the better',
+          s3: '<code>D</code> – threshold for average damage per battle in selection',
+          s4: '<code>A</code> – average damage per battle in selection',
+          s5: '<code>E/T</code> – execution time in milliseconds for request <code>id/firing positions</code>',
         }
       },
 
       configure: {
-        title: 'Конфигурация',
-        description: 'Для доступа к меню конфигурации, вам необходимо два дополнительных мода:',
-        sub: 'Конфигурация является опциональным шагом, мод будет работать и без неё.',
-        setting: '<code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank" rel="noopener noreferrer">ModsSettingsAPI</a></code> – мод для отображения настроек других модов прямо в игре',
-        list: '<code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank" rel="noopener noreferrer">Mods List</a></code> – мод для отображения списка модов в ангаре, нужен для открытия меню настроек'
+        title: 'Configuration',
+        description: 'To access the configuration menu, you need two additional mods:',
+        sub: 'Configuration is optional; the mod will function without it.',
+        setting: '<code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank" rel="noopener noreferrer">ModsSettingsAPI</a></code> – mod for displaying other mods’ settings directly in-game',
+        list: '<code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank" rel="noopener noreferrer">Mods List</a></code> – mod for showing the mod list in the garage, necessary for opening the settings menu'
       }
     },
     l5: {
-      title: 'Тариф',
-      monthly: 'На месяц',
-      monthlyBadge: 'По цене трёх коробок',
-      yearly: 'На год',
-      yearlyBadge: 'Скидка 20%',
-      buy: 'Перейти к покупке',
+      title: 'Pricing',
+      monthly: 'Monthly',
+      monthlyBadge: 'Price equivalent to three loot boxes',
+      yearly: 'Yearly',
+      yearlyBadge: '20% discount',
+      buy: 'Proceed to purchase',
       features: {
-        f1: 'Неограниченное число боёв. <span class="gray">Играйте столько, сколько хотите.</span>',
-        f2: 'Любые уровни. <span class="gray">Играйте на любых уровнях с <code>I</code> до <code>XI</code>.</span>',
-        f3: 'Все типы танков. <span class="gray">(кроме огнемётов). Позиции для эффективной <b>стрельбы</b> на любых типах танков. Будьте осторожны на ЛТ, настрел не является их основной задачей.</span>',
-        f4: 'Любые режимы. <span class="gray"> Ограничений на режим нет, однако, в мало популярных режимах на новых танках может быть недостаточно данных. В стандартных боях данных всегда достаточно.</span>',
-        f5: 'Регулярные обновления. <span class="gray"> Позиции пересчитываются каждый день, чтобы всегда быть актуальными.</span>',
-        f6: 'Без ограничений. <span class="gray"> В моде нет привязки к региону, аккаунту или железу. Если у вас несколько аккаунтов или компьютеров, то одна лицензия будет работать на всех.</span>',
-        f7: 'Запрещается. <span class="gray"> Нельзя передавать ключ третьим лицам. Нельзя играть с другом с одной лицензии.</span>',
+        f1: 'Unlimited battles. <span class="gray">Play as much as you want.</span>',
+        f2: 'All tiers. <span class="gray">Play at any tier from <code>I</code> to <code>X</code>.</span>',
+        f3: 'All tank types. <span class="gray">Positions for effective <b>firing</b> for all tank types. Be careful with LT, damage dealing is not their primary role.</span>',
+        f4: 'All battle modes. <span class="gray">No mode restrictions; however, data might be insufficient in less popular modes with new tanks. Standard battles always have sufficient data.</span>',
+        f5: 'Regular updates. <span class="gray">Positions recalculated daily for constant accuracy.</span>',
+        f6: 'No restrictions. <span class="gray">The mod isn\'t tied to regions, accounts, or hardware. One license works across multiple accounts and computers.</span>',
+        f7: 'Forbidden. <span class="gray">License keys cannot be shared with third parties or used simultaneously with friends.</span>',
       }
     },
     l6: {
-      title: 'Ответы на вопросы',
+      title: 'FAQ',
     },
     l7: {
-      title: 'Демонстрация работы',
-      description: 'Реальная демонстрация лучше тысячи описаний.',
+      title: 'Demo',
+      description: 'Seeing it in action is better than a thousand descriptions.',
     }
   },
   buy: {
-    description: 'Лицензионный ключ позволяет активировать лицензию мода.',
-    select: 'Выберите период лицензии',
-    byMonth: 'На месяц',
-    byMonthBadge: 'По цене трёх коробок',
-    byYear: 'На год',
-    byYearBadge: 'Скидка 20%',
-    selectPayment: 'Выберите способ оплаты',
+    description: 'A license key allows you to activate the mod license.',
+    select: 'Select license period',
+    byMonth: 'Monthly',
+    byMonthBadge: 'Price equivalent to three loot boxes',
+    byYear: 'Yearly',
+    byYearBadge: '20% discount',
+    selectPayment: 'Choose payment method',
 
-    sub: 'Следуйте инструкциям платёжного сервиса. Мгновенная доставка лицензионного ключа сразу после оплаты.',
-    goToPayment: 'Перейти к оплате',
+    sub: 'Follow the payment service instructions. Instant delivery of the license key after payment.',
+    goToPayment: 'Proceed to payment',
     ru: {
-      title: 'Из России',
-      description: 'Банковские карты, СБП, SberPay, Tinkoff Pay, кошелёк ЮMoney',
+      title: 'From Russia',
+      description: 'Bank cards, SBP, SberPay, Tinkoff Pay, YuMoney wallet',
     },
     crypto: {
-      title: 'Криптовалютой',
-      description: 'Tether USDT в сети tron (TRC-20)',
+      title: 'Cryptocurrency',
+      description: 'Tether USDT on the Tron network (TRC-20)',
     },
     patreon: {
-      title: 'Зарубежной картой',
-      description: 'С помощью подписки на Patreon',
-      sub: 'Лицензия доступна всем подписчикам WotStat на Patreon. Для активации установите мод и на странице активации выберите пункт "Авторизоваться через Patreon".',
-      goToPayment: 'Перейти на Patreon',
+      title: 'International Cards',
+      description: 'Using a Patreon subscription',
+      sub: 'The license is available to all WotStat subscribers on Patreon. To activate, install the mod and select "Log in with Patreon" on the activation page.',
+      goToPayment: 'Go to Patreon',
     }
   },
   activation: {

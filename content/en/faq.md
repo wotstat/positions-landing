@@ -1,124 +1,117 @@
-
-::FaqItem{title="Какие способы оплаты доступны?"}
-  Доступно несколько способов оплаты:
+::FaqItem{title="What payment methods are available?"}
+  Several payment methods are available:
 
   <br>
 
-  - Из России с помощью сервиса ЮКасса, принимает более 10 различных методов оплаты: Банковские карты, СБП, SberPay, Tinkoff Pay, кошелёк ЮMoney
-  - С помощью криптовалюты Tether USDT в сети tron
-  - С иностранных банковских карт путём подписки на Patreon
- 
+  - From Russia using YuKassa, accepting over 10 payment methods: bank cards, SBP, SberPay, Tinkoff Pay, YuMoney wallet
+  - Cryptocurrency: Tether USDT on the Tron network
+  - International bank cards via Patreon subscription
+
   <br>
 
-  Тариф в рублях для оплаты из России дешевле, чем тариф в долларах, это связано с региональным ценообразованием.
+  Pricing in rubles for payments from Russia is cheaper than the dollar rate due to regional pricing.
 ::
 
 ---
 
-::FaqItem{title="Как установить мод?"}
-  Для установки мода необходимо скачать файл мода и перенести его в папку с игрой.
+::FaqItem{title="How to install the mod?"}
+  To install the mod, download the mod file and move it into the game folder.
   <br>
   <br>
-  Подробнее в инструкции выше.
+  More details in the instructions above.
 ::
 
 ---
 
-::FaqItem{title="Куда вводить лицензионный ключ?"}
-  После входа в игру, появится уведомление от модификации. Нажмите кнопку `активировать` и введите лицензионный ключ в открывшемся окне.
+::FaqItem{title="Where do I enter the license key?"}
+  After logging into the game, a notification from the mod will appear. Click the `activate` button and enter the license key in the window that appears.
   <br>
   <br>
-  Подробнее в инструкции выше.
+  More details in the instructions above.
 ::
 
 ---
 
-::FaqItem{title="Мод не работает, что делать?"}
-  Может быть несколько сценариев по которым мод не работает:
+::FaqItem{title="The mod isn't working, what should I do?"}
+  There are several scenarios where the mod might not work:
 
   <br>
 
-  - При входе в игру не показывается никакое уведомление от модификации:
-    - Проверьте, и **перепроверьте**, что мод установлен в нужную папку с актуальной версией игры.
-    - Ещё раз проверьте, что мод в **актуальной** версии игры, актуальная версия написана в инструкции выше.
+  - If no notification from the mod appears upon entering the game:
+    - Check and **double-check** that the mod is installed in the correct folder with the current game version.
+    - Confirm again that you're using the mod for the **current** game version, as specified in the instructions above.
 
   <br>
 
-  - При входе в игру уведомление появляется, но в игре позиции не отображаются:
-    - Убедитесь, что ваша лицензия не истекла (срок лицензии написан в уведомлении).
-    - Если у вас есть настройщик модов, проверьте, что вы не отключили в нём мод "Позиции от WotStat" и не скрыли отображение маркеров.
-    - Активируйте лицензию заново, для этого, нажмите кнопку `сбросить` в уведомлении и повторите процесс активации.
-    - Подождите несколько часов, возможно, проблемы с сервером.
+  - If the notification appears upon entering the game, but positions aren't displayed:
+    - Ensure your license hasn't expired (license expiration is shown in the notification).
+    - If you use a mod configurator, check that the "Positions by WotStat" mod isn't disabled, and markers aren't hidden.
+    - Reactivate the license by clicking the `reset` button in the notification and repeat the activation process.
+    - Wait a few hours, as there may be server issues.
 
   <br>
 
-  Если ничего не помогло, напишите в техподдержку [support@wotstat.info](mailto:support@wotstat.info).
-
+  If none of these steps help, contact support at [support@wotstat.info](mailto:support@wotstat.info).
 ::
 
 ---
 
-::FaqItem{title="Могут ли заблокировать за использование мода?"}
-  Нет, не могут.
+::FaqItem{title="Can I get banned for using the mod?"}
+  No, you cannot.
 
   <br>
 
-  Мод не нарушает правила игры и не попадает ни под один из пунктов списка
-  запрещенных модов, кроме того, мод не влияет на игровой процесс и не дает дополнительной информации,
-  которая
-  недоступна обычному игроку.
+  The mod does not violate game rules nor match any items from the list of banned mods. Additionally, the mod doesn't affect gameplay or provide extra information unavailable to regular players.
 
   <br>
 
-  Ознакомиться со списком запрещенных модов можно на официальном портале игры:
-  [Lesta](https://tanki.su/ru/content/guide/ban/nonusefulmods/) или [Wargaming](https://eu.wargaming.net/support/ru/products/wot/article/15152/).
-
+  Check the official list of banned mods on the game’s official portal:
+  [Lesta](https://tanki.su/ru/content/guide/ban/nonusefulmods/) or [Wargaming](https://eu.wargaming.net/support/ru/products/wot/article/15152/).
 ::
 
 ---
 
-::FaqItem{title="Что запрещается делать в лицензии?"}
-  Запрещается передавать ключ третьим лицам.
+::FaqItem{title="What is prohibited by the license?"}
+  Sharing your license key with third parties is prohibited.
 ::
 
 ---
 
-::FaqItem{title="Могу ли я играть с другом с одной лицензии?"}
-  Нет. Передача ключа третьим лицам запрещена. Если сервис обнаружит одновременное использование одной лицензии в двух разных боях, то ключ будет заблокирован.
+::FaqItem{title="Can I share a license with a friend?"}
+  No. Sharing your key with third parties is prohibited. If simultaneous usage of a single license in two different battles is detected, the key will be blocked.
 ::
 
 ---
 
-::FaqItem{title="Что делать, если лицензионный ключ скомпрометирован?"}
-  Свяжитесь по почте [support@wotstat.info](mailto:support@wotstat.info) и укажите ваш ключ, мы его аннулируем и вышлем новый.
+::FaqItem{title="What should I do if my license key is compromised?"}
+  Contact [support@wotstat.info](mailto:support@wotstat.info), provide your key, and we’ll invalidate it and issue you a new one.
 
   <br>
   
-  Старайтесь не передавать ключ третьим лицам.
+  Try to avoid sharing your key with third parties.
 ::
 
 ---
 
-::FaqItem{title="Работает ли мод на лёгких танках?"}
-  Частично.
+::FaqItem{title="Does the mod work with light tanks?"}
+  Partially.
 
-  Мод показывает позиции для **стрельбы**.
-  На некоторых картах, позиции для стрельбы совпадают с позициями для света, но это не всегда так.
+  The mod displays positions specifically for **firing**.
+  On some maps, firing positions coincide with spotting positions, but this isn't always the case.
 
   <br>
 
-  На лёгких танках стрельба не является основной задачей, поэтому
-  в первую очередь ориентируйтесь на ситуацию в бою и возможность света, а только потом на позиции для стрельбы.
+  Damage-dealing isn't the primary task for light tanks, so prioritize situational awareness and spotting opportunities first, then firing positions.
 ::
 
 ---
 
-::FaqItem{title="Работает ли мод на огнемётных танках?"}
-  Нет.
+::FaqItem{title="Does the mod support flamethrower tanks?"}
+  No.
 
-  Из-за того, что у огнемётных танков нет выстрелов в обычном понимании, WotStat пока не обладает данными об их стрельбе, по этому мод не может рассчитать позиции для них.
+  Because flamethrower tanks don't have shots in the conventional sense, WotStat currently lacks data on their firing, thus the mod can't calculate positions for them.
 
   <br>
 
-  В будущих обновлениях WotStat аналитики, будет добавлена поддержка огнесмеси.
+  Support for flamethrower tanks may be added in future WotStat updates.
 ::
