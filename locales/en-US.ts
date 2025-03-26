@@ -10,8 +10,183 @@ export default {
     description: 'Mod for World of Tanks that shows effective positions in battle. From the developers of the WotStat service',
   },
   main: {
-    title: 'Positions by WotStat',
-    description: 'Unique and effective positions for dealing damage in the games "World of Tanks" and "Tank World".\nBased on the analysis of heat maps of the top 5% of players on each tank',
+    header: {
+      title: 'Positions by WotStat',
+      description: 'Description',
+      howToUse: 'How to Use',
+      demo: 'Demo',
+      price: 'Pricing',
+      instructions: 'Instructions',
+      buy: 'Buy',
+      connectToDiscord: 'Join our Discord',
+    },
+    footer: {
+      info: '* – top players are determined by average damage per session from more than 20 battles. If insufficient data is available for generating the heatmap, the required percentage is lowered (mainly occurring with unpopular tanks)',
+      connect: 'You can contact me via email {email} or through the Discord community {discord}',
+    },
+    buyPopupTitle: 'Purchase License Key',
+    l1: {
+      title: 'Positions by WotStat',
+      description: 'Learn and play more effectively with positions from top players.',
+      andMoreTanks: 'And 821 more tanks',
+      andMoreMaps: 'And 40 more maps',
+
+      update2: {
+        title: 'Major Update Released',
+        description: 'Firing Positions added, position detection algorithm updated, heatmaps updated.',
+        more: 'Read more.',
+      }
+    },
+    l2: {
+      title: 'About the Mod',
+      description: 'A unique modification designed to enhance your combat effectiveness.',
+      description2: 'Damage-dealing positions are determined using heatmaps from the best players for each tank.',
+
+      info1: {
+        title: 'Positions for Every Tank',
+        description: 'The best positions are individually identified for each tank based on top player data analysis.'
+      },
+      info2: {
+        title: 'All Maps Supported',
+        description: 'The modification works on all game maps, continuously updating to ensure data accuracy.'
+      },
+      info3: {
+        title: 'User-Friendly Interface',
+        description: 'The mod displays clear position markers on the minimap and in the 3D game world.'
+      },
+    },
+    l3: {
+      title: 'How It Works',
+      description: 'From the <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a> database, the top 5% of players* are selected, their damage heatmap is generated, the most popular areas are identified, and the most effective position is chosen within each area.',
+
+      updated: 'UPDATED',
+      new: 'NEW',
+      card1: {
+        title: 'Best Position Marker',
+        description: 'The most effective position is displayed directly in-game as a large green marker.',
+        tank: 'FV217 Badger'
+      },
+      card2: {
+        title: 'Effective Positions',
+        description: 'Effective positions are shown as green markers on the minimap. The large marker indicates the best position.',
+        tank: 'Concept 5'
+      },
+      card3: {
+        title: 'Heatmaps',
+        description: 'Sometimes, the optimal location is not a specific point but an entire area on the map.',
+        tank: 'FV4005',
+        effective: 'Effective positions',
+        popular: 'Popular positions',
+      },
+      card4: {
+        title: 'Firing Positions',
+        description: 'Evenly distributed across the map, indicating convenient firing points and directions.',
+        tank: 'T-62A'
+      },
+      card5: {
+        title: 'Firing Direction Markers',
+        description: 'Pressing <code>Alt</code> displays firing direction markers from the nearest firing positions.',
+        tank: 'T-62A'
+      },
+      card6: {
+        title: 'Settings',
+        description: 'The mod can be configured to suit your preferences, adjusting the display of all marker types.'
+      },
+    },
+    l4: {
+      title: 'Instructions',
+
+      install: {
+        title: 'Installation',
+        description: 'To install, simply move the mod file to the game folder.',
+        steps: {
+          s1: '{0} the latest mod version',
+          s1Download: 'Download',
+          s2: 'Open the game launcher',
+          s3: 'Click the <code>Game Settings</code> → <code>Show in folder</code> button',
+          s4: 'Open the <code>mods</code> folder',
+          s5: 'Open the folder for the current game version:',
+          s6: 'Move the downloaded mod file into it',
+        }
+      },
+
+      activation: {
+        title: 'Activation',
+        description: 'Upon logging into the game, a mod notification will appear. Click the <code>activate</code> button and enter your license key.',
+        buy: 'Purchase license',
+        cannot: 'If for some reason activation fails, use the <b>alternative activation method</b>: hold the <code>Alt</code> key while clicking <code>activate</code>.'
+      },
+
+      usage: {
+        title: 'Usage',
+        description: 'Once the countdown begins, position information for your tank will load.<br>A message above the minimap will indicate the quality of the recommended positions in the format: <code>#HHH sS mD aA eE/T</code>',
+        steps: {
+          s1: '<code>#HHH</code> – unique request <code>id</code>',
+          s2: '<code>S</code> – algorithm iteration of requirement reduction, the lower, the better',
+          s3: '<code>D</code> – threshold for average damage per battle in selection',
+          s4: '<code>A</code> – average damage per battle in selection',
+          s5: '<code>E/T</code> – execution time in milliseconds for request <code>id/firing positions</code>',
+        }
+      },
+
+      configure: {
+        title: 'Configuration',
+        description: 'To access the configuration menu, you need two additional mods:',
+        sub: 'Configuration is optional; the mod will function without it.',
+        setting: '<code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank" rel="noopener noreferrer">ModsSettingsAPI</a></code> – mod for displaying other mods’ settings directly in-game',
+        list: '<code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank" rel="noopener noreferrer">Mods List</a></code> – mod for showing the mod list in the garage, necessary for opening the settings menu'
+      }
+    },
+    l5: {
+      title: 'Pricing',
+      monthly: 'Monthly',
+      monthlyBadge: 'Price equivalent to three loot boxes',
+      yearly: 'Yearly',
+      yearlyBadge: '20% discount',
+      buy: 'Proceed to purchase',
+      features: {
+        f1: 'Unlimited battles. <span class="gray">Play as much as you want.</span>',
+        f2: 'All tiers. <span class="gray">Play at any tier from <code>I</code> to <code>X</code>.</span>',
+        f3: 'All tank types. <span class="gray">Positions for effective <b>firing</b> for all tank types. Be careful with LT, damage dealing is not their primary role.</span>',
+        f4: 'All battle modes. <span class="gray">No mode restrictions; however, data might be insufficient in less popular modes with new tanks. Standard battles always have sufficient data.</span>',
+        f5: 'Regular updates. <span class="gray">Positions recalculated daily for constant accuracy.</span>',
+        f6: 'No restrictions. <span class="gray">The mod isn\'t tied to regions, accounts, or hardware. One license works across multiple accounts and computers.</span>',
+        f7: 'Forbidden. <span class="gray">License keys cannot be shared with third parties or used simultaneously with friends.</span>',
+      }
+    },
+    l6: {
+      title: 'FAQ',
+    },
+    l7: {
+      title: 'Demo',
+      description: 'Seeing it in action is better than a thousand descriptions.',
+    }
+  },
+  buy: {
+    description: 'A license key allows you to activate the mod license.',
+    select: 'Select license period',
+    byMonth: 'Monthly',
+    byMonthBadge: 'Price equivalent to three loot boxes',
+    byYear: 'Yearly',
+    byYearBadge: '20% discount',
+    selectPayment: 'Choose payment method',
+
+    sub: 'Follow the payment service instructions. Instant delivery of the license key after payment.',
+    goToPayment: 'Proceed to payment',
+    ru: {
+      title: 'From Russia',
+      description: 'Bank cards, SBP, SberPay, Tinkoff Pay, YuMoney wallet',
+    },
+    crypto: {
+      title: 'Cryptocurrency',
+      description: 'Tether USDT on the Tron network (TRC-20)',
+    },
+    patreon: {
+      title: 'International Cards',
+      description: 'Using a Patreon subscription',
+      sub: 'The license is available to all WotStat subscribers on Patreon. To activate, install the mod and select "Log in with Patreon" on the activation page.',
+      goToPayment: 'Go to Patreon',
+    }
   },
   activation: {
     status: {

@@ -1,17 +1,15 @@
 <template>
 
   <!-- <h1>Купить лицензионный ключ</h1> -->
-  <p>
-    Лицензионный ключ позволяет активировать лицензию мода.
-  </p>
-  <h2>Выберите период лицензии</h2>
+  <p>{{ $t('buy.description') }}</p>
+  <h2>{{ $t('buy.select') }}</h2>
 
   <div class="price">
     <div class="month" :class="selectedPeriod == 'month' ? 'active' : ''" @click="selectedPeriod = 'month'">
       <div class="header">
-        <p>На месяц</p>
+        <p>{{ $t('buy.byMonth') }}</p>
         <div class="badge">
-          По цене трёх коробок
+          {{ $t('buy.byMonthBadge') }}
         </div>
       </div>
       <hr>
@@ -27,9 +25,9 @@
     <div class="year" :class="selectedPeriod == 'year' ? 'active' : ''" @click="selectedPeriod = 'year'"
       v-if="selectedPayment != 'patreon'">
       <div class=" header">
-        <p>На год</p>
+        <p>{{ $t('buy.byYear') }}</p>
         <div class="badge">
-          Скидка 20%
+          {{ $t('buy.byYearBadge') }}
         </div>
       </div>
       <hr>
@@ -44,42 +42,39 @@
   </div>
 
   <br>
-  <h2>Выберите вариант оплаты</h2>
+  <h2>{{ $t('buy.selectPayment') }}</h2>
 
   <div class="payment">
     <div class="variant" :class="selectedPayment == 'russia' ? 'active' : ''" @click="selectedPayment = 'russia'">
-      <h4>Из России</h4>
-      <p>Банковские карты, СБП, SberPay, Tinkoff Pay, кошелёк ЮMoney</p>
+      <h4>{{ $t('buy.ru.title') }}</h4>
+      <p>{{ $t('buy.ru.description') }}</p>
     </div>
 
     <div class="variant" :class="selectedPayment == 'crypto' ? 'active' : ''" @click="selectedPayment = 'crypto'">
-      <h4>Криптовалютой</h4>
-      <p>Tether USDT в сети tron (TRC-20)</p>
+      <h4>{{ $t('buy.crypto.title') }}</h4>
+      <p>{{ $t('buy.crypto.description') }}</p>
     </div>
 
     <div class="variant" :class="selectedPayment == 'patreon' ? 'active' : ''" @click="selectedPayment = 'patreon'">
-      <h4>Зарубежной картой</h4>
-      <p>С помощью подписки на Patreon</p>
+      <h4>{{ $t('buy.patreon.title') }}</h4>
+      <p>{{ $t('buy.patreon.description') }}</p>
     </div>
   </div>
 
   <br>
   <template v-if="selectedPayment == 'patreon'">
     <p v-if="selectedPayment == 'patreon'">
-      Лицензия доступна всем подписчикам WotStat на Patreon. Для активации установите мод и на странице активации
-      выберите пункт "Авторизоваться через Patreon".
+      {{ $t('buy.patreon.sub') }}
     </p>
   </template>
 
-  <p v-else>
-    Следуйте инструкциям платёжного сервиса. Мгновенная доставка лицензионного ключа сразу после оплаты.
-  </p>
+  <p v-else>{{ $t('buy.sub') }}</p>
 
   <br>
 
-  <button v-if="selectedPayment == 'patreon'" @click="openPatreon">Перейти на Patreon</button>
+  <button v-if="selectedPayment == 'patreon'" @click="openPatreon">{{ $t('buy.patreon.goToPayment') }}</button>
   <template v-else>
-    <button @click="go2molz">Перейти к оплате</button>
+    <button @click="go2molz"> {{ $t('buy.goToPayment') }}</button>
   </template>
 </template>
 

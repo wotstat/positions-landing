@@ -5,6 +5,9 @@
     </template>
     <template #panel>
       <p class="gray" v-if="content">{{ content }}</p>
+      <template class="gray" v-if="contentHtml">
+        <div v-html="contentHtml"></div>
+      </template>
       <slot></slot>
     </template>
   </According>
@@ -16,6 +19,7 @@
 defineProps<{
   title: string
   content?: string
+  contentHtml?: string
 }>()
 
 </script>
