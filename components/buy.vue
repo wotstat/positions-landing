@@ -131,12 +131,12 @@ function go2molz() {
 
   const molzLink = {
     'month': {
-      'russia': 'https://shop.wotstat.info/purchase/6139?clear',
-      'crypto': 'https://shop.wotstat.info/purchase/6139?clear',
+      'russia': 'https://wotstat.molz.io/purchase/6139?clear',
+      'crypto': 'https://wotstat.molz.io/purchase/6139?clear',
     },
     'year': {
-      'russia': 'https://shop.wotstat.info/purchase/6140?clear',
-      'crypto': 'https://shop.wotstat.info/purchase/6140?clear',
+      'russia': 'https://wotstat.molz.io/purchase/6140?clear',
+      'crypto': 'https://wotstat.molz.io/purchase/6140?clear',
     }
   } as const
 
