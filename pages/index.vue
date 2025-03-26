@@ -18,6 +18,7 @@
             <a @click="scrollTo('instruction')">{{ $t('main.header.instructions') }}</a>
           </div>
           <div class="right">
+            <LanguageSwitcher class="language-switcher" />
             <a class="buy" @click="buy">{{ $t('main.header.buy') }}</a>
             <a :href="discordUrl" target="_blank" rel="noopener noreferrer">
               <SvgoDiscordMarkWhite class="icon" />
@@ -33,6 +34,7 @@
             </a>
           </div>
           <div class="right">
+            <LanguageSwitcher class="language-switcher" />
             <a class="buy" @click="buy">{{ $t('main.header.buy') }}</a>
             <SvgoBurgerMenu class="burger-menu" @click="openModal" v-if="!burgerMenuOpen" />
             <SvgoX class="burger-menu" @click="closeModal" v-else />
@@ -111,7 +113,7 @@
       <section class="l2">
         <h2 id="info">{{ $t('main.l2.title') }}</h2>
         <h3 class="gray">{{ $t('main.l2.description') }}</h3>
-        <h3 class="gray">{{ $t('main.l2.description2') }}}</h3>
+        <h3 class="gray">{{ $t('main.l2.description2') }}</h3>
 
         <div class="info-cards">
           <div class="info">
@@ -268,15 +270,18 @@
                   <div class="badge">{{ $t('main.l5.monthlyBadge') }}</div>
                 </div>
                 <hr>
-                <p class="amount">
+                <p class="amount" v-if="locale == 'ru'">
                   100
                   <sup>
                     <SvgoRub class="rub" />
                   </sup>
                 </p>
+                <p class="amount" v-else>
+                  $3
+                </p>
               </div>
 
-              <div class="year">
+              <div class="year" v-if="locale == 'ru'">
                 <div class="header">
                   <p>{{ $t('main.l5.yearly') }}</p>
                   <div class="badge">{{ $t('main.l5.yearlyBadge') }}</div>
@@ -435,10 +440,9 @@
         <br>
         <br>
         <p class="gray">
-          <i18n-t keypath="main.footer.connect" tag="p" class="gray">
+          <i18n-t keypath="main.footer.connect">
             <template #email><a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a></template>
             <template #discord> <a :href="discordUrl" target="_blank">@WotStat</a></template>
-            <a @click="download">{{ $t('main.l4.install.steps.s1Download') }}</a>
           </i18n-t>
         </p>
 
@@ -1370,6 +1374,10 @@ header {
         @media screen and (max-width: $width-limit) {
           display: flex;
         }
+      }
+
+      .language-switcher {
+        margin-right: -8px;
       }
 
       .left,

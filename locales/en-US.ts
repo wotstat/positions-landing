@@ -140,7 +140,7 @@ export default {
     l5: {
       title: 'Pricing',
       monthly: 'Monthly',
-      monthlyBadge: 'Price equivalent to three loot boxes',
+      monthlyBadge: 'Price like 3 lootboxes',
       yearly: 'Yearly',
       yearlyBadge: '20% discount',
       buy: 'Proceed to purchase',
@@ -166,7 +166,7 @@ export default {
     description: 'A license key allows you to activate the mod license.',
     select: 'Select license period',
     byMonth: 'Monthly',
-    byMonthBadge: 'Price equivalent to three loot boxes',
+    byMonthBadge: 'Price like 3 lootboxes',
     byYear: 'Yearly',
     byYearBadge: '20% discount',
     selectPayment: 'Choose payment method',
@@ -190,7 +190,7 @@ export default {
   },
   activation: {
     status: {
-      wait: 'Connecting game...',
+      wait: 'Connecting to game...',
       connected: 'Connected to game',
       disconnected: 'Connection terminated',
       redirectAuthWithPatreon: 'Redirecting to Patreon login',
