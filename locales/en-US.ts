@@ -190,7 +190,7 @@ export default {
   },
   activation: {
     status: {
-      wait: 'Connecting game...',
+      wait: 'Connecting to game...',
       connected: 'Connected to game',
       disconnected: 'Connection terminated',
       redirectAuthWithPatreon: 'Redirecting to Patreon login',
