@@ -103,15 +103,3 @@
 
   Damage-dealing isn't the primary task for light tanks, so prioritize situational awareness and spotting opportunities first, then firing positions.
 ::
-
----
-
-::FaqItem{title="Does the mod support flamethrower tanks?"}
-  No.
-
-  Because flamethrower tanks don't have shots in the conventional sense, WotStat currently lacks data on their firing, thus the mod can't calculate positions for them.
-
-  <br>
-
-  Support for flamethrower tanks may be added in future WotStat updates.
-::

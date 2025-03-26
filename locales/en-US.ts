@@ -140,7 +140,7 @@ export default {
     l5: {
       title: 'Pricing',
       monthly: 'Monthly',
-      monthlyBadge: 'Price like 3 lootboxes',
+      monthlyBadge: 'Less than 3 lootboxes',
       yearly: 'Yearly',
       yearlyBadge: '20% discount',
       buy: 'Proceed to purchase',
