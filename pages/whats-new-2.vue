@@ -2,6 +2,9 @@
   <div class="page">
     <div class="main-container">
       <div class="gradient"></div>
+      <header>
+        <LanguageSwitcher class="language-switcher" />
+      </header>
       <ContentDoc part="whats-new-2" class="markdown whats-new-2" />
     </div>
   </div>
@@ -19,11 +22,16 @@
   overflow: hidden;
   position: relative;
   min-height: 100vh;
-  padding-top: 50px;
+  padding-top: 0px;
 
   @media screen and (max-width: 800px) {
     padding-top: 0;
   }
+}
+
+header {
+  display: flex;
+  justify-content: right;
 }
 
 $width-limit: 1000px;
