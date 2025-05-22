@@ -11,7 +11,7 @@
         <br>
         <div class="flex input-line">
           <input type="text" class="flex-1 activation-input" :placeholder="$t('activation.page.keyPlaceholder')"
-            v-model.trim="key" :disabled="!isButtonEnabled">
+            v-model.trim="key" :disabled="!isLicenseKeyEnabled">
           <button :disabled="!isButtonEnabled" @click="activate">{{ $t('activation.page.activate') }}</button>
         </div>
       </template>
@@ -127,6 +127,7 @@ const showLoader = computed(() => status.value === 'SENDED' ||
 
 const showErrorDisconnected = computed(() => status.value === 'DISCONNECTED' && !successActivated.value)
 
+const isLicenseKeyEnabled = computed(() => wsStatus.value === 'OPEN' && status.value == 'STARTED')
 const isButtonEnabled = computed(() => key.value.length >= 10 && wsStatus.value === 'OPEN' && status.value == 'STARTED')
 const showLicenseBlock = computed(() => !props.isPatreonRedirect && !patreonAuthRedirect.value && !['REQUEST_AUTH_WITH_PATREON', 'AUTH_WITH_PATREON'].includes(status.value))
 const showPatreonBlock = computed(() => props.isPatreonRedirect || patreonAuthRedirect.value || ['WAIT', 'STARTED', 'REQUEST_AUTH_WITH_PATREON'].includes(status.value))
