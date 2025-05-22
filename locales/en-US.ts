@@ -229,6 +229,12 @@ export default {
         hasntMembership: 'It seems like you don’t have an active Patreon subscription.',
         hasntMembershipDescription: `To activate the license, you need an active subscription to ${patreonUrl} at any level.`,
         successDescription: `You’ve successfully activated the "WotStat Positions" mod license using your Patreon subscription. You can confirm the activation in the notification center, where you’ll see a message with your license information.<br><br>Happy gaming!`,
+      },
+      alternative: {
+        // header: 'Процесс ожидания игры длится слишком долго.',
+        // content: 'Попробуйте закрыть вкладку и повторить попытку.<br>Если не поможет, в уведомлении нажмите кнопку <code>Активировать</code> с зажатой клавишей <code>Alt</code> и введите лицензионный ключ прямо в игре.'
+        header: 'Connection to the game is taking too long.',
+        content: 'Try closing the tab and retrying.<br>If that doesn\'t work, hold <code>Alt</code> key and press the <code>Activate</code> button in the <b>notification</b> and enter the license key directly in the game.'
       }
     },
     result: {

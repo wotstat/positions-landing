@@ -10,13 +10,13 @@
         <p v-html="$t('activation.page.description')"></p>
         <br>
         <div class="flex input-line">
-          <input type="text" class="flex-1" :placeholder="$t('activation.page.keyPlaceholder')" v-model.trim="key">
+          <input type="text" class="flex-1 activation-input" :placeholder="$t('activation.page.keyPlaceholder')"
+            v-model.trim="key" :disabled="!isButtonEnabled">
           <button :disabled="!isButtonEnabled" @click="activate">{{ $t('activation.page.activate') }}</button>
         </div>
       </template>
 
       <div class="flex loader-parent" v-if="showLoader"><span class="loader"></span></div>
-
 
       <ActivationSuccess v-else-if="successActivated && !promoReceived" />
       <ActivationExpired v-else-if="activationExpired" :license="key" @reset="reset" />
@@ -27,6 +27,12 @@
       <ActivationDisconnected v-else-if="showErrorDisconnected" />
       <ActivationErrorLicense v-else-if="wrongKey" :license="key" @reset="reset" />
       <ActivationErrorPromo v-else-if="alreadyActivatedPromo" :license="key" @reset="reset" />
+
+
+      <div class="alternative-activation" v-if="shouldShowAlternativeActivation">
+        <h2>{{ $t('activation.page.alternative.header') }}</h2>
+        <p v-html="$t('activation.page.alternative.content')"></p>
+      </div>
 
       <!-- <hr>
       <ActivationSuccess />
@@ -188,6 +194,20 @@ const { status: wsStatus, data, send, open, close } = useWebSocket(wsUrl, {
   }
 })
 
+
+const waitStatusBeginTime = ref<number | null>(null)
+const timestamp = useTimestamp({ interval: 500 })
+const shouldShowAlternativeActivation = computed(() => {
+  if (!waitStatusBeginTime.value) return false
+  const diff = timestamp.value - waitStatusBeginTime.value
+  return diff > 5000 && (status.value === 'WAIT')
+})
+
+watch(status, value => {
+  if (value === 'WAIT') waitStatusBeginTime.value = Date.now()
+  else waitStatusBeginTime.value = null
+}, { immediate: true })
+
 const statusText = computed(() => {
   if (patreonAuthRedirect.value) return 'activation.status.redirectAuthWithPatreon'
   switch (status.value) {
@@ -296,6 +316,18 @@ hr {
     font-size: 1em;
     line-height: 1.5;
   }
+
+  .alternative-activation {
+    margin-top: 1.5em;
+    border-left: 5px solid #FF9F0A;
+    border-radius: 5px;
+    padding-left: 10px;
+
+    h2 {
+      font-size: 1em;
+      margin-bottom: 0.3em;
+    }
+  }
 }
 
 h1 {
@@ -310,6 +342,11 @@ h2 {
 
 .input-line {
   gap: 5px;
+
+  .activation-input[disabled] {
+    border: none;
+    cursor: not-allowed;
+  }
 
   @media screen and (max-width: 500px) {
     flex-direction: column;
