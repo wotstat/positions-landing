@@ -345,7 +345,7 @@
               <h3>{{ $t('main.l4.install.title') }}</h3>
               <ul class="gray">
                 <i18n-t keypath="main.l4.install.steps.s1" tag="li">
-                  <a @click="download">{{ $t('main.l4.install.steps.s1Download') }}</a>
+                  <a @click="latestGitHub">{{ $t('main.l4.install.steps.s1Download') }}</a>
                 </i18n-t>
                 <li>{{ $t('main.l4.install.steps.s2') }}</li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
@@ -360,7 +360,11 @@
                 <li v-html="$t('main.l4.install.steps.s6')"></li>
               </ul>
 
-              <button class="download" @click="download">{{ $t('main.l4.install.steps.s1Download') }}</button>
+              <div class="flex download-buttons">
+                <button class="download" @click="downloadLesta">{{ $t('main.l4.install.steps.s1Download') }}
+                  Lesta</button>
+                <button class="download" @click="downloadWG">{{ $t('main.l4.install.steps.s1Download') }} WG</button>
+              </div>
             </div>
             <div class="image">
               <VideoLazy src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
@@ -511,13 +515,21 @@ const latest = ref({
   wg: 'Загрузка...',
 })
 
-const modLatest = ref<{
+const modLestaLatest = ref<{
   browser_download_url: string;
   name: string;
   actual: boolean;
 } | null>(null)
 
-const latestModDownloadUrl = computed(() => modLatest.value?.browser_download_url ?? 'https://github.com/WOT-STAT/minimap-positions/releases/latest')
+const modWgLatest = ref<{
+  browser_download_url: string;
+  name: string;
+  actual: boolean;
+} | null>(null)
+
+const LATEST_GH_VERSION_URL = 'https://github.com/wotstat/wotstat-positions/releases/latest'
+const latestLestaModDownloadUrl = computed(() => modLestaLatest.value?.browser_download_url)
+const latestWgModDownloadUrl = computed(() => modWgLatest.value?.browser_download_url)
 
 const screenshots = new Array(18).fill(0)
   .map((_, i) => `/screenshots/new/shot_${i + 1}.jpg`)
@@ -549,9 +561,18 @@ function onRender() {
   loaded.value = true;
 }
 
-function download() {
-  if (!latestModDownloadUrl.value) window.open(latestModDownloadUrl.value, '_blank')
-  else window.open(latestModDownloadUrl.value);
+function latestGitHub() {
+  window.open(LATEST_GH_VERSION_URL);
+}
+
+function downloadLesta() {
+  if (!latestLestaModDownloadUrl.value) window.open(LATEST_GH_VERSION_URL, '_blank')
+  else window.open(latestLestaModDownloadUrl.value);
+}
+
+function downloadWG() {
+  if (!latestWgModDownloadUrl.value) window.open(LATEST_GH_VERSION_URL, '_blank')
+  else window.open(latestWgModDownloadUrl.value);
 }
 
 const router = useRouter()
@@ -562,7 +583,10 @@ function buy() {
 
 onMounted(async () => {
   latest.value = await getLatestGameVersion();
-  modLatest.value = await getLatestModVersion()
+  const latestMod = await getLatestModVersion();
+  modLestaLatest.value = { ...latestMod.lesta, actual: latestMod.actual }
+  modWgLatest.value = { ...latestMod.wg, actual: latestMod.actual }
+
 })
 
 onUnmounted(() => {
@@ -988,6 +1012,10 @@ $width-limit: 1000px;
         .text {
           flex: 1;
           margin-bottom: auto;
+        }
+
+        .download-buttons {
+          gap: 1em;
         }
 
         .image {

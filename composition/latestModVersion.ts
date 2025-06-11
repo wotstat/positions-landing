@@ -1,6 +1,16 @@
 
 
-export async function getLatestModVersion() {
+export async function getLatestModVersion(): Promise<{
+  lesta: {
+    browser_download_url: string,
+    name: string,
+  },
+  wg: {
+    browser_download_url: string,
+    name: string,
+  },
+  actual: boolean,
+}> {
 
   const lastCheck = Number.parseInt(localStorage.getItem('lastCheckModVersion') ?? '0');
 
@@ -15,14 +25,24 @@ export async function getLatestModVersion() {
   const text = await response.text();
   const json = JSON.parse(text);
 
-  const asset = (json.assets as Record<string, string>[]).find(t => t.name.endsWith('.wotmod')) as {
+  const assetWg = (json.assets as Record<string, string>[]).find(t => t.name.endsWith('.wotmod')) as {
+    browser_download_url: string,
+    name: string,
+  };
+
+  const assetLesta = (json.assets as Record<string, string>[]).find(t => t.name.endsWith('.mtmod')) as {
     browser_download_url: string,
     name: string,
   };
 
   const result = {
-    browser_download_url: asset.browser_download_url,
-    name: asset.name,
+    lesta: {
+      browser_download_url: assetLesta.browser_download_url,
+      name: assetLesta.name,
+    }, wg: {
+      browser_download_url: assetWg.browser_download_url,
+      name: assetWg.name,
+    },
     actual: true,
   }
 

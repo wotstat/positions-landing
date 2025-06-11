@@ -4,7 +4,7 @@ export async function parseGameVersion(url: string) {
   const text = await response.text();
   const parser = new DOMParser();
   const doc = parser.parseFromString(text, "text/xml");
-  return doc.documentElement.querySelector("Path[mask='*.wotmod']")?.textContent ?? './mods/GAME_VERSION';
+  return doc.documentElement.querySelector("Path[mask='*.wotmod'")?.textContent ?? doc.documentElement.querySelector("Path[mask='*.mtmod'")?.textContent ?? './mods/GAME_VERSION';
 }
 
 export async function getLatestGameVersion() {
