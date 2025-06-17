@@ -21,7 +21,7 @@ export async function getLatestModVersion(): Promise<{
     }
   }
 
-  const response = await fetch("https://api.github.com/repos/WOT-STAT/minimap-positions/releases/latest")
+  const response = await fetch("https://api.github.com/repos/wotstat/wotstat-positions/releases/latest")
   const text = await response.text();
   const json = JSON.parse(text);
 
