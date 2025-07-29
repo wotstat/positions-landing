@@ -361,7 +361,7 @@
 
             </div>
             <div class="image">
-              <VideoLazy src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
+              <VideoLazy src="/instruction/installer.webm" type="video/webm" poster="/instruction/installer.webp" />
             </div>
           </div>
 
