@@ -98,16 +98,14 @@ export default {
 
       install: {
         title: 'Установка',
-        description: 'Для установки достаточно перенести файл мода в папку с игрой.',
+        description: 'Воспользуйтесь веб-установщиком WotStat.',
         steps: {
-          s1: '{0} актуальную версию модификации',
-          s1Download: 'Скачать',
-          s2: 'Открыть лаунчер игры',
-          s3: 'Нажать кнопку <code>Настройки игры</code> → <code>Показать в папке</code>',
-          s4: 'Открыть папку <code>mods</code>',
-          s5: 'Открыть папку с актуальной версией игры:',
-          s6: 'Перенести в неё скачанный файл модификации',
-        }
+          s1: 'На странице <a href="{link}" target="_blank" rel="noopener noreferrer">Моды</a> выберите папку с игрой',
+          s2: 'Поставьте галочку на мод <code>Позиции</code>',
+          s3: 'Нажмите кнопку <code>Установить</code> или <code>Скачать архив</code>',
+        },
+        goToInstaller: 'Перейти к установщику',
+        sub: 'Если у вас возникли проблемы с установкой, обратитесь на почту {0}'
       },
 
       activation: {
@@ -131,10 +129,10 @@ export default {
 
       configure: {
         title: 'Конфигурация',
-        description: 'Для доступа к меню конфигурации, вам необходимо два дополнительных мода:',
+        description: 'Для работы настроек необходимо установить <code>мод-настройщик</code>, его можно найти в разделе <a href="{link}" target="_blank" rel="noopener noreferrer">другие моды</a>',
         sub: 'Конфигурация является опциональным шагом, мод будет работать и без неё.',
-        setting: '<code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank" rel="noopener noreferrer">ModsSettingsAPI</a></code> – мод для отображения настроек других модов прямо в игре',
-        list: '<code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank" rel="noopener noreferrer">Mods List</a></code> – мод для отображения списка модов в ангаре, нужен для открытия меню настроек'
+        goToModMenu: 'Перейдите в меню-модов',
+        clickSettings: 'Выберите раздел <code>Настройки модификаций</code>',
       }
     },
     l5: {

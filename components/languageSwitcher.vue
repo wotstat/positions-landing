@@ -4,8 +4,8 @@
     <SvgoArrowDown class="icon arrow" />
     <div class="menu">
 
-      <NuxtLink :to="switchLocalePath('ru')" :class="{ active: locale == 'ru' }">Русский</NuxtLink>
-      <NuxtLink :to="switchLocalePath('en')" :class="{ active: locale == 'en' }">English</NuxtLink>
+      <a :href="switchLocalePath('ru')" :class="{ active: locale == 'ru' }">Русский</a>
+      <a :href="switchLocalePath('en')" :class="{ active: locale == 'en' }">English</a>
 
     </div>
   </div>

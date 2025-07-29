@@ -343,34 +343,27 @@
           <div class="step">
             <div class="text">
               <h3>{{ $t('main.l4.install.title') }}</h3>
+              <p class="gray">{{ $t('main.l4.install.description') }}</p>
               <ul class="gray">
-                <i18n-t keypath="main.l4.install.steps.s1" tag="li">
-                  <a @click="latestGitHub">{{ $t('main.l4.install.steps.s1Download') }}</a>
-                </i18n-t>
-                <li>{{ $t('main.l4.install.steps.s2') }}</li>
+                <li v-html="$t('main.l4.install.steps.s1', { link: `${ANALYTICS_URL}/install?preset=positions` })"></li>
+                <li v-html="$t('main.l4.install.steps.s2')"></li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
-                <li v-html="$t('main.l4.install.steps.s4')"></li>
-                <li>
-                  <p>{{ $t('main.l4.install.steps.s5') }}</p>
-                  <ul class="m-0">
-                    <li>Lesta: <code>{{ latest.lesta.replace('./mods/', '') }}</code></li>
-                    <li>Wargaming: <code>{{ latest.wg.replace('./mods/', '') }}</code></li>
-                  </ul>
-                </li>
-                <li v-html="$t('main.l4.install.steps.s6')"></li>
               </ul>
+              <button @click="goToDownload">{{ $t('main.l4.install.goToInstaller') }}</button>
+              <hr>
+              <p class="gray">
+                <i>
+                  <i18n-t keypath="main.l4.install.sub">
+                    <a href="mailto:support@wotstat.info" target="_blank">support@wotstat.info</a>
+                  </i18n-t>
+                </i>
+              </p>
 
-              <div class="flex download-buttons">
-                <button class="download" @click="downloadLesta">{{ $t('main.l4.install.steps.s1Download') }}
-                  Lesta</button>
-                <button class="download" @click="downloadWG">{{ $t('main.l4.install.steps.s1Download') }} WG</button>
-              </div>
             </div>
             <div class="image">
               <VideoLazy src="/instruction/install.webm" type="video/webm" poster="/instruction/install.webp" />
             </div>
           </div>
-
 
           <div class="step">
             <div class="text">
@@ -408,15 +401,16 @@
           <div class="step">
             <div class="text">
               <h3>{{ $t('main.l4.configure.title') }}</h3>
-              <p class="gray">{{ $t('main.l4.configure.description') }}</p>
+              <p class="gray"
+                v-html="$t('main.l4.configure.description', { link: `${ANALYTICS_URL}/install?preset=settings` })">
+              </p>
 
               <ul class="gray">
-                <li v-html="$t('main.l4.configure.setting')"></li>
-                <li v-html="$t('main.l4.configure.list')"></li>
+                <li v-html="$t('main.l4.configure.goToModMenu')"></li>
+                <li v-html="$t('main.l4.configure.clickSettings')"></li>
               </ul>
 
               <p class="gray"><i>{{ $t('main.l4.configure.sub') }}</i></p>
-
             </div>
             <div class="image">
               <VideoLazy src="/instruction/configuration.webm" type="video/webm"
@@ -469,11 +463,13 @@
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
 import VideoLazy from '~/components/videoLazy.vue';
+import { getAnalyticsUrl } from '~/core/externalUrl';
+
+const ANALYTICS_URL = getAnalyticsUrl()
 
 useHead({
   link: [{ rel: 'preload', as: 'image', 'href': '/favicon_128.png' }]
 })
-
 
 const discordUrl = import.meta.env.VITE_DISCORD_URL;
 
@@ -527,10 +523,6 @@ const modWgLatest = ref<{
   actual: boolean;
 } | null>(null)
 
-const LATEST_GH_VERSION_URL = 'https://github.com/wotstat/wotstat-positions/releases/latest'
-const latestLestaModDownloadUrl = computed(() => modLestaLatest.value?.browser_download_url)
-const latestWgModDownloadUrl = computed(() => modWgLatest.value?.browser_download_url)
-
 const screenshots = new Array(18).fill(0)
   .map((_, i) => `/screenshots/new/shot_${i + 1}.jpg`)
 
@@ -561,24 +553,12 @@ function onRender() {
   loaded.value = true;
 }
 
-function latestGitHub() {
-  window.open(LATEST_GH_VERSION_URL);
-}
-
-function downloadLesta() {
-  if (!latestLestaModDownloadUrl.value) window.open(LATEST_GH_VERSION_URL, '_blank')
-  else window.open(latestLestaModDownloadUrl.value);
-}
-
-function downloadWG() {
-  if (!latestWgModDownloadUrl.value) window.open(LATEST_GH_VERSION_URL, '_blank')
-  else window.open(latestWgModDownloadUrl.value);
-}
-
-const router = useRouter()
 function buy() {
-  // router.push('/buy')
   buyPopup.value = true;
+}
+
+function goToDownload() {
+  window.open(`${ANALYTICS_URL}/install?preset=positions`, '_blank');
 }
 
 onMounted(async () => {

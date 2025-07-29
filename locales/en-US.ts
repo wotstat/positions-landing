@@ -98,16 +98,15 @@ export default {
 
       install: {
         title: 'Installation',
-        description: 'To install, simply move the mod file to the game folder.',
+
+        description: 'Use the WotStat web installer to easily install the mod without manual file transfers.',
         steps: {
-          s1: '{0} the latest mod version',
-          s1Download: 'Download',
-          s2: 'Open the game launcher',
-          s3: 'Click the <code>Game Settings</code> → <code>Show in folder</code> button',
-          s4: 'Open the <code>mods</code> folder',
-          s5: 'Open the folder for the current game version:',
-          s6: 'Move the downloaded mod file into it',
-        }
+          s1: 'On the <a href="{link}" target="_blank" rel="noopener noreferrer">Mods</a> page, select the game folder',
+          s2: 'Check the checkbox for the <code>Positions</code> mod',
+          s3: 'Click the <code>Install</code> or <code>Download Archive</code> button',
+        },
+        goToInstaller: 'Go to the installer',
+        sub: 'If you encounter installation issues, please contact support at {0}',
       },
 
       activation: {
@@ -131,10 +130,10 @@ export default {
 
       configure: {
         title: 'Configuration',
-        description: 'To access the configuration menu, you need two additional mods:',
+        description: 'To access the configuration menu, you need to install the <code>ModsSettingsAPI</code> mod, which can be found in the <a href="{link}" target="_blank" rel="noopener noreferrer">other mods</a> section.',
         sub: 'Configuration is optional; the mod will function without it.',
-        setting: '<code><a href="https://bitbucket.org/IzeBerg/modssettingsapi/downloads/" target="_blank" rel="noopener noreferrer">ModsSettingsAPI</a></code> – mod for displaying other mods’ settings directly in-game',
-        list: '<code><a href="https://gitlab.com/wot-public-mods/mods-list/-/releases" target="_blank" rel="noopener noreferrer">Mods List</a></code> – mod for showing the mod list in the garage, necessary for opening the settings menu'
+        goToModMenu: 'Go to the mods menu',
+        clickSettings: 'Select the <code>Mods Settings</code> section',
       }
     },
     l5: {
