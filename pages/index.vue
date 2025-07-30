@@ -346,7 +346,7 @@
               <h3>{{ $t('main.l4.install.title') }}</h3>
               <p class="gray">{{ $t('main.l4.install.description') }}</p>
               <ul class="gray">
-                <li v-html="$t('main.l4.install.steps.s1', { link: `${ANALYTICS_URL}/install?preset=positions` })"></li>
+                <li v-html="$t('main.l4.install.steps.s1', { link: `${analyticUrl}/install?preset=positions` })"></li>
                 <li v-html="$t('main.l4.install.steps.s2')"></li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
               </ul>
@@ -403,7 +403,7 @@
             <div class="text">
               <h3>{{ $t('main.l4.configure.title') }}</h3>
               <p class="gray"
-                v-html="$t('main.l4.configure.description', { link: `${ANALYTICS_URL}/install?preset=settings` })">
+                v-html="$t('main.l4.configure.description', { link: `${analyticUrl}/install?preset=settings` })">
               </p>
 
               <ul class="gray">
@@ -467,6 +467,7 @@ import VideoLazy from '~/components/videoLazy.vue';
 import { getAnalyticsUrl } from '~/core/externalUrl';
 
 const ANALYTICS_URL = getAnalyticsUrl()
+const analyticUrl = ref(ANALYTICS_URL);
 
 useHead({
   link: [{ rel: 'preload', as: 'image', 'href': '/favicon_128.png' }]
@@ -507,23 +508,6 @@ const selectedMap = ref<string>('murovanka');
 const tanks = ['conqueror', 'concept', 'jagdPz', 'ob261', 'even']
 const maps = ['paris', 'murovanka', 'steppes']
 
-const latest = ref({
-  lesta: 'Загрузка...',
-  wg: 'Загрузка...',
-})
-
-const modLestaLatest = ref<{
-  browser_download_url: string;
-  name: string;
-  actual: boolean;
-} | null>(null)
-
-const modWgLatest = ref<{
-  browser_download_url: string;
-  name: string;
-  actual: boolean;
-} | null>(null)
-
 const screenshots = new Array(18).fill(0)
   .map((_, i) => `/screenshots/new/shot_${i + 1}.jpg`)
 
@@ -559,15 +543,12 @@ function buy() {
 }
 
 function goToDownload() {
-  window.open(`${ANALYTICS_URL}/install?preset=positions`, '_blank');
+  window.open(`${analyticUrl.value}/install?preset=positions`, '_blank');
 }
 
 onMounted(async () => {
-  latest.value = await getLatestGameVersion();
-  const latestMod = await getLatestModVersion();
-  modLestaLatest.value = { ...latestMod.lesta, actual: latestMod.actual }
-  modWgLatest.value = { ...latestMod.wg, actual: latestMod.actual }
-
+  analyticUrl.value = getAnalyticsUrl()
+  console.log('Analytics URL:', analyticUrl.value);
 })
 
 onUnmounted(() => {
