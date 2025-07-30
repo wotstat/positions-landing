@@ -346,7 +346,8 @@
               <h3>{{ $t('main.l4.install.title') }}</h3>
               <p class="gray">{{ $t('main.l4.install.description') }}</p>
               <ul class="gray">
-                <li v-html="$t('main.l4.install.steps.s1', { link: `${analyticUrl}/install?preset=positions` })"></li>
+                <li :key="analyticUrl"
+                  v-html="$t('main.l4.install.steps.s1', { link: `${analyticUrl}/install?preset=positions` })"></li>
                 <li v-html="$t('main.l4.install.steps.s2')"></li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
               </ul>
@@ -402,7 +403,7 @@
           <div class="step">
             <div class="text">
               <h3>{{ $t('main.l4.configure.title') }}</h3>
-              <p class="gray"
+              <p class="gray" :key="analyticUrl"
                 v-html="$t('main.l4.configure.description', { link: `${analyticUrl}/install?preset=settings` })">
               </p>
 
@@ -545,11 +546,6 @@ function buy() {
 function goToDownload() {
   window.open(`${analyticUrl.value}/install?preset=positions`, '_blank');
 }
-
-onMounted(async () => {
-  analyticUrl.value = getAnalyticsUrl()
-  console.log('Analytics URL:', analyticUrl.value);
-})
 
 onUnmounted(() => {
   document.body.classList.remove('no-scroll');
