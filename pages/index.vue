@@ -171,7 +171,7 @@
           </div>
 
           <div class="card">
-            <div class="badge new">{{ $t('main.l3.updated') }}</div>
+            <!-- <div class="badge new">{{ $t('main.l3.updated') }}</div> -->
 
             <div class="info">
               <h4>{{ $t('main.l3.card3.title') }}</h4>
@@ -189,7 +189,8 @@
           </div>
 
           <div class="card">
-            <div class="badge new">{{ $t('main.l3.new') }}</div>
+            <!-- <div class="badge new">{{ $t('main.l3.new') }}</div> -->
+
             <div class="info">
               <h4>{{ $t('main.l3.card4.title') }}</h4>
               <p class="gray">{{ $t('main.l3.card4.description') }}</p>
@@ -202,7 +203,7 @@
           </div>
 
           <div class="card">
-            <div class="badge new">{{ $t('main.l3.new') }}</div>
+            <!-- <div class="badge new">{{ $t('main.l3.new') }}</div> -->
 
             <div class="info">
               <h4>{{ $t('main.l3.card5.title') }}</h4>

@@ -2,9 +2,9 @@
 
 export function getPrefix() {
   const route = useRequestURL();
-  const match = route.href.match(/^(.*)\.wotstat\.info$/i);
-  const subdomain = match ? `${match[1]}.` : '';
-  return subdomain;
+  const match = route.href.match(/^(?:.*):\/\/(.*)\.positions\.wotstat\.info.*$/i);
+  const prefix = match ? `${match[1]}.` : '';
+  return prefix;
 }
 
 export function getAnalyticsUrl() {
