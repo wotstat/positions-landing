@@ -449,6 +449,7 @@
         <template v-if="locale == 'ru'">
           <br>
           <br>
+          <p class="gray">Самозанятый Сопрачев Андрей Константинович, ИНН: 781445983413</p>
           <a href="/oferta" target="_blank" rel="noopener noreferrer">Публичная оферта</a>
         </template>
       </div>
