@@ -67,6 +67,9 @@
         <div class="content flex">
           <div class="left">
             <div class="title">
+
+              <div class="wot-2-badge">{{ $t('main.wot2') }}</div>
+
               <h1>{{ $t('main.l1.title') }}
                 <SvgoV2Badge class="v2-badge" />
               </h1>
@@ -351,6 +354,7 @@
                 <li v-html="$t('main.l4.install.steps.s2')"></li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
               </ul>
+              <div class="wot-2-badge">{{ $t('main.wot2') }}</div>
               <button @click="goToDownload">{{ $t('main.l4.install.goToInstaller') }}</button>
               <hr>
               <p class="gray">
@@ -561,6 +565,14 @@ onUnmounted(() => {
 
 
 $width-limit: 1000px;
+
+.wot-2-badge {
+  background-color: #ff910025;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  border-left: 5px solid orange;
+}
 
 .page {
   position: relative;

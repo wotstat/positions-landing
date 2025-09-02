@@ -10,6 +10,7 @@ export default {
     description: 'Mod for World of Tanks that shows effective positions in battle. From the developers of the WotStat service',
   },
   main: {
+    wot2: 'Update for WOT 2.0 will be available in the coming days.',
     header: {
       title: 'Positions by WotStat',
       description: 'Description',

@@ -10,6 +10,7 @@ export default {
     description: 'Мод для World of Tanks, который показывает эффективные позиции в бою. От разработчиков сервиса WotStat',
   },
   main: {
+    wot2: 'Обновление для WOT 2.0 появится в ближайшие несколько дней.',
     header: {
       title: 'Позиции от WotStat',
       description: 'Описание',
