@@ -354,7 +354,6 @@
                 <li v-html="$t('main.l4.install.steps.s2')"></li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
               </ul>
-              <div class="wot-2-badge">{{ $t('main.wot2') }}</div>
               <button @click="goToDownload">{{ $t('main.l4.install.goToInstaller') }}</button>
               <hr>
               <p class="gray">
@@ -567,11 +566,11 @@ onUnmounted(() => {
 $width-limit: 1000px;
 
 .wot-2-badge {
-  background-color: #ff910025;
+  background-color: #00ff0825;
   border-radius: 5px;
   padding: 10px;
   font-weight: bold;
-  border-left: 5px solid orange;
+  border-left: 5px solid rgb(41, 211, 32);
 }
 
 .page {
