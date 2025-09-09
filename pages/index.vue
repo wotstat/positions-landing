@@ -68,8 +68,6 @@
           <div class="left">
             <div class="title">
 
-              <div class="wot-2-badge">{{ $t('main.wot2') }}</div>
-
               <h1>{{ $t('main.l1.title') }}
                 <SvgoV2Badge class="v2-badge" />
               </h1>
@@ -564,14 +562,6 @@ onUnmounted(() => {
 
 
 $width-limit: 1000px;
-
-.wot-2-badge {
-  background-color: #00ff0825;
-  border-radius: 5px;
-  padding: 10px;
-  font-weight: bold;
-  border-left: 5px solid rgb(41, 211, 32);
-}
 
 .page {
   position: relative;
