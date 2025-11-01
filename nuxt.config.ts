@@ -39,6 +39,9 @@ export default defineNuxtConfig({
           api: 'modern-compiler'
         }
       }
+    },
+    build: {
+      sourcemap: 'inline'
     }
   },
 
