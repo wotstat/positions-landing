@@ -3,11 +3,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
 
-  sourcemap: {
-    client: true,
-    server: false
-  },
-
   modules: [
     "@nuxtjs/i18n",
     '@vueuse/nuxt',
