@@ -2,7 +2,9 @@
   <header>
     <LanguageSwitcher class="language-switcher" />
   </header>
-  <Activation :requestId />
+  <ClientOnly>
+    <Activation :requestId />
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
