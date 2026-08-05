@@ -1,5 +1,7 @@
 <template>
-  <Activation :requestId="requestId" :clear="true" />
+  <ClientOnly>
+    <Activation :requestId="requestId" :clear="true" />
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

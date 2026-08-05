@@ -1,5 +1,7 @@
 <template>
-  <Activation :requestId isPatreonRedirect />
+  <ClientOnly>
+    <Activation :requestId isPatreonRedirect />
+  </ClientOnly>
 </template>
 
 
