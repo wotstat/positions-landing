@@ -102,7 +102,7 @@
               <ThreeRotationMap :tank="selectedTank" :map="selectedMap" @on-ready="onRender" />
             </div>
             <div class="placeholder" v-if="!loaded">
-              <img src="/public/minimap/map.webp">
+              <img src="/minimap/map.webp">
             </div>
           </div>
         </div>
