@@ -170,12 +170,13 @@ export default {
     byYear: 'Yearly',
     byYearBadge: '20% discount',
     selectPayment: 'Choose payment method',
+    experimental: 'Experimental',
 
     sub: 'Follow the payment service instructions. Instant delivery of the license key after payment.',
     goToPayment: 'Proceed to payment',
     ru: {
       title: 'From Russia',
-      description: 'Bank cards, SBP, SberPay, Tinkoff Pay, YuMoney wallet',
+      description: 'Bank cards, SBP, SberPay, Tinkoff Pay, YooMoney wallet',
     },
     crypto: {
       title: 'Cryptocurrency',
@@ -186,6 +187,12 @@ export default {
       description: 'Using a Patreon subscription',
       sub: 'The license is available to all WotStat subscribers on Patreon. To activate, install the mod and select "Log in with Patreon" on the activation page.',
       goToPayment: 'Go to Patreon',
+    },
+    funpay: {
+      title: 'From CIS via FunPay',
+      description: 'Available for Belarus, Kazakhstan, and other CIS countries',
+      sub: 'The license is available to all FunPay users. To activate, install the mod and select "Go to FunPay" on the activation page.',
+      goToFunpay: 'Go to FunPay',
     }
   },
   activation: {

@@ -22,7 +22,7 @@
     </div>
 
     <div class="year" :class="selectedPeriod == 'year' ? 'active' : ''" @click="selectedPeriod = 'year'"
-      v-if="selectedPayment != 'patreon'">
+      v-if="selectedPayment != 'patreon' && selectedPayment != 'funpay'">
       <div class=" header">
         <p>{{ $t('buy.byYear') }}</p>
         <div class="badge">
@@ -49,6 +49,13 @@
       <p>{{ $t('buy.ru.description') }}</p>
     </div>
 
+    <div class="variant funpay" :class="selectedPayment == 'funpay' ? 'active' : ''"
+      @click="selectedPayment = 'funpay'">
+      <div class="badge experimental">{{ $t('buy.experimental') }}</div>
+      <h4>{{ $t('buy.funpay.title') }}</h4>
+      <p>{{ $t('buy.funpay.description') }}</p>
+    </div>
+
     <div class="variant" :class="selectedPayment == 'crypto' ? 'active' : ''" @click="selectedPayment = 'crypto'">
       <h4>{{ $t('buy.crypto.title') }}</h4>
       <p>{{ $t('buy.crypto.description') }}</p>
@@ -73,6 +80,7 @@
   <br>
 
   <button v-if="selectedPayment == 'patreon'" @click="openPatreon">{{ $t('buy.patreon.goToPayment') }}</button>
+  <button v-else-if="selectedPayment == 'funpay'" @click="go2funpay">{{ $t('buy.funpay.goToFunpay') }}</button>
   <template v-else>
     <button @click="go2molz"> {{ $t('buy.goToPayment') }}</button>
   </template>
@@ -83,16 +91,19 @@ const yandexMetrikaId = Number.parseInt(import.meta.env.VITE_YANDEX_METRIKA_ID)
 
 const { locale } = useI18n()
 const selectedPeriod = ref<'month' | 'year'>('month')
-const selectedPayment = ref<'russia' | 'crypto' | 'patreon'>(locale.value == 'ru' ? 'russia' : 'patreon')
+const selectedPayment = ref<'russia' | 'crypto' | 'patreon' | 'funpay'>(locale.value == 'ru' ? 'russia' : 'patreon')
 
 
 const targetCurrency = computed(() => {
-  if (selectedPayment.value == 'russia') {
-    return 'RUB'
-  } else if (selectedPayment.value == 'crypto') {
-    return 'RUB'
-  } else if (selectedPayment.value == 'patreon') {
-    return 'USD'
+  switch (selectedPayment.value) {
+    case 'russia':
+      return 'RUB'
+    case 'crypto':
+      return 'RUB'
+    case 'patreon':
+      return 'USD'
+    case 'funpay':
+      return 'RUB'
   }
 })
 
@@ -113,7 +124,7 @@ function metrikaReachGoal(target: string) {
 }
 
 watch(selectedPayment, payment => {
-  if (payment == 'patreon')
+  if (payment == 'patreon' || payment == 'funpay')
     selectedPeriod.value = 'month'
 })
 
@@ -126,8 +137,14 @@ function openPatreon() {
   window.open('https://www.patreon.com/WotStat', '_blank')
 }
 
+function go2funpay() {
+  metrikaReachGoal('GO_TO_FUNPAY')
+  window.open(' https://funpay.com/lots/offer?id=74292563', '_blank')
+}
+
 function go2molz() {
   if (selectedPayment.value == 'patreon') return
+  if (selectedPayment.value == 'funpay') return
 
   const molzLink = {
     'month': {
@@ -254,8 +271,8 @@ button {
       }
 
       .badge {
-        background: rgb(83, 84, 43);
-        color: rgb(253, 242, 89);
+        background: rgb(84, 76, 43);
+        color: rgb(255, 234, 73);
         border-radius: 50px;
         padding: 0.1em 0.7em;
         // margin-top: 0.2em;
@@ -295,8 +312,16 @@ button {
 }
 
 .payment {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  @media screen and (max-width: 830px) {
+    grid-template-columns: 1fr;
+  }
+
   gap: 20px;
 
   .variant {
@@ -310,6 +335,7 @@ button {
     // transition-duration: 0.2s;
     transition-property: border, box-shadow;
 
+
     &.active {
       // box-shadow: 0 0px 0px 2px $accent-color;
       // border: 1px solid transparent;
@@ -317,13 +343,28 @@ button {
     }
 
     h4 {
-      font-size: 1.2em;
+      // font-size: 1.2em;
+      font-size: 1em;
     }
 
     p {
       font-size: 1em;
       line-height: 1.5;
       color: $large-color;
+    }
+
+
+    position: relative;
+
+    .badge {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      background: rgb(67, 41, 64);
+      color: rgb(255, 124, 240);
+      border-radius: 50px;
+      padding: 0.1em 0.7em;
+      font-size: 0.7em;
     }
   }
 }

@@ -2,6 +2,7 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  compatibilityDate: '2025-07-15',
 
   modules: [
     "@nuxtjs/i18n",
@@ -32,15 +33,13 @@ export default defineNuxtConfig({
     format: ['webp']
   },
 
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler'
-        }
-      }
-    }
-  },
-
-  compatibilityDate: '2024-11-01',
+  // vite: {
+  //   css: {
+  //     preprocessorOptions: {
+  //       scss: {
+  //         api: 'modern-compiler'
+  //       }
+  //     }
+  //   }
+  // },
 })

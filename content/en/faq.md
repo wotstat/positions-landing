@@ -3,7 +3,7 @@
 
   <br>
 
-  - From Russia using YuKassa, accepting over 10 payment methods: bank cards, SBP, SberPay, Tinkoff Pay, YuMoney wallet
+  - From Russia using YuKassa, accepting over 10 payment methods: bank cards, SBP, SberPay, Tinkoff Pay, YooMoney wallet
   - Cryptocurrency: Tether USDT on the Tron network
   - International bank cards via Patreon subscription
 
