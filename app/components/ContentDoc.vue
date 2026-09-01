@@ -10,7 +10,12 @@ const props = defineProps<{
 }>()
 
 const { locale } = useI18n()
-const { data: page } = await useAsyncData(() => queryCollection('content').path(`/${locale.value}/${props.part}`).first())
+const contentPath = computed(() => `/${locale.value}/${props.part}`)
+const contentKey = computed(() => `content:${contentPath.value}`)
+const { data: page } = await useAsyncData(
+  contentKey,
+  () => queryCollection('content').path(contentPath.value).first(),
+)
 
 if (props.preventSeo !== true) {
   useSeoMeta({
