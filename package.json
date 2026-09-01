@@ -10,16 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^3.15.2",
+    "@nuxt/content": "^3.16.0",
     "@nuxt/image": "^2.1.0",
     "@nuxtjs/i18n": "^10.6.0",
-    "better-sqlite3": "^13.0.2",
-    "caniuse-lite": "^1.0.30001806",
-    "nuxt": "^4.5.1",
+    "better-sqlite3": "^13.0.3",
+    "caniuse-lite": "^1.0.30001810",
+    "nuxt": "^4.5.2",
     "nuxt-svgo": "^5.3.0",
     "three": "^0.185.1",
-    "vue": "^3.5.40",
-    "vue-router": "^5.2.0",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.0",
     "vue3-carousel-nuxt": "^1.1.6"
   },
   "devDependencies": {
@@ -27,6 +27,6 @@
     "@types/yandex-metrika-tag": "^2.0.7",
     "@vueuse/core": "^14.4.0",
     "@vueuse/nuxt": "^14.4.0",
-    "sass": "^1.102.0"
+    "sass": "^1.103.1"
   }
 }
