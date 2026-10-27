@@ -58,9 +58,7 @@ export default {
     },
     l3: {
       title: 'How It Works',
-      description: 'From the <a href="http://wotstat.info" target="_blank" rel="noopener noreferrer">WotStat</a> database, the top 5% of players* are selected, their damage heatmap is generated, the most popular areas are identified, and the most effective position is chosen within each area.',
-      descriptionMt: 'From the <a href="http://mtstat.info" target="_blank" rel="noopener noreferrer">WotStat</a> database, the top 5% of players* are selected, their damage heatmap is generated, the most popular areas are identified, and the most effective position is chosen within each area.',
-
+      description: 'From the <a href="{link}" target="_blank" rel="noopener noreferrer">WotStat</a> database, the top 5% of players* are selected, their damage heatmap is generated, the most popular areas are identified, and the most effective position is chosen within each area.',
       updated: 'UPDATED',
       new: 'NEW',
       card1: {
