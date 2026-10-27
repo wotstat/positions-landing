@@ -1,5 +1,5 @@
 
-const base = (() => {
+export const baseUrl = (() => {
   if (typeof location === 'undefined') return { prefix: '', domain: 'wotstat.info' }
   if (import.meta.env.MODE === 'development') return { prefix: '', domain: 'mtstat.info' }
 
@@ -15,5 +15,5 @@ const base = (() => {
 })()
 
 export function getAnalyticsUrl() {
-  return `${import.meta.env.VITE_ANALYTICS_URL || `https://${base.prefix}${base.domain}`}`;
+  return `${import.meta.env.VITE_ANALYTICS_URL || `https://${baseUrl.prefix}${baseUrl.domain}`}`;
 }

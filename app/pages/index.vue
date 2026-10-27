@@ -141,7 +141,7 @@
       <section class="l3">
         <h2 id="how-to">{{ $t('main.l3.title') }}</h2>
         <h3 class="gray"
-          v-html="analyticUrl == 'mtstat.info' ? $t('main.l3.descriptionMt') : $t('main.l3.description')">
+          v-html="baseUrl.domain == 'mtstat.info' ? $t('main.l3.descriptionMt') : $t('main.l3.description')">
         </h3>
 
         <br>
@@ -469,7 +469,7 @@
 import { getLatestModVersion } from '~/composition/latestModVersion';
 import { getLatestGameVersion } from '~/composition/useLatestGameVersions';
 import VideoLazy from '~/components/videoLazy.vue';
-import { getAnalyticsUrl } from '~/core/externalUrl';
+import { baseUrl, getAnalyticsUrl } from '~/core/externalUrl';
 
 const ANALYTICS_URL = getAnalyticsUrl()
 const analyticUrl = ref(ANALYTICS_URL);
