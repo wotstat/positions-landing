@@ -354,7 +354,9 @@
                 <li v-html="$t('main.l4.install.steps.s2')"></li>
                 <li v-html="$t('main.l4.install.steps.s3')"></li>
               </ul>
-              <button @click="goToDownload">{{ $t('main.l4.install.goToInstaller') }}</button>
+              <a :href="`${analyticUrl}/install?preset=positions`" target="_blank" rel="noopener noreferrer"
+                class="button">
+                {{ $t('main.l4.install.goToInstaller') }}</a>
               <hr>
               <p class="gray">
                 <i>
@@ -545,10 +547,6 @@ function onRender() {
 
 function buy() {
   buyPopup.value = true;
-}
-
-function goToDownload() {
-  window.open(`${analyticUrl.value}/install?preset=positions`, '_blank');
 }
 
 onUnmounted(() => {
@@ -1015,7 +1013,12 @@ $width-limit: 1000px;
           }
         }
 
-        button {
+        button,
+        .button {
+          display: block;
+          padding: 0.6em 1.2em;
+          border-radius: 8px;
+          text-align: center;
           width: 100%;
           background-color: $dark-green;
           border: none;
