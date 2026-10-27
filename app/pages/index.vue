@@ -140,7 +140,9 @@
 
       <section class="l3">
         <h2 id="how-to">{{ $t('main.l3.title') }}</h2>
-        <h3 class="gray" v-html="$t('main.l3.description')"></h3>
+        <h3 class="gray"
+          v-html="analyticUrl == 'mtstat.info' ? $t('main.l3.descriptionMt') : $t('main.l3.description')">
+        </h3>
 
         <br>
         <br>
