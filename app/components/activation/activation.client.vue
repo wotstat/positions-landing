@@ -89,6 +89,8 @@
 
 
 <script setup lang="ts">
+import { getPositionsWebSocketOrigin } from '~/core/externalUrl'
+
 const props = defineProps<{
   requestId?: string
   clear?: boolean
@@ -137,7 +139,8 @@ function getPatreonRedirectUri() {
   return location.origin + (language == 'ru' ? '' : `/${language}`) + `/${import.meta.env.VITE_PATREON_REDIRECT_URI}`
 }
 
-const wsUrl = `${import.meta.env.VITE_WS_SERVER_URL}/api/v1/activation/web/${props.requestId ?? 'undefined'}` + (patreonCode.value ? `?patreon-key=${patreonCode.value}` : '')
+const wsOrigin = getPositionsWebSocketOrigin(location.origin, import.meta.env.MODE, import.meta.env.VITE_WS_SERVER_URL)
+const wsUrl = `${wsOrigin}/api/v1/activation/web/${props.requestId ?? 'undefined'}` + (patreonCode.value ? `?patreon-key=${patreonCode.value}` : '')
 const { status: wsStatus, data, send, open, close } = useWebSocket(wsUrl, {
   onMessage: (ws, event) => {
     if (event.data === 'PONG') return

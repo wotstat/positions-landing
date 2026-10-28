@@ -17,3 +17,8 @@ export const baseUrl = (() => {
 export function getAnalyticsUrl() {
   return `${import.meta.env.VITE_ANALYTICS_URL || `https://${baseUrl.prefix}${baseUrl.domain}`}`;
 }
+
+export function getPositionsWebSocketOrigin(pageOrigin: string, mode: string, configuredOrigin?: string) {
+  if (mode === 'development' && configuredOrigin) return configuredOrigin
+  return pageOrigin.replace(/^http/, 'ws')
+}
