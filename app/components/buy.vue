@@ -87,6 +87,8 @@
 </template>
 
 <script setup lang="ts">
+import { baseUrl } from '~/core/externalUrl'
+
 const yandexMetrikaId = Number.parseInt(import.meta.env.VITE_YANDEX_METRIKA_ID)
 
 const { locale } = useI18n()
@@ -146,14 +148,16 @@ function go2molz() {
   if (selectedPayment.value == 'patreon') return
   if (selectedPayment.value == 'funpay') return
 
+  const url = baseUrl.domain == 'mtstat.info' ? 'https://shop.mtstat.info' : 'https://wotstat.molz.io'
+
   const molzLink = {
     'month': {
-      'russia': 'https://shop.wotstat.info/purchase/6139?clear',
-      'crypto': 'https://shop.wotstat.info/purchase/6139?clear',
+      'russia': `https://${url}/purchase/6139?clear`,
+      'crypto': `https://${url}/purchase/6139?clear`,
     },
     'year': {
-      'russia': 'https://shop.wotstat.info/purchase/6140?clear',
-      'crypto': 'https://shop.wotstat.info/purchase/6140?clear',
+      'russia': `https://${url}/purchase/6140?clear`,
+      'crypto': `https://${url}/purchase/6140?clear`,
     }
   } as const
 
