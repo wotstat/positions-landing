@@ -148,7 +148,7 @@ function go2molz() {
   if (selectedPayment.value == 'patreon') return
   if (selectedPayment.value == 'funpay') return
 
-  const url = baseUrl.domain == 'mtstat.info' ? 'https://shop.mtstat.info' : 'https://wotstat.molz.io'
+  const url = baseUrl.domain == 'mtstat.info' ? 'shop.mtstat.info' : 'wotstat.molz.io'
 
   const molzLink = {
     'month': {
