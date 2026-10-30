@@ -22,7 +22,7 @@
     </div>
 
     <div class="year" :class="selectedPeriod == 'year' ? 'active' : ''" @click="selectedPeriod = 'year'"
-      v-if="selectedPayment != 'patreon' && selectedPayment != 'funpay'">
+      v-if="selectedPayment != 'patreon'">
       <div class=" header">
         <p>{{ $t('buy.byYear') }}</p>
         <div class="badge">
@@ -126,7 +126,7 @@ function metrikaReachGoal(target: string) {
 }
 
 watch(selectedPayment, payment => {
-  if (payment == 'patreon' || payment == 'funpay')
+  if (payment == 'patreon')
     selectedPeriod.value = 'month'
 })
 
@@ -141,7 +141,13 @@ function openPatreon() {
 
 function go2funpay() {
   metrikaReachGoal('GO_TO_FUNPAY')
-  window.open(' https://funpay.com/lots/offer?id=74292563', '_blank')
+
+  const funpayLink = {
+    'month': 'https://funpay.com/lots/offer?id=74292563',
+    'year': 'https://funpay.com/lots/offer?id=80858921',
+  } as const
+
+  window.open(funpayLink[selectedPeriod.value], '_blank')
 }
 
 function go2molz() {
